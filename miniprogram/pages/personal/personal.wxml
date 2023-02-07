@@ -1,0 +1,7 @@
+<!--pages/personal/personal.wxml-->
+<view class="amountBG">
+ <view class="img"><image src="../../images/icon/grzx/tx.png" style="width: 49px;height:47px;"></image></view>
+ <view>{{userInfoNickName}}</view>
+ <view>账号管理</view>
+ <view class="nav">></view>
+</view>

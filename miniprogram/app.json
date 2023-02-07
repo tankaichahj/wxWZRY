@@ -1,0 +1,47 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/info/info",
+    "pages/personal/personal",
+    "pages/squads/squads",
+    "pages/team/team"
+    
+
+    
+    
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "王者战队管理系统",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "selectedColor": "#5495E6",
+    "backgroundColor": "#fffff",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "images/bar/sy/sy-0.png",
+      "selectedIconPath": "images/bar/sy/sy-1.png"
+    },{
+      "pagePath": "pages/squads/squads",
+      "text": "战队",
+      "iconPath": "images/bar/zd/zd-0.png",
+      "selectedIconPath": "images/bar/zd/zd-1.png"
+      },{
+        "pagePath": "pages/team/team",
+        "text": "战队小队",
+        "iconPath": "images/bar/zdxd/zdxd-0.png",
+        "selectedIconPath": "images/bar/zdxd/zdxd-1.png"
+      },{
+        "pagePath": "pages/personal/personal",
+        "text": "个人中心",
+        "iconPath": "images/bar/grzx/grzx-0.png",
+        "selectedIconPath": "images/bar/grzx/grzx-1.png"
+      }]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

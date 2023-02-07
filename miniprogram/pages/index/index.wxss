@@ -1,0 +1,37 @@
+/* pages/index/index.wxss */
+.a {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.TeamName {
+  display: grid;
+  place-content: center;
+
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.item {
+  display: flex;
+  width: 80px;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 2px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  margin:  auto;
+}
+
+.text {
+  margin-top: 2px;
+}
