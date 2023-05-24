@@ -1,2 +1,50 @@
-<!--pages/info/info.wxml-->
-<text>pages/info/info.wxml</text>
+<view style="display: flex; flex-direction: column; height: 1441rpx;  width: 750rpx; box-sizing: border-box; background-color: #E6E6E6">
+	<view style="width: 100%; height: 134rpx; display: block; box-sizing: border-box; position: relative; background-color: #ffffff; left: 3rpx; top: 0rpx">
+		<text style="position: relative; left: 294rpx; top: 31rpx; font-size: xx-large">注 册</text>
+	</view>
+
+	<view style="position: relative; width: 100%; background: #e7e2e2; height: 1243rpx; display: block; box-sizing: border-box; ">
+
+
+		<form bindsubmit="btnsub">
+			<view style="display: flex; flex-direction: column; height: 562px; ;  width:100%; box-sizing: border-box">
+				<view>
+					<t-input name="name" label="姓名" align="right" placeholder="请输姓名" />
+					<t-input name="nickname" label="游戏昵称" align="right" placeholder="请输游戏昵称" />
+					<t-input name="qq" label="QQ" align="right" type="number" placeholder="请输QQ号" maxlength="10" />
+					<t-cell class="block" title="性别" arrow hover note="{{sexText}}" data-key="sex" bind:click="onSexPicker" />
+				</view>
+
+				<t-cell class="block" title="游戏位置" arrow hover note="{{positionText}}" data-key="position" bind:click="onPositionPicker" />
+				<t-cell name="other" wx:if="{{TK}}" class="block" title="其他位置" arrow hover note="{{otherPositionText}}" data-key="otherPosition" bind:click="onOtherPositionPicker" />
+				<t-cell class="block" title="最高段位" arrow hover note="{{rankText}}" bind:click="onRankPicker" />
+				<!-- 性别选择器 -->
+				<t-picker visible="{{sexVisible}}" value="{{sexValue}}" data-key="sex" title="请选择" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+					<t-picker-item options="{{sex}}"></t-picker-item>
+				</t-picker>
+				<!-- 游戏位置选择器 -->
+				<t-picker visible="{{positionVisible}}" value="{{positionValue}}" data-key="position" title="请选择" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+					<t-picker-item options="{{positions}}"></t-picker-item>
+				</t-picker>
+				<!-- 其他位置选择器 -->
+				<t-picker visible="{{otherPositionVisible}}" value="{{otherPositionValue}}" data-key="otherPosition" title="请选择" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+					<t-picker-item options="{{otherPosition}}"></t-picker-item>
+				</t-picker>
+				<!-- 最高段位选择器 -->
+				<t-picker visible="{{rankVisible}}" value="{{rankValue}}" title="请选择" data-key="rank" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onRankColumnChange" bindcancel="onPickerCancel">
+					<t-picker-item options="{{ranks}}"></t-picker-item>
+					<t-picker-item options="{{Num}}"></t-picker-item>
+				</t-picker>
+
+
+			</view>
+			<view class="zhidi">
+				<button type="primary" form-type="submit">注册</button>
+			</view>
+		</form>
+
+
+
+
+	</view>
+</view>

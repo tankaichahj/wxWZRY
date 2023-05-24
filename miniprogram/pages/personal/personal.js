@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{},
+    
 
   },
 
@@ -14,7 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    this.setData({
+      user : app.globalData.user
+    })
 
   },
 
@@ -29,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    userInfo = app.globalData.userInfo
+    
   },
 
   /**

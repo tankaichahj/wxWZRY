@@ -1,7 +1,21 @@
-<!--pages/personal/personal.wxml-->
-<view class="amountBG">
- <view class="img"><image src="../../images/icon/grzx/tx.png" style="width: 49px;height:47px;"></image></view>
- <view>{{userInfoNickName}}</view>
- <view>账号管理</view>
- <view class="nav">></view>
+<view class="container" style="position: relative; left: 37rpx; top: 92rpx; width: 677rpx; height: 1164rpx; display: flex; box-sizing: border-box">
+  <view class="userinfo"><image class="userinfo-avatar" src="../../images/bar/grzx/grzx-0.png"></image></view>
+  <view class="info">
+    
+    <view class="item">QQ号：123456</view>
+    <view class="item">名字：世杰</view>
+    <view class="item">游戏昵称：小三</view>
+    <view class="item">位置：打野</view>
+    <view class="item">爱好旅游的人</view>
+    <view class="item" style="width: 100%; height: 204rpx; display: block; box-sizing: border-box">相册：
+      <view class="album" style="width: 100%; height: 114rpx; display: flex; box-sizing: border-box">
+      <scroll-view scroll-x="true" style="width: 607rpx; height: 57px; display: block; box-sizing: border-box; position: relative; left: 32rpx; top: 0rpx">
+      <view class="userinfo" style="flex-direction: column;" >
+        <image class="album-image" src="../../images/bar/grzx/grzx-0.png"></image>
+        <image class="album-image" src="../../images/bar/grzx/grzx-1.png"></image>
+      </view>
+    </scroll-view>
+    </view></view>
+    
+  </view>
 </view>

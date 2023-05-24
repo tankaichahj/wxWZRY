@@ -1,0 +1,12 @@
+.block {
+  display: block;
+  margin-bottom: 32rpx;
+  
+}
+.zhidi{
+  position: relative;
+  bottom: 80px;
+}
+
+
+

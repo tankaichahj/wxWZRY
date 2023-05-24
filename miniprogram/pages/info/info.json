@@ -1,0 +1,12 @@
+{
+	"usingComponents": {
+		"t-cell": "/miniprogram_npm/tdesign-miniprogram/cell/cell",
+		"t-switch": "/miniprogram_npm/tdesign-miniprogram/switch/switch",
+		"t-cell-group": "tdesign-miniprogram/cell-group/cell-group",
+		"t-picker": "/miniprogram_npm/tdesign-miniprogram/picker/picker",
+		"t-picker-item": "/miniprogram_npm/tdesign-miniprogram/picker-item/picker-item",
+		"t-input": "tdesign-miniprogram/input/input"
+	
+		
+  }
+}

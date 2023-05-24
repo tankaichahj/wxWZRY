@@ -1,1 +1,123 @@
 /* pages/squads/squads.wxss */
+.a {
+  display: flex;
+  flex-direction: column;
+}
+
+.TeamName {
+  display: grid;
+  place-content: center;
+  font-size: 32rpx
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  height: 50px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.user-name-gender {
+  display: flex;
+}
+
+.user-name {
+  font-weight: bold;
+  background-image:
+    -webkit-linear-gradient(45deg, #2c3e50, #27ae60, #2980b9, #e74c3c, #8e44ad);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: bgAnimation 6s linear infinite;
+}
+
+@keyframes bgAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.user-gender {
+  margin-left: 10px;
+}
+
+.user-positionbest {
+  margin-left: 10px;
+  color: rgb(247, 56, 56);
+}
+
+.user-positionother {
+  margin-left: 10px;
+  color: rgb(71, 59, 236);
+}
+
+.user-nickname-rank {
+  color: gray;
+  margin-left: 10px;
+}
+
+.user-group {
+  color: green;
+}
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 9999;
+}
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading image {
+  width: 80rpx;
+  height: 80rpx;
+  animation: rotate 1.5s linear infinite;
+}
+
+.loading text {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

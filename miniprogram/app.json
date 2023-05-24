@@ -1,13 +1,13 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/info/info",
+    "pages/upImage/upImage",
     "pages/personal/personal",
+    "pages/cutFace/cutFace",
+    "pages/info/info",
+    
     "pages/squads/squads",
     "pages/team/team"
-    
-
-    
     
   ],
   "window":{

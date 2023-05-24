@@ -35,3 +35,39 @@
 .text {
   margin-top: 2px;
 }
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 9999;
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading image {
+  width: 80rpx;
+  height: 80rpx;
+  animation: rotate 1.5s linear infinite;
+}
+
+.loading text {
+  margin-top: 10rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
