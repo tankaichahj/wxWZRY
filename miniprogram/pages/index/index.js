@@ -1,142 +1,99 @@
-// index.js
-// const app = getApp()
-const { envList } = require('../../envList.js');
-
 Page({
   data: {
-    showUploadTip: false,
-    powerList: [{
-      title: '云函数',
-      tip: '安全、免鉴权运行业务代码',
-      showItem: false,
-      item: [{
-        title: '获取OpenId',
-        page: 'getOpenId'
+    loading: true, //加载动画
+    swiperList: ['../../images/index/1.jpg', '../../images/index/2.jpg', '../../images/index/3.jpg', ], // 存放轮播图列表
+    indicatorDots: true, //是否显示面板指示点
+    vertical: false, //滑动方向是否为纵向
+    autoplay: true, //是否自动切换
+    interval: 2000, //自动切换时间间隔
+    duration: 500, //滑动动画时长
+    //buttons_1、buttons_2的图片要上传到云存储
+    buttons_1: [{
+        icon: '../../images/index/bsbm.png',
+        text: '比赛报名',
       },
-      //  {
-      //   title: '微信支付'
-      // },
-       {
-        title: '生成小程序码',
-        page: 'getMiniProgramCode'
+      {
+        icon: '../../images/index/zdfz.png',
+        text: '战队分组',
       },
-      // {
-      //   title: '发送订阅消息',
-      // }
-    ]
-    }, {
-      title: '数据库',
-      tip: '安全稳定的文档型数据库',
-      showItem: false,
-      item: [{
-        title: '创建集合',
-        page: 'createCollection'
-      }, {
-        title: '更新记录',
-        page: 'updateRecord'
-      }, {
-        title: '查询记录',
-        page: 'selectRecord'
-      }, {
-        title: '聚合操作',
-        page: 'sumRecord'
-      }]
-    }, {
-      title: '云存储',
-      tip: '自带CDN加速文件存储',
-      showItem: false,
-      item: [{
-        title: '上传文件',
-        page: 'uploadFile'
-      }]
-    }, {
-      title: '云托管',
-      tip: '不限语言的全托管容器服务',
-      showItem: false,
-      item: [{
-        title: '部署服务',
-        page: 'deployService'
-      }]
-    }],
-    envList,
-    selectedEnv: envList[0],
-    haveCreateCollection: false
-  },
-
-  onClickPowerInfo(e) {
-    const index = e.currentTarget.dataset.index;
-    const powerList = this.data.powerList;
-    powerList[index].showItem = !powerList[index].showItem;
-    if (powerList[index].title === '数据库' && !this.data.haveCreateCollection) {
-      this.onClickDatabase(powerList);
-    } else {
-      this.setData({
-        powerList
-      });
-    }
-  },
-
-  onChangeShowEnvChoose() {
-    wx.showActionSheet({
-      itemList: this.data.envList.map(i => i.alias),
-      success: (res) => {
-        this.onChangeSelectedEnv(res.tapIndex);
+      {
+        icon: '../../images/index/grxx.png',
+        text: '个人信息',
       },
-      fail (res) {
-        console.log(res.errMsg);
-      }
-    });
-  },
-
-  onChangeSelectedEnv(index) {
-    if (this.data.selectedEnv.envId === this.data.envList[index].envId) {
-      return;
-    }
-    const powerList = this.data.powerList;
-    powerList.forEach(i => {
-      i.showItem = false;
-    });
-    this.setData({
-      selectedEnv: this.data.envList[index],
-      powerList,
-      haveCreateCollection: false
-    });
-  },
-
-  jumpPage(e) {
-    wx.navigateTo({
-      url: `/pages/${e.currentTarget.dataset.page}/index?envId=${this.data.selectedEnv.envId}`,
-    });
-  },
-
-  onClickDatabase(powerList) {
-    wx.showLoading({
-      title: '',
-    });
-    wx.cloud.callFunction({
-      name: 'quickstartFunctions',
-      config: {
-        env: this.data.selectedEnv.envId
+      {
+        icon: '../../images/index/tczd.png',
+        text: '退出战队',
       },
-      data: {
-        type: 'createCollection'
-      }
-    }).then((resp) => {
-      if (resp.result.success) {
-        this.setData({
-          haveCreateCollection: true
-        });
-      }
-      this.setData({
-        powerList
-      });
-      wx.hideLoading();
-    }).catch((e) => {
-      console.log(e);
-      this.setData({
-        showUploadTip: true
-      });
-      wx.hideLoading();
-    });
+    ],
+    buttons_2: [{
+        icon: '../../images/index/xc.png',
+        text: '相册',
+      },
+      {
+        icon: '../../images/index/ry.png',
+        text: '往届比赛',
+      },
+      {
+        icon: '../../images/index/dl.png',
+        text: '大佬展示',
+      },
+      {
+        icon: '../../images/index/hd.png',
+        text: '活动中心',
+      },
+    ],
+  },
+  onLoad(options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
+
 });
