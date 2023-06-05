@@ -1,3 +1,6 @@
+
+var util = require('../../utils/user');
+var app = getApp();
 Page({
   data: {
     loading: true, //加载动画
@@ -43,8 +46,14 @@ Page({
       },
     ],
   },
-  onLoad(options) {
-
+  async onLoad(options) {
+    const op = await util.getUserOpenid()
+    console.log(app.globalData)
+    const userInfo = await util.getUserInformation(op)
+    console.log(userInfo)
+    const users =await util.getUsersInfo('user')
+    console.log(users)
+   
   },
 
   /**

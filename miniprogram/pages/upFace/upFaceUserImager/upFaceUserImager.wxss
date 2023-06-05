@@ -1,0 +1,29 @@
+/*index.wxss*/
+.page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.image-container {
+  
+  width: 200rpx;
+	height: 200rpx;
+	
+  margin-bottom: 20rpx;
+  border: 1px solid #ddd;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.button-box{
+	position: relative;
+  bottom: 40px;
+}
+
+
+

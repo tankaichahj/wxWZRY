@@ -1,9 +1,9 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" style="height: 1200rpx;">
 
   <view class="title">安农大佬队</view>
 
-  <view class="top_tip">康康 纳达尔放小球  王者17星</view>
+  <view class="top_tip">康康 纳达尔放小球 王者17星</view>
   <!--  轮播图-->
   <view>
     <swiper autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" interval="2000">
@@ -33,4 +33,9 @@
   </view>
   <!-- 记得改下面样式名称 -->
   <view class="environment" bindtap="onChangeShowEnvChoose">当前战队：安农大佬队</view>
+</view>
+<view>
+  <view class="layer1"></view>
+  <view class="layer2"></view>
+  <view class="layer3"></view>
 </view>

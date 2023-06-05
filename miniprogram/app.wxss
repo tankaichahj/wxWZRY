@@ -4,8 +4,25 @@
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  z-index: 2;
+  background-color: #ffffff00;
+  background:#ffffff00;
+  
 } 
-
+.title {
+  font-family: PingFang SC;
+  font-weight: 500;
+  
+  font-size: 44rpx;
+  margin-bottom: 40rpx;
+}
+/* 分割线 */
+.separator {
+  width: 95%;
+  height: 2px;
+  background-color: rgb(90, 89, 89); /* 设置分割线颜色 */
+  margin: 5px 2px; /* 设置上下边距 */
+}
 button {
   background: initial;
 }

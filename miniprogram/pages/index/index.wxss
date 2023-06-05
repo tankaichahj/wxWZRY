@@ -2,13 +2,22 @@
 
 page {
   padding-top: 54rpx;
-  background-color: #e0e0e0c4;
+  background-color: #000000a8;
   padding-bottom: 60rpx;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+}
+
+.text {
+  color: rgb(230, 223, 223);
+}
+
+.title {
+  color: rgb(230, 223, 223);
 }
 
 swiper {
   width: 750rpx;
-  background-color: #ffffff6b;
+  background-color: #ffffff00;
   height: 200px;
   margin-bottom: 28rpx;
 }
@@ -17,13 +26,7 @@ image {
   width: 750rpx;
 }
 
-.title {
-  font-family: PingFang SC;
-  font-weight: 500;
-  color: #000000;
-  font-size: 44rpx;
-  margin-bottom: 40rpx;
-}
+
 
 .top_tip {
   font-size: 28rpx;
@@ -47,31 +50,15 @@ image {
 }
 
 .grid-container-1 view {
-  background-color: rgba(241, 226, 245, 0.8);
+  background-color: rgba(210, 139, 230, 0.39);
   text-align: center;
   padding: 5px 0;
   font-size: 30px;
 }
 
-/* .grid-container-1 view:nth-child(1) {
-  background-color: rgba(13, 240, 221, 0.8);
-}
-
-.grid-container-1 view:nth-child(2) {
-  background-color: rgba(248, 49, 42, 0.8);
-}
-
-.grid-container-1 view:nth-child(3) {
-  background-color: rgba(195, 13, 240, 0.8);
-}
-
-.grid-container-1 view:nth-child(4) {
-  background-color: rgba(240, 13, 100, 0.8);
-} */
-
 .grid-container-2 {
   display: grid;
-  width: 750rpx;
+  width: 700rpx;
   height: 200px;
   justify-content: space-around;
   align-content: center;
@@ -81,7 +68,7 @@ image {
 }
 
 .grid-container-2 view {
-  background-color: rgba(241, 226, 245, 0.8);
+  background-color: rgba(230, 107, 107, 0.116);
   text-align: center;
   padding: 15px 0;
   font-size: 30px;
@@ -95,20 +82,34 @@ image {
   text-align: center;
   flex-direction: column;
   margin-top: 2px;
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5),
-    -12px -12px 20px rgba(255, 255, 255, 1);
+  box-shadow: -3px -3px 3px rgba(255, 255, 255, 0.1),
+    2px 2px 6px rgba(0, 0, 0, 0.8);
 }
+
 
 .item-2 {
   display: flex;
-  width: 200px;
+  width: 150px;
   height: 60px;
   border-radius: 25px;
   text-align: center;
   flex-direction: column;
   margin-top: 2px;
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.5),
-    -8px -8px 20px rgba(255, 255, 255, 1);
+  box-shadow: -3px -3px 3px rgba(255, 255, 255, 0.1),
+    2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.item-2:active {
+  box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.1),
+    2px 2px 6px rgba(0, 0, 0, 0.6),
+    inset -2px -2px 10px rgba(255, 255, 255, 0.05),
+    inset 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+.item-1:active {
+  box-shadow: -2px -2px 3px rgba(255, 255, 255, 0.1),
+    2px 2px 6px rgba(0, 0, 0, 0.6),
+    inset -2px -2px 10px rgba(255, 255, 255, 0.05),
+    inset 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .icon {
@@ -125,5 +126,216 @@ image {
 .environment {
   color: rgba(0, 0, 0, 0.4);
   font-size: 24rpx;
-  margin-top: 25%;
+  margin-bottom: 20px;
+}
+
+@keyframes moveUp1 {
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+
+
+.layer1::after {
+  content: '';
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  border-radius: 50%;
+  background: #ffffff;
+  left: 0;
+  top: 100vh;
+  border-radius: inherit;
+  box-shadow: inherit;
+}
+
+.layer1 {
+  z-index: 1;
+  animation: moveUp1 100s linear infinite;
+  position: fixed;
+  width: 1.5px;
+  height: 1.5px;
+  border-radius: 50%;
+  background: #ffffff;
+  left: 0;
+  top: 0;
+  box-shadow: 89vw 95vh #ffffff,
+    64vw 10vh #ffffff,
+    22vw 90vh #ffffff,
+    9vw 62vh #ffffff,
+    81vw 60vh #ffffff,
+    64vw 24vh #ffffff,
+    88vw 74vh #ffffff,
+    8vw 36vh #ffffff,
+    3vw 68vh #ffffff,
+    56vw 82vh #ffffff,
+    68vw 37vh #ffffff,
+    30vw 82vh #ffffff,
+    47vw 53vh #ffffff,
+    22vw 46vh #ffffff,
+    93vw 6vh #ffffff,
+    62vw 14vh #ffffff,
+    22vw 20vh #ffffff,
+    20vw 89vh #ffffff,
+    69vw 11vh #ffffff,
+    78vw 98vh #ffffff,
+    4vw 44vh #ffffff,
+    13vw 51vh #ffffff,
+    1vw 30vh #ffffff,
+    20vw 33vh #ffffff,
+    23vw 54vh #ffffff,
+    17vw 90vh #ffffff,
+    95vw 44vh #ffffff,
+    13vw 11vh #ffffff,
+    94vw 75vh #ffffff,
+    81vw 55vh #ffffff,
+    24vw 79vh #ffffff,
+    82vw 48vh #ffffff,
+    38vw 94vh #ffffff,
+    26vw 38vh #ffffff,
+    25vw 94vh #ffffff,
+    79vw 47vh #ffffff,
+    12vw 90vh #ffffff,
+    73vw 37vh #ffffff,
+    31vw 65vh #ffffff,
+    17vw 33vh #ffffff,
+    31vw 28vh #ffffff,
+    12vw 98vh #ffffff,
+    61vw 24vh #ffffff,
+    93vw 15vh #ffffff,
+    12vw 85vh #ffffff,
+    7vw 81vh #ffffff,
+    10vw 4vh #ffffff,
+    59vw 58vh #ffffff,
+    73vw 13vh #ffffff,
+    62vw 19vh #ffffff,
+    54vw 98vh #ffffff,
+    62vw 68vh #ffffff,
+    14vw 25vh #ffffff,
+    67vw 33vh #ffffff,
+    90vw 5vh #ffffff,
+    85vw 50vh #ffffff,
+    33vw 59vh #ffffff,
+    59vw 29vh #ffffff,
+    84vw 66vh #ffffff,
+    54vw 84vh #ffffff,
+    22vw 9vh #ffffff,
+    33vw 63vh #ffffff,
+    8vw 28vh #ffffff,
+    32vw 49vh #ffffff,
+    69vw 48vh #ffffff,
+    92vw 84vh #ffffff,
+    53vw 6vh #ffffff,
+    33vw 42vh #ffffff,
+    67vw 11vh #ffffff,
+    67vw 67vh #ffffff,
+    98vw 71vh #ffffff,
+    87vw 39vh #ffffff,
+    58vw 12vh #ffffff,
+    17vw 21vh #ffffff,
+    38vw 25vh #ffffff,
+    50vw 10vh #ffffff,
+    75vw 37vh #ffffff,
+    50vw 18vh #ffffff,
+    25vw 4vh #ffffff,
+    97vw 4vh #ffffff,
+    69vw 22vh #ffffff,
+    46vw 59vh #ffffff,
+    97vw 87vh #ffffff,
+    20vw 47vh #ffffff,
+    91vw 47vh #ffffff,
+    74vw 20vh #ffffff,
+    42vw 51vh #ffffff,
+    59vw 36vh #ffffff,
+    71vw 72vh #ffffff,
+    69vw 64vh #ffffff,
+    34vw 41vh #ffffff,
+    73vw 88vh #ffffff,
+    13vw 93vh #ffffff,
+    82vw 55vh #ffffff,
+    24vw 1vh #ffffff,
+    9vw 38vh #ffffff,
+    32vw 23vh #ffffff,
+    21vw 16vh #ffffff,
+    74vw 76vh #ffffff,
+    15vw 91vh #ffffff;
+
+}
+
+.layer2::after {
+  content: '';
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  left: 0;
+  top: 100vh;
+  border-radius: inherit;
+  box-shadow: inherit;
+}
+
+.layer2 {
+  z-index: 1;
+  animation: moveUp1 35s linear infinite;
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #ffffff;
+  left: 0;
+  top: 0;
+  box-shadow: 89vw 95vh #ffffff,
+    83vw 95vh #ffffff,
+    57vw 30vh #ffffff,
+    38vw 46vh #ffffff,
+    20vw 85vh #ffffff,
+    37vw 51vh #ffffff,
+    97vw 36vh #ffffff,
+    35vw 44vh #ffffff,
+    79vw 30vh #ffffff,
+    70vw 47vh #ffffff,
+    92vw 19vh #ffffff,
+    63vw 2vh #ffffff,
+    36vw 93vh #ffffff,
+    80vw 58vh #ffffff,
+    76vw 84vh #ffffff,
+    18vw 57vh #ffffff,
+    33vw 89vh #ffffff,
+    35vw 37vh #ffffff,
+    93vw 84vh #ffffff,
+    89vw 57vh #ffffff,
+    6vw 76vh #ffffff,
+    86vw 70vh #ffffff,
+    2vw 39vh #ffffff,
+    65vw 88vh #ffffff,
+    65vw 32vh #ffffff,
+    64vw 94vh #ffffff,
+    65vw 74vh #ffffff,
+    43vw 84vh #ffffff,
+    81vw 53vh #ffffff,
+    9vw 54vh #ffffff,
+    48vw 84vh #ffffff,
+    60vw 42vh #ffffff,
+    28vw 48vh #ffffff,
+    98vw 32vh #ffffff,
+    20vw 39vh #ffffff,
+    13vw 4vh #ffffff,
+    8vw 54vh #ffffff,
+    53vw 30vh #ffffff,
+    42vw 94vh #ffffff,
+    11vw 28vh #ffffff,
+    79vw 45vh #ffffff,
+    33vw 7vh #ffffff,
+    66vw 61vh #ffffff,
+    45vw 86vh #ffffff,
+    20vw 42vh #ffffff,
+    24vw 54vh #ffffff,
+    61vw 2vh #ffffff,
+    69vw 28vh #ffffff,
+    18vw 94vh #ffffff,
+    26vw 29vh #ffffff,
+    10vw 90vh #ffffff;
+
 }

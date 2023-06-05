@@ -1,0 +1,64 @@
+<!--pages/info/info.wxml-->
+<view class="container">
+	<view class="title">安农大佬队</view>
+	<view class="top_tip"><text>注册</text></view>
+	<view class="separator"></view>
+	<view class="a">
+		<view>请输入您的姓名：</view>
+		<view>
+			<input placeholder="姓名"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="a">
+		<view>请输入您的QQ号：</view>
+		<view>
+			<input placeholder="QQ号" type="number" maxlength="10"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="a">
+		<view class="label">请选择性别：</view>
+		<picker class="picker" id="gender" value="{{genderIndex}}" range="{{genderArray}}" bindchange="bindChange">
+			<view class="picker-text">{{genderArray[genderIndex]}}</view>
+		</picker>
+	</view>
+	<view class="separator"></view>
+	<view class="a">
+		<view>请输入您的游戏昵称：</view>
+		<view>
+			<input placeholder="游戏昵称"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="a">
+		<view>段位选择</view>
+		<picker class="picker" id="rank" mode="multiSelector" bindchange="bindChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{rankIndex}}" range="{{rankArray}}">
+			<view class="picker-text">
+				<!-- {{rankArray}} -->
+				{{rankArray[0][rankIndex[0]]}} {{rankArray[1][rankIndex[1]]}} {{rankArray[0][rankIndex[0]]=='王者'?'星':''}}
+			</view>
+		</picker>
+	</view>
+	<view class="separator"></view>
+	<view class="a">
+		<view class="label">主玩游戏位置：</view>
+		<picker class="picker" id="bestPosition" value="{{bestPositionIndex}}" range="{{bestPositionArray}}" bindchange="bestbindChange">
+			<view class="picker-text">{{bestPositionArray[bestPositionIndex]}}</view>
+		</picker>
+	</view>
+	<block wx:if="{{positionBool}}">
+		<view class="separator"></view>
+	<view class="a">
+		<view class="label">其他游戏位置：</view>
+		<picker class="picker" id="otherPosition" value="{{otherPositionIndex}}" range="{{otherPositionArray}}" bindchange="otherbindChange">
+			<view class="picker-text">{{otherPositionArray[otherPositionIndex]}}</view>
+		</picker>
+	</view>
+	</block>
+	
+
+</view>
+<view class="zhidi">
+	<button type="primary" bindtap="buttonBind" style="position: relative; left: 0rpx; top: 372rpx">注册</button>
+</view>
