@@ -2,10 +2,13 @@
 该js功能：
 1：获取用户openid 
 2：获取用户个人信息  
-3：获取一个集合的信息 
+3：获取某个集合的信息 
 4：将图片转换成能上传的格式
-5：查询set集合某个字段的值
-6: 检测用户是否注册
+5：查询某个集合某个字段的值
+6: 上传文件到云存储
+7: 上传数据到数据库
+8：更新数据库集合某个数据
+9: 更新数据库集合某个数据的字段值（待写）
 **/
 
 
@@ -29,7 +32,7 @@ function getUserOpenid() {
     })
   })
 }
-//2 查询用户信息函数
+//2 查询用户信息函数(是否注册)
 function getUserInformation(op) {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
@@ -84,10 +87,10 @@ function getFileSystemManager(FilePath) {
     wx.getFileSystemManager().readFile({
       filePath: FilePath,
       encoding: 'base64',
-      success: res => {
+      success: (res) => {
         resolve(res.data)
       },
-      fail: err => {
+      fail: (err) => {
         reject(err)
       }
     })
@@ -95,7 +98,7 @@ function getFileSystemManager(FilePath) {
 
 }
 //5 数据库查询操作
-function getUserFiled(set,field,value) {
+function getUserFiled(set, field, value) {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
       name: 'getDatabaseUser',
@@ -109,21 +112,79 @@ function getUserFiled(set,field,value) {
         console.log(res)
         resolve(res)
       },
-      fail :(err)=>{
+      fail: (err) => {
         reject(err)
       }
     })
   })
 }
-// 6 用户是否注册
-function userCK(){
-  return new  Promise((resolve, reject)=>{
-if(app.globalData.ck){
-  resolve(true)
-}else{
-  
-  reject(false)
+// 6 上传头像到云存储
+function uploadPhoto(data, imageSrc, upPath) {
+  return new Promise((resolve, reject) => {
+    wx.cloud.callFunction({
+      name: 'uploadPhoto',
+      data: {
+        file: data, // 转码后的照片
+        F: imageSrc, //原图片路径，用于获取图片格式
+        openid: app.globalData.openid, //用户
+        upPath: upPath //上传路径
+
+      },
+      success: (res) => { //返回图片的 、fileID、openid ，便于上传云数据库
+        let data = {
+          fileID: res.result.fileID,
+          openid: app.globalData.openid
+        }
+        reject(data)
+      },
+      fail: (err) => {
+        resolve("上传失败:" + err)
+      }
+    })
+  })
 }
+// 7 上传数据到数据库
+function insertData(set, data) {
+  return new Promise((resolve, reject) => {
+    wx.cloud.callFunction({
+      name: 'getDatabaseUser',
+      data: {
+        jihe: set,
+        action: 'insert', // 操作类型为插入        
+        data: data, // 要更新的数据
+      },
+      success: (res) => {
+        resolve(true, res)
+      },
+      fail: (err) => {
+        reject(false, err)
+      }
+    })
+  })
+}
+//8 更新数据库集合某个数据
+/**
+ * @param {string} set - 所更新的数据所在集合
+ * @param data - 所更新的数据
+ * @param id - 所更新数据的id
+ */
+function upData(set, data, id) {
+  return new Promise((resolve, reject) => {
+    wx.cloud.callFunction({
+      name: 'getDatabaseUser',
+      data: {
+        jihe: set,
+        action: 'update', // 操作类型为更新
+        id: id,
+        data: data, // 要更新的数据
+      },
+      success: (res) => {
+resolve(true,res)
+      },
+      fail: (err) => {
+        reject(false,err)
+      }
+    })
   })
 }
 //必须在这里暴露接口，以便被外界访问，不然就不能访问
@@ -133,5 +194,7 @@ module.exports = {
   getUsersInfo: getUsersInfo,
   getFileSystemManager: getFileSystemManager,
   getUserFiled: getUserFiled,
-  userCK:userCK
+  uploadPhoto: uploadPhoto,
+  insertData: insertData,
+  upData: upData
 }

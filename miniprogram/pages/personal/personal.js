@@ -1,4 +1,6 @@
 // pages/personal/personal.js
+var util = require('../../utils/user');
+var app = getApp();
 Page({
 
   /**
@@ -26,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    
   },
 
   /**

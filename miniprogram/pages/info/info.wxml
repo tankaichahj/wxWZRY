@@ -11,6 +11,13 @@
 	</view>
 	<view class="separator"></view>
 	<view class="a">
+		<view>请选择你的头像：</view>
+		<view bindtap="previewImage">
+			<image class="image" mode="aspectFit" src="{{UserInfoSrc?UserInfoSrc:image}}"  style="left: 90%; position: fixed ;transform: translate(0%,-10%)"  ></image>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="a">
 		<view>请输入您的QQ号：</view>
 		<view>
 			<input placeholder="QQ号" type="number" maxlength="10"></input>
@@ -19,7 +26,7 @@
 	<view class="separator"></view>
 	<view class="a">
 		<view class="label">请选择性别：</view>
-		<picker class="picker" id="gender" value="{{genderIndex}}" range="{{genderArray}}" bindchange="bindChange">
+		<picker class="picker" header-text="请选择" id="gender" value="{{genderIndex}}" range="{{genderArray}}" bindchange="bindChange">
 			<view class="picker-text">{{genderArray[genderIndex]}}</view>
 		</picker>
 	</view>
@@ -49,16 +56,20 @@
 	</view>
 	<block wx:if="{{positionBool}}">
 		<view class="separator"></view>
-	<view class="a">
-		<view class="label">其他游戏位置：</view>
-		<picker class="picker" id="otherPosition" value="{{otherPositionIndex}}" range="{{otherPositionArray}}" bindchange="otherbindChange">
-			<view class="picker-text">{{otherPositionArray[otherPositionIndex]}}</view>
-		</picker>
-	</view>
+		<view class="a">
+			<view class="label">其他游戏位置：</view>
+			<picker class="picker" id="otherPosition" value="{{otherPositionIndex}}" range="{{otherPositionArray}}" bindchange="otherbindChange">
+				<view class="picker-text">{{otherPositionArray[otherPositionIndex]}}</view>
+			</picker>
+		</view>
 	</block>
-	
+
 
 </view>
 <view class="zhidi">
-	<button type="primary" bindtap="buttonBind" style="position: relative; left: 0rpx; top: 372rpx">注册</button>
+	<button type="primary"  bindtap="buttonBind">注册</button>
+</view>
+<view>
+	<view class="layer1"></view>
+	<view class="layer2"></view>
 </view>

@@ -18,6 +18,7 @@ App({
       openid:'',
       user:[],
       users:[],
+      ck:''
     };
   }
 });

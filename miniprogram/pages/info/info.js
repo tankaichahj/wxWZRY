@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    image: '../../images/TuPian/sctp.png',
+    UserInfoSrc: '',
     genderIndex: 0, // 默认性别为男性
     genderArray: ['男', '女'], // 可供选择的性别数组
     rankArray: [
@@ -102,8 +104,14 @@ Page({
       otherPositionIndex: e.detail.value
     })
   },
+  // 去选择图片
+  previewImage() {
+    wx.navigateTo({
+      url: '../upFace/upFaceUserImager/upFaceUserImager',
+    })
+  },
   //提交注册
-  buttonBind(){},
+  buttonBind() {},
   /**
    * 生命周期函数--监听页面加载
    */

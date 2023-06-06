@@ -1,20 +1,14 @@
 {
   "pages": [
+    
     "pages/index/index",
+    "pages/info/info",
     "pages/upFace/upFaceUserImager/upFaceUserImager",
     "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
-
-    
-    "pages/info/info",
 
     "pages/personal/personal",
     "pages/contact/contact",
     "pages/information/information"
-
-
-
-
-
 
   ],
   "window": {

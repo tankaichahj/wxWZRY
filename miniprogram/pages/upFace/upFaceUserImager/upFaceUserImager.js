@@ -8,13 +8,13 @@ Page({
 
   },
   onLoad(option) {
-    
+
 
   },
 
   //跳转裁剪页面，选择头像
   chooseImage() {
-    
+
     wx.navigateTo({
       url: '../../cutFace/cutFaceUserImager/cutFaceUserImager'
     })
@@ -32,8 +32,8 @@ Page({
       imageSrc: ''
     })
   },
-//下面功能需要封装到utils.js里
-
+  //下面功能需要封装到utils.js里
+  //这页面不在上传图片，
   up() {
     const upPath = this.data.upPath
     wx.showLoading({
@@ -95,7 +95,7 @@ Page({
                               url: '../index/index',
                             })
                           }
-  
+
                           if (res.confirm) {
                             wx.switchTab({
                               url: '../index/index',
@@ -105,7 +105,7 @@ Page({
                       })
                     }
                   })
-                } else  {
+                } else {
                   wx.cloud.callFunction({
                     name: 'getDatabaseUser',
                     data: {
@@ -117,7 +117,7 @@ Page({
                       console.log(res)
                       //更新user集合
                       wx.hideLoading()
-                     this.upUserData()
+                      this.upUserData()
                       wx.hideLoading()
                       wx.showModal({
                         title: '提示',
@@ -128,7 +128,7 @@ Page({
                               url: '../index/index',
                             })
                           }
-  
+
                           if (res.confirm) {
                             wx.switchTab({
                               url: '../index/index',
@@ -159,9 +159,18 @@ Page({
 
 
   },
+  back() {
+    let pages = getCurrentPages();
+    //prevPage 相当于上个页面的this，可以通过setData修改上个页面参数执行上个页面的方法等
+    let prevPage = pages[pages.length - 2]
+    prevPage.setData({
+      UserInfoSrc: this.data.imageSrc
+    })
+    wx.navigateBack()
+  },
   //更新上传头像的用户数据
   upUserData() {
-    const item =app.globalData.user
+    const item = app.globalData.user
     const UserData = {
       _openid: item._openid,
       group: item.group,
@@ -184,21 +193,17 @@ Page({
         id: id,
         data: UserData, // 要更新的数据
       },
-      success:(res)=>{
+      success: (res) => {
         console.log(res)
-        app.globalData.user={
+        app.globalData.user = {
           ...UserData,
-          _id:item._id
+          _id: item._id
         }
       }
     })
   },
   onShow() {
-    if (this.data.cuttype == 1) {
-      this.setData({
-        upPath: 'avatar' //头像上传路径
-      })
-    };
+
 
   },
 })

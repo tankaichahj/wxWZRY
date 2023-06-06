@@ -53,7 +53,7 @@ Page({
     console.log(userInfo)
     const users =await util.getUsersInfo('user')
     console.log(users)
-   
+    
   },
 
   /**

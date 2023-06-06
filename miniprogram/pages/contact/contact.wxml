@@ -1,2 +1,40 @@
-<!--pages/contact/contact.wxml-->
-<text>pages/contact/contact.wxml</text>
+<!--pages/squads/squads.wxml-->
+<view class="a">
+  <view class="TeamName" style="height: 60px;">安农大佬队</view>
+</view>
+<scroll-view scroll-y="true" style="height: 1027rpx; width:100%; background-color: rgb(255, 249, 249);display: flex;flex-direction: row;  ">
+  <view class="user-list">
+    <view class="loading-container" wx:if="{{loading}}">
+        <view class="loading">
+          <image src="../../images/loading/loading.png" mode="aspectFit"></image>
+          <text>正在加载中...</text>
+        </view>
+      </view>
+    <!-- 循环遍历用户数据 -->
+    <block wx:for="{{userList}}" wx:key="_id">
+      
+      <view class="user-item">
+        <!-- 显示用户头像 -->
+        <image class="user-avatar" src="{{item.path ? item.path : '../../images/bar/grzx/grzx-1.png'}}"></image>
+        <!-- 显示用户信息 -->
+        <view class="user-info" style="width: 523rpx; height: 50px; display: flex; box-sizing: border-box">
+          <view class="user-name-gender">
+            <!-- 显示用户姓名和性别 -->
+            <text class="user-name">{{item.name}}</text>
+            <text class="user-gender">{{item.sex}}</text>
+            <text class="user-positionbest">{{!item.position.other ? '' : '主-'}}{{item.position.best}}</text>
+            <text class="user-positionother">{{item.position.other ? '副-' : ''}}{{item.position.other ? item.position.other : ''}}</text>
+          </view>
+          <view class="user-nickname-rank">
+            <!-- 显示用户游戏昵称和段位 -->
+            <text>{{item.nickname}} - {{item.rank}} </text>
+
+          </view>
+        </view>
+
+        <text class="user-group" style="width: 88rpx; height: 41rpx; display: block; box-sizing: border-box">{{item.group?item.group:'散人'}}</text>
+
+      </view>
+    </block>
+  </view>
+</scroll-view>
