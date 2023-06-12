@@ -1,0 +1,107 @@
+/* pages/index/mogul/mogul.wxss */
+.top_tip {
+	font-size: 28px;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #fffffff3;
+	margin-bottom: 28rpx;
+}
+
+.img {
+
+	position: absolute;
+	inset: 4px;
+	border-radius: 16px;
+	background-attachment: #dfe0e2;
+	z-index: 2;
+
+}
+
+.scroll-view{
+	height: 680px;
+	width: 700rpx;
+	
+}
+.box{
+	display: grid;
+	grid-template-columns: auto auto ;
+	grid-gap: 15px;
+	justify-content: space-around;
+}
+
+.img image {
+	width: 150px;
+	height: 200px;
+	border-radius: 16px;
+
+}
+
+.desc {
+	padding: 5px;
+	text-align: center;
+	background: linear-gradient(45deg,  #a4edf8, #f397e7, #f06794);
+	height: 55px;
+	margin-top: -27px;
+	display: grid;
+	border-radius: 16px;
+}
+.desc text{
+	margin-top: 23px;
+	font-family: PingFang SC;
+	font-size: 20px;
+}
+.responsive {
+	margin: 10px;
+	position: relative;
+	background: rgba(250, 247, 247, 0);
+	border-radius: 20px;
+	width: 158px;
+	height: 250px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+}
+
+.responsive::before {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
+	animation: responsive 4s linear infinite;
+}
+
+.responsive::after {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
+	animation: responsive 4s linear infinite;
+	animation-delay: -2s;
+}
+
+@keyframes responsive {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.zz {
+	position: absolute;
+	inset: 4px;
+	border-radius: 16px;
+	background-attachment: #dfe0e2;
+	z-index: 1;
+	background: rgb(0, 0, 0);
+}
+
+.box {
+	
+}

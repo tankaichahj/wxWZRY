@@ -1,0 +1,22 @@
+<view class="container">
+	<view class="info">
+		<view class="user">
+			<view class="user-image">
+				<image mode="aspectFill" src="{{information.info}}" />
+			</view>
+			<view class="user-text">
+				<view>姓名：{{information.name}}　性别：{{information.sex}}</view>
+				<view>本科:{{information.grade}}-{{information.college}}-{{information.speciality}}</view>
+				<view>硕士:{{information.school}}</view>
+				<view>个人荣誉：</view>
+				<view wx:for="{{information.honor}}">-{{item}}</view>
+			</view>
+		</view>
+		<view class="information">22</view>
+	</view>
+	<view>
+		<view class="layer1"></view>
+		<view class="layer2"></view>
+		<view class="layer3"></view>
+	</view>
+</view>

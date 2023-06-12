@@ -3,42 +3,42 @@
 	<view class="title">安农大佬队</view>
 	<view class="top_tip"><text>注册</text></view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view>请输入您的姓名：</view>
 		<view>
-			<input placeholder="姓名"></input>
+			<input id="name" bindinput="ins" placeholder="姓名"></input>
 		</view>
 	</view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view>请选择你的头像：</view>
 		<view bindtap="previewImage">
 			<image class="image" mode="aspectFit" src="{{UserInfoSrc?UserInfoSrc:image}}"  style="left: 90%; position: fixed ;transform: translate(0%,-10%)"  ></image>
 		</view>
 	</view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view>请输入您的QQ号：</view>
 		<view>
-			<input placeholder="QQ号" type="number" maxlength="10"></input>
+			<input id="qq" bindinput="ins" placeholder="QQ号" type="number" maxlength="10"></input>
 		</view>
 	</view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view class="label">请选择性别：</view>
 		<picker class="picker" header-text="请选择" id="gender" value="{{genderIndex}}" range="{{genderArray}}" bindchange="bindChange">
 			<view class="picker-text">{{genderArray[genderIndex]}}</view>
 		</picker>
 	</view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view>请输入您的游戏昵称：</view>
 		<view>
-			<input placeholder="游戏昵称"></input>
+			<input id="nickname" bindinput="ins" placeholder="游戏昵称"></input>
 		</view>
 	</view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view>段位选择</view>
 		<picker class="picker" id="rank" mode="multiSelector" bindchange="bindChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{rankIndex}}" range="{{rankArray}}">
 			<view class="picker-text">
@@ -48,7 +48,7 @@
 		</picker>
 	</view>
 	<view class="separator"></view>
-	<view class="a">
+	<view class="aa">
 		<view class="label">主玩游戏位置：</view>
 		<picker class="picker" id="bestPosition" value="{{bestPositionIndex}}" range="{{bestPositionArray}}" bindchange="bestbindChange">
 			<view class="picker-text">{{bestPositionArray[bestPositionIndex]}}</view>
@@ -56,7 +56,7 @@
 	</view>
 	<block wx:if="{{positionBool}}">
 		<view class="separator"></view>
-		<view class="a">
+		<view class="aa">
 			<view class="label">其他游戏位置：</view>
 			<picker class="picker" id="otherPosition" value="{{otherPositionIndex}}" range="{{otherPositionArray}}" bindchange="otherbindChange">
 				<view class="picker-text">{{otherPositionArray[otherPositionIndex]}}</view>

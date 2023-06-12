@@ -1,15 +1,15 @@
 <!--index.wxml-->
-<view class="container" style="height: 1200rpx;">
+<view class="container" style="height: 1200rpx;" wx:if="{{!loading}}">
 
   <view class="title">安农大佬队</view>
 
-  <view class="top_tip">康康 纳达尔放小球 王者17星</view>
+  <view class="top_tip">{{user.name}}　　{{user.nickname}}　　{{user.rank}}</view>
   <!--  轮播图-->
   <view>
     <swiper autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" interval="2000">
       <block wx:for="{{swiperList}}" wx:key="*this">
         <swiper-item>
-          <image mode="aspectFit" src="{{item}} " />
+          <image mode="aspectFill" src="{{item}} " />
         </swiper-item>
       </block>
     </swiper>
@@ -17,22 +17,36 @@
   </view>
   <!-- 战队模块 -->
   <view class="grid-container-1">
-    <view class="item-1" wx:for="{{buttons_1}}" wx:key="index">
-      <image class="icon" src="{{item.icon}}" />
-      <text class="text">{{item.text}}</text>
-    </view>
+    <navigator wx:for="{{buttons_1}}" wx:key="index" style="animation: slideup {{0.35*(index+1)}}s ease-in alternate;" url="{{item.url}}">
+      <view class="a" >
+        <image class="icon" src="{{item.icon}}" />
+        <text class="text">{{item.text}}</text>
+      </view>
+    </navigator>
+
 
   </view>
   <!-- 其他功能 -->
   <!-- 需要更改下面图片和名称 -->
   <view class="grid-container-2">
-    <view class="item-2" wx:for="{{buttons_2}}" wx:key="index">
-      <image class="icon" src="{{item.icon}}" />
-      <text class="text">{{item.text}}</text>
-    </view>
+    <navigator wx:for="{{buttons_2}}" wx:key="index" style="animation: slideup {{0.65*(index+1)}}s ease-in alternate;" url="{{item.url}}" hover-start-time="1000">
+      <view class="b" hover-stay-time="1000">
+
+        <image class="icon" src="{{item.icon}}" />
+        <text class="text">{{item.text}}</text>
+
+      </view>
+    </navigator>
+
   </view>
   <!-- 记得改下面样式名称 -->
   <view class="environment" bindtap="onChangeShowEnvChoose">当前战队：安农大佬队</view>
+
+
+</view>
+<view class="mask" wx:if="{{loading}}">
+  <view class="words">Loading...</view>
+  <view class="words">Loading...</view>
 </view>
 <view>
   <view class="layer1"></view>

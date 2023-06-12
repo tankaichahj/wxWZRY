@@ -9,6 +9,7 @@
 7: 上传数据到数据库
 8：更新数据库集合某个数据
 9: 更新数据库集合某个数据的字段值（待写）
+10：通过fileID从云存储下载东西
 **/
 
 
@@ -44,13 +45,11 @@ function getUserInformation(op) {
         value: op // 要查询的数据
       },
       success: (res) => {
-        console.log(res, op)
-
         //存在用户
         if (res.result.data.length === 1) {
           app.globalData.user = res.result.data[0]
           app.globalData.ck = true
-          resolve(res.result.data[0])
+          resolve(true)
         } else {
           //不存在用户
           app.globalData.ck = false
@@ -63,6 +62,10 @@ function getUserInformation(op) {
     })
   })
 }
+/**
+ * 
+ * @param {*} set 所查的数据集合 
+ */
 //3 查询set集合的所有数据
 function getUsersInfo(set) {
   return new Promise((resolve, reject) => {
@@ -81,6 +84,7 @@ function getUsersInfo(set) {
     })
   })
 }
+
 //4 将图片转换成能上传的格式
 function getFileSystemManager(FilePath) {
   return new Promise((resolve, reject) => {
@@ -88,6 +92,7 @@ function getFileSystemManager(FilePath) {
       filePath: FilePath,
       encoding: 'base64',
       success: (res) => {
+
         resolve(res.data)
       },
       fail: (err) => {
@@ -97,6 +102,12 @@ function getFileSystemManager(FilePath) {
   })
 
 }
+/**
+ * 
+ * @param {*} set 所查的数据库
+ * @param {*} field 所查的字段
+ * @param {*} value 所查的值
+ */
 //5 数据库查询操作
 function getUserFiled(set, field, value) {
   return new Promise((resolve, reject) => {
@@ -119,6 +130,12 @@ function getUserFiled(set, field, value) {
   })
 }
 // 6 上传头像到云存储
+/**
+ * 
+ * @param {*} data 转码后的图片
+ * @param {*} imageSrc 转码前的图片
+ * @param {*} upPath 上传路径
+ */
 function uploadPhoto(data, imageSrc, upPath) {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
@@ -135,29 +152,37 @@ function uploadPhoto(data, imageSrc, upPath) {
           fileID: res.result.fileID,
           openid: app.globalData.openid
         }
-        reject(data)
+
+        resolve(data)
       },
       fail: (err) => {
-        resolve("上传失败:" + err)
+        reject("上传失败:" + err)
       }
     })
   })
 }
+/**
+ * 
+ * @param {*} set 集合名字
+ * @param {*} data 所上传的数据
+ */
 // 7 上传数据到数据库
 function insertData(set, data) {
+  console.log(data)
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
       name: 'getDatabaseUser',
       data: {
         jihe: set,
         action: 'insert', // 操作类型为插入        
-        data: data, // 要更新的数据
+        value: data, // 要更新的数据
       },
       success: (res) => {
-        resolve(true, res)
+        app.globalData.ck = true
+        resolve(true)
       },
       fail: (err) => {
-        reject(false, err)
+        reject(false)
       }
     })
   })
@@ -179,11 +204,46 @@ function upData(set, data, id) {
         data: data, // 要更新的数据
       },
       success: (res) => {
-resolve(true,res)
+        resolve(true, res)
       },
       fail: (err) => {
-        reject(false,err)
+        reject(false, err)
       }
+    })
+  })
+}
+// 9: 更新数据库集合某个数据的字段值（待写）
+// 10：通过fileID从云存储下载东西
+function getCloudImage(filedIDs) {
+  return new Promise((resolve, reject) => {
+    wx.cloud.callFunction({
+      name: 'downloadFiles',
+      data: {
+        fileids: filedIDs
+      },
+      success: (res) => {
+        const imageHttp = res.result
+        
+        // for (let i = 0; i < res.result.length; i++) {
+        //   const res = this.getImageInfoPromisified(res.result[i].tempFileURL)
+        //   image.push(res)
+        // }
+        console.log(imageHttp)
+        resolve(imageHttp)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+    })
+  })
+}
+//11 把图片网络连接变成本地链接
+function getImageInfoPromisified(src) {
+  return Promise((resolve, reject) => {
+    wx.getImageInfo({
+      src: src,
+      success: resolve,
+      fail: reject
     })
   })
 }
@@ -196,5 +256,7 @@ module.exports = {
   getUserFiled: getUserFiled,
   uploadPhoto: uploadPhoto,
   insertData: insertData,
-  upData: upData
+  upData: upData,
+  getCloudImage: getCloudImage,
+  getImageInfoPromisified: getImageInfoPromisified
 }

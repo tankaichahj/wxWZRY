@@ -1,0 +1,26 @@
+<!--pages/index/mogul/mogul.wxml-->
+<view class="container">
+	<view class="title">安农大佬队</view>
+	<view class="top_tip">大佬展示</view>
+	<scroll-view class="scroll-view" scroll-y="true">
+		<view class="box">
+			<view class="responsive" wx:for="{{moguls}}" id="{{item.openid}}" bindtap="bind">
+				<view class="zz"></view>
+				<view class="img">
+					<image src="{{item.image}}" alt="图片文本描述" mode="aspectFill" />
+					<view class="desc">
+						<text>{{item.text}}</text>
+					</view>
+				</view>
+			</view>
+			
+		</view>
+
+	</scroll-view>
+</view>
+
+<view>
+	<view class="layer1"></view>
+	<view class="layer2"></view>
+	<view class="layer3"></view>
+</view>

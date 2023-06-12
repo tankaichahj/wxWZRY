@@ -18,7 +18,7 @@ App({
       openid:'',
       user:[],
       users:[],
-      ck:''
+      ck:false
     };
   }
 });

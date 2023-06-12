@@ -6,49 +6,113 @@
   box-sizing: border-box;
   z-index: 2;
   background-color: #ffffff00;
-  background:#ffffff00;
-  
-} 
+  background: #ffffff00;
+  margin: 0px;
+}
+
 .title {
   font-family: PingFang SC;
   font-weight: 500;
   color: rgb(255, 255, 255);
   font-size: 44rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx;
+
 }
+
 /* 分割线 */
 .separator {
   width: 95%;
   height: 2px;
-  background-color: rgb(255, 255, 255); /* 设置分割线颜色 */
-  margin: 5px 2px; /* 设置上下边距 */
+  background-color: rgb(255, 255, 255);
+  /* 设置分割线颜色 */
+  margin: 5px 2px;
+  /* 设置上下边距 */
 }
+
 button {
   background: initial;
 }
 
-button:focus{
+button:focus {
   outline: 0;
 }
 
-button::after{
+button::after {
   border: none;
 }
 
+/* 按钮 */
+.a{
+  background-color: skyblue;
+  text-decoration: none;
+  background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+  background-size: 400%;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+
+
+@keyframes Aanimate {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 400% 0;
+  }
+}
+
+.a:active {
+  animation: Aanimate 3s linear infinite;
+}
+
+.b {
+  position: relative;
+  text-decoration: none;
+  background-color: #27022d;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: all .5s;
+}
+
+.b::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  transform: skew(-45deg);
+
+}
+
+.b:active::before {
+  left: 120%;
+  transition: all .5s;
+}
+
+.b:active {
+  background-color: #ff3c7f;
+}
+
+
 
 page {
-  padding-top: 54rpx;
+  height: 100vh;
+  
   background-color: #000000a8;
-  padding-bottom: 60rpx;
+  
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
 }
+
 @keyframes moveUp1 {
   100% {
     transform: translateY(-100vh);
   }
 }
-
-
 
 .layer1::after {
   content: '';
@@ -64,7 +128,7 @@ page {
 }
 
 .layer1 {
-  z-index: 1;
+  z-index: -1;
   animation: moveUp1 100s linear infinite;
   position: fixed;
   width: 1.5px;
@@ -190,7 +254,7 @@ page {
 }
 
 .layer2 {
-  z-index: 1;
+  z-index: -1;
   animation: moveUp1 35s linear infinite;
   position: fixed;
   width: 2px;
@@ -251,4 +315,44 @@ page {
     26vw 29vh #ffffff,
     10vw 90vh #ffffff;
 
+}
+
+/**
+*加载动画 
+*/
+/* 遮罩层 */
+.mask {
+  background-color: rgb(255, 255, 255);
+  height: 50vh;
+  position: fixed;
+  z-index: 31;
+}
+
+.words {
+  color: #fff;
+  font-size: 80px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.words:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 2px #03a9f4;
+}
+
+.words:nth-child(2) {
+  color: #03a9f4;
+  animation: water 2s ease-in-out infinite alternate;
+}
+
+@keyframes water {
+  0% {
+    clip-path: polygon(31% 61%, 71% 59%, 77% 67%, 100% 68%, 100% 100%, 0% 100%, 0% 35%, 13% 52%);
+  }
+
+  100% {
+    clip-path: polygon(51% 68%, 71% 59%, 86% 44%, 100% 24%, 100% 100%, 0% 100%, 0% 72%, 28% 71%);
+  }
 }

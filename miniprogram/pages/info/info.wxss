@@ -1,15 +1,17 @@
 /* pages/info/info.wxss */
-.a {
+.aa {
   display: grid;
 	justify-content: space-between;
 	width: 700rpx;
   grid-template-columns: 70%  30%; /* 设置网格宽度小于容器宽度 */
-  grid-gap: 8px;
+  grid-gap: 15rpx;
   background-color: #ffffff00;
-  padding: 20rpx;
+  padding: 15rpx;
+  height: 50rpx;
 }
-.a view{
+.aa view{
   color: rgb(250, 250, 250);
+  font-size: 34rpx;
 }
 .top_tip {
   font-size: 30px;

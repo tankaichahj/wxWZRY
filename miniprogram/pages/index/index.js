@@ -1,4 +1,3 @@
-
 var util = require('../../utils/user');
 var app = getApp();
 Page({
@@ -39,6 +38,7 @@ Page({
       {
         icon: '../../images/index/dl.png',
         text: '大佬展示',
+        url:'./mogul/mogul'
       },
       {
         icon: '../../images/index/hd.png',
@@ -47,15 +47,74 @@ Page({
     ],
   },
   async onLoad(options) {
-    const op = await util.getUserOpenid()
-    console.log(app.globalData)
-    const userInfo = await util.getUserInformation(op)
-    console.log(userInfo)
-    const users =await util.getUsersInfo('user')
-    console.log(users)
-    
-  },
 
+
+  },
+  async initialization() {
+
+    var op = await util.getUserOpenid()
+
+
+    this.ck(op)
+
+  },
+  async ck(op) {
+    if (!app.globalData.ck) {
+      const ck = await util.getUserInformation(op)
+      if (!ck) { //未注册，跳转注册页面
+        this.showPopup()
+      } else {
+        this.setData({ //加载动画取消
+          loading: false,
+          user: app.globalData.user
+        })
+      }
+    } else { //注册过，加载战队信息
+      this.setData({ //更新页面用户个人数据、加载动画取消
+        loading: false,
+        user: app.globalData.user
+      })
+      //预加载战队所有人员信息
+      await util.getUsersInfo('user')
+      const userInfo = []
+      for (let i = 1; i < app.globalData.users.length; i++) {
+        userInfo.push(app.globalData.users[i].avatarFileID)
+      }
+      
+      //加载轮播图
+
+    }
+
+  },
+  showPopup: function () {
+
+    // 检查标志位是否已设置为 true
+    if (wx.getStorageSync('popupShown')) {
+      return;
+    } else {
+      wx.setStorageSync('popupShown', true)
+    }
+    // 如果标志位为 false，执行弹窗代码
+    wx.showModal({
+      title: '提示',
+      content: '您还未注册，请先注册',
+      confirmText: '注册',
+      complete: (res) => {
+        console.log(res)
+        //取消则退出小程序
+        if (res.cancel) {
+          wx.exitMiniProgram()
+        }
+        //确定则跳转注册页面
+        if (res.confirm) {
+          wx.navigateTo({
+            url: '../info/info',
+          })
+
+        }
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -66,8 +125,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-
+  onShow: function () {
+    wx.setStorageSync('popupShown', false);
+    this.initialization()
   },
 
   /**

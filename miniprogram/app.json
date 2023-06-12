@@ -2,6 +2,8 @@
   "pages": [
     
     "pages/index/index",
+    "pages/index/mogul/mogul",
+    "pages/index/mogul/detailedInformation/detailedInformation",
     "pages/info/info",
     "pages/upFace/upFaceUserImager/upFaceUserImager",
     "pages/cutFace/cutFaceUserImager/cutFaceUserImager",

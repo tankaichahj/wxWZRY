@@ -1,4 +1,6 @@
 // pages/info/info.js
+var app = getApp()
+var util = require('../../utils/user');
 Page({
 
   /**
@@ -111,7 +113,109 @@ Page({
     })
   },
   //提交注册
-  buttonBind() {},
+  async buttonBind() {
+    wx.showLoading({
+      title: '上传中...',
+      mask: true
+    })
+    const data = await this.dataPacking()
+    if (data) {
+      
+      const set = 'user'
+      const res = await util.insertData(set, data)
+      if(await res){
+        app.globalData.user =data
+        setTimeout(() => {
+          wx.hideLoading()
+          wx.showModal({
+            title: '提示',
+            content: '恭喜您，注册成功',
+            complete: (res) => {
+              if (res.cancel) {
+                wx.switchTab({
+                  url: '../index/index',
+                })
+              }
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../index/index',
+                })
+              }
+            }
+          })
+        }, 500);
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: '注册失败，请联系管理员',
+        })
+      }
+    } else {
+      wx.hideLoading()
+      wx.showModal({
+        title: '提示',
+        content: '请完善所有信息',
+      })
+    }
+  },
+  //数据打包
+  async dataPacking() {
+    const {
+      name,
+      nickname,
+      qq
+    } = this.data
+    const sex = this.data.genderArray[this.data.genderIndex]; //性别
+    const best = this.data.bestPositionArray[this.data.bestPositionIndex]; //最擅长的位置
+    const other = this.data.otherPositionArray[this.data.otherPositionIndex]; //其他位置
+    var position = {}
+    if (best == "全能") {
+      position = { //游戏位置
+        best: best,
+        other: ""
+      }
+    } else {
+      position = { //游戏位置
+        best: best,
+        other: other
+      }
+    }
+    const rank = `${this.data.rankArray[0][this.data.rankIndex[0]]}　${this.data.rankArray[1][this.data.rankIndex[1]]}${this.data.rankArray[0][this.data.rankIndex[0]]=='王者'?'星':''}`; //游戏段位
+    const openid = app.globalData.openid
+    const avatar = this.data.UserInfoSrc //本地路径
+    if (!name || !nickname || !avatar || !qq || !sex || !rank || !position) {
+      
+      return false
+    } else { //无空值
+
+      const avatarSrc = await util.getFileSystemManager(avatar)
+      const avatarPath = 'avatar'
+      const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath)
+      const avatatHttps = await util.getCloudImage([avatatFileID.fileID])
+      const data = {
+        name: name,
+        avatarFileID: await avatatFileID.fileID,
+        avatatHttps:await avatatHttps[0].tempFileURL,
+        qq: qq,
+        sex: sex,
+        nickname: nickname,
+        rank: rank,
+        position: position,
+        _openid: openid
+      }
+      console.log(data)
+      return data
+    }
+  },
+
+  ins: function (e) {
+    const key = e.currentTarget.id
+    const value = e.detail.value
+    this.setData({
+      [`${key}`]: value
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
