@@ -1,9 +1,9 @@
-/* pages/index/mogul/detailedInformation/detailedInformation.wxss */
+/* pages/edit/editMogul/editMogul.wxss *//* pages/index/mogul/detailedInformation/detailedInformation.wxss */
 .info {
 	display: grid;
 	justify-content: space-around;
 	align-content: center;
-	grid-template-rows: 30vh 65vh;
+	grid-template-rows: 35vh 65vh;
 	grid-template-columns: 100%;
 	width: 700rpx;
 	grid-gap: 10px;
@@ -131,4 +131,20 @@
 .information-image {
 	width: 100%;
 	height: 100%;
+}
+.aa {
+  display: grid;
+	justify-content: space-between;
+	width: auto;
+  grid-template-columns: 33% 67%; /* 设置网格宽度小于容器宽度 */
+  grid-gap: 1px;
+  background-color: #ffffff00;
+
+}
+input{
+  text-align:left;
+  padding-right: 5px;
+  color: rgb(255, 255, 255);
+  
+  
 }

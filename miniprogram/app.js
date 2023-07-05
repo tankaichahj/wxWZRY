@@ -18,7 +18,8 @@ App({
       openid:'',
       user:[],
       users:[],
-      ck:false
+      ck:false,
+      moguls:[]
     };
   }
 });

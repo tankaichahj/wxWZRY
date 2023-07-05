@@ -25,23 +25,23 @@
 .box{
 	display: grid;
 	grid-template-columns: auto auto ;
-	grid-gap: 15px;
+	grid-gap:20rpx;
 	justify-content: space-around;
 }
 
 .img image {
-	width: 150px;
-	height: 200px;
+	width: 264rpx;
+	height: 353rpx;
 	border-radius: 16px;
 
 }
 
 .desc {
-	padding: 5px;
+	padding: 9rpx;
 	text-align: center;
-	background: linear-gradient(45deg,  #a4edf8, #f397e7, #f06794);
-	height: 55px;
-	margin-top: -27px;
+	/* background: linear-gradient(45deg,  #a4edf86b, #f397e780, #f06794); */
+	height: 97rpx;
+	margin-top: -49rpx;
 	display: grid;
 	border-radius: 16px;
 }
@@ -55,8 +55,8 @@
 	position: relative;
 	background: rgba(250, 247, 247, 0);
 	border-radius: 20px;
-	width: 158px;
-	height: 250px;
+	width: 278rpx;
+	height:440rpx;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -72,6 +72,9 @@
 	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
 	animation: responsive 4s linear infinite;
 }
+.responsive:nth-child(2)::before{
+	background-image: conic-gradient(transparent, transparent, transparent, #fffb00);
+}
 
 .responsive::after {
 	content: '';
@@ -81,6 +84,9 @@
 	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
 	animation: responsive 4s linear infinite;
 	animation-delay: -2s;
+}
+.responsive:nth-child(2)::after{
+	background-image: conic-gradient(transparent, transparent, transparent, #ff000d);
 }
 
 @keyframes responsive {
@@ -99,9 +105,18 @@
 	border-radius: 16px;
 	background-attachment: #dfe0e2;
 	z-index: 1;
-	background: rgb(0, 0, 0);
+	background: linear-gradient(90deg, #3cdef3, #12a3c4)
 }
-
-.box {
+.but{
+  position: fixed;
+  margin-bottom: 30px;
+  left: 80%;
+  top:5%;
+  transform: translate(-50%,0%);
+}
+.but button{
+	width: 100px;
 	
 }
+
+

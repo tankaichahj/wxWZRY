@@ -7,10 +7,11 @@
     "pages/info/info",
     "pages/upFace/upFaceUserImager/upFaceUserImager",
     "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
-
     "pages/personal/personal",
     "pages/contact/contact",
-    "pages/information/information"
+    "pages/information/information",
+    "pages/edit/editMogul/editMogul",
+    "pages/edit/edit"
 
   ],
   "window": {

@@ -9,10 +9,23 @@
 				<view>本科:{{information.grade}}-{{information.college}}-{{information.speciality}}</view>
 				<view>硕士:{{information.school}}</view>
 				<view>个人荣誉：</view>
-				<view wx:for="{{information.honor}}">-{{item}}</view>
+				<view wx:for="{{information.honor}}" wx:key="*this">-{{item}}</view>
 			</view>
 		</view>
-		<view class="information">22</view>
+		<view class="information">
+			<scroll-view class="scroll-information" scroll-y="true">
+				<view class="box" wx:for="{{information.box}}" wx:key="*this">
+					<text wx:for="{{item.text}}" class="information-text">{{"　　"+item+"\n"}}</text>
+					<scroll-view class="scroll-box" scroll-x="true">
+						<view class="image-view">
+							<view wx:for="{{item.image}}" class="image-box">
+								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+			</scroll-view>
+		</view>
 	</view>
 	<view>
 		<view class="layer1"></view>

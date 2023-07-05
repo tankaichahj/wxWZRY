@@ -4,7 +4,7 @@
 	<view class="top_tip">大佬展示</view>
 	<scroll-view class="scroll-view" scroll-y="true">
 		<view class="box">
-			<view class="responsive" wx:for="{{moguls}}" id="{{item.openid}}" bindtap="bind">
+			<view class="responsive" wx:for="{{moguls}}" id="{{item.openid}}" bindtap="bind" wx:key="openid">
 				<view class="zz"></view>
 				<view class="img">
 					<image src="{{item.image}}" alt="图片文本描述" mode="aspectFill" />
@@ -18,7 +18,9 @@
 
 	</scroll-view>
 </view>
-
+<view wx:if="{{administrators}}" class="but">
+<button  type="primary"  bindtap="buttonBind">管理</button>
+</view>
 <view>
 	<view class="layer1"></view>
 	<view class="layer2"></view>

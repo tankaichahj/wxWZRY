@@ -115,6 +115,20 @@ Page({
       }
     })
   },
+  previewImage(e) {
+    console.log(e)
+    wx.previewImage({
+      urls: [e.target.id],
+      current: e.target.id
+    })
+  },
+  navigate(e){
+    const url =e.currentTarget.id
+    wx.navigateTo({
+      url: url,
+    })
+
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

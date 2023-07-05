@@ -9,34 +9,35 @@
     <swiper autoplay="{{true}}" circular="{{true}}" indicator-dots="{{true}}" interval="2000">
       <block wx:for="{{swiperList}}" wx:key="*this">
         <swiper-item>
-          <image mode="aspectFill" src="{{item}} " />
+          <image mode="aspectFill" src="{{item}}" bindtap="previewImage" id="{{item}}" />
         </swiper-item>
       </block>
     </swiper>
 
   </view>
   <!-- 战队模块 -->
-  <view class="grid-container-1">
-    <navigator wx:for="{{buttons_1}}" wx:key="index" style="animation: slideup {{0.35*(index+1)}}s ease-in alternate;" url="{{item.url}}">
-      <view class="a" >
-        <image class="icon" src="{{item.icon}}" />
+  <view class="grid-container-1" >
+    <block wx:for="{{buttons_1}}" wx:key="index" style="animation: slideup {{0.35*(index+1)}}s ease-in alternate;" id="{{item.url}}" >
+    
+      <view class="a" bindlongtap="navigate">
+        <image class="icon" src="{{item.icon}}"  />
         <text class="text">{{item.text}}</text>
       </view>
-    </navigator>
+    </block>
 
 
   </view>
   <!-- 其他功能 -->
   <!-- 需要更改下面图片和名称 -->
   <view class="grid-container-2">
-    <navigator wx:for="{{buttons_2}}" wx:key="index" style="animation: slideup {{0.65*(index+1)}}s ease-in alternate;" url="{{item.url}}" hover-start-time="1000">
-      <view class="b" hover-stay-time="1000">
+    <block wx:for="{{buttons_2}}" wx:key="index" style="animation: slideup {{0.45*(index+1)}}s ease-in alternate;"  hover-start-time="1000" >
+      <view class="b" hover-stay-time="1000" bindlongtap="navigate" id="{{item.url}}">
 
         <image class="icon" src="{{item.icon}}" />
         <text class="text">{{item.text}}</text>
 
       </view>
-    </navigator>
+    </block>
 
   </view>
   <!-- 记得改下面样式名称 -->

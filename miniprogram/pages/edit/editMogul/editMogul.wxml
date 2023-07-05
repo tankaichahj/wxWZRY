@@ -1,0 +1,64 @@
+<view class="container">
+	<view class="info">
+		<view class="user">
+			<view class="user-image">
+				<image mode="aspectFit " src="{{information.info?info:image}}" />
+			</view>
+			<view class="user-text">
+				<view class="aa">
+					<view>姓名：{{information.name}}　
+					</view>
+					<input id="name" bindinput="ins" placeholder="请输入"></input>
+				</view>
+				<view class="aa">
+					<view>性别：{{information.sex}}
+					</view>
+					<view><input id="sex" bindinput="ins" placeholder="请输入"></input></view>
+				</view>
+				<view class="aa">
+					<view>本科年级:{{information.grade}}</view>
+					<view><input id="grade" bindinput="ins" placeholder="请输入"></input></view>
+				</view>
+				<view class="aa">
+					<view>本科:学院{{information.college}}</view>
+					<view><input id="college" bindinput="ins" placeholder="请输入"></input></view>
+				</view>
+				<view class="aa">
+					<view>本科:专业{{information.speciality}}</view>
+					<view><input id="speciality" bindinput="ins" placeholder="请输入"></input></view>
+				</view>
+				<view class="aa">
+					<view>硕士:{{information.school}}</view>
+					<view><input id="school" bindinput="ins" placeholder="选填"></input></view>
+				</view>
+				<view class="aa">
+					<view>个人荣誉：</view>
+					<view bindtap="addHonor"><image mode="aspectFill " src="{{image}}"  style="width:20px; height: 20px;" /></view>
+				</view>
+				<view class="aa" wx:for="{{honorID}}"style="grid-template-columns: 5% 95%;" wx:key="*this">
+					<view>{{item}}</view>
+					<view><input id="{{item}}" bindinput="ins" placeholder="请输入"></input></view>
+				</view>
+			</view>
+		</view>
+		<view class="information">
+			<scroll-view class="scroll-information" scroll-y="true">
+				<view class="box" wx:for="{{information.box}}" wx:key="*this">
+					<text wx:for="{{item.text}}" class="information-text">{{"　　"+item+"\n"}}</text>
+					<scroll-view class="scroll-box" scroll-x="true">
+						<view class="image-view">
+							<view wx:for="{{item.image}}" class="image-box">
+								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
+							</view>
+						</view>
+					</scroll-view>
+				</view>
+			</scroll-view>
+		</view>
+	</view>
+	<view>
+		<view class="layer1"></view>
+		<view class="layer2"></view>
+		<view class="layer3"></view>
+	</view>
+</view>
