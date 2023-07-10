@@ -1,0 +1,10 @@
+<!--pages/index/photoAlbum/photoAlbum.wxml-->
+<view class="container">
+	<view class="title">安农大佬队</view>
+	<view class="top_tip">相册</view>
+	<view>
+		<view class="layer1"></view>
+		<view class="layer2"></view>
+		<view class="layer3"></view>
+	</view>
+</view>

@@ -29,8 +29,16 @@ Page({
   },
   previewImage(e) {
     console.log(e)
+    const information=this.data.information
+    for(let i=0;i<information.box.length;i++){
+      for(let j=0;j<information.box[i].image.length;j++){
+        if(information.box[i].image[j]== e.target.id){
+          var urls = information.box[i].image
+        }
+      }
+    }
     wx.previewImage({
-      urls: [e.target.id],
+      urls: urls,
       current: e.target.id
     })
   },

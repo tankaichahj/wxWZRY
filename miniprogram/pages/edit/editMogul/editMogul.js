@@ -7,7 +7,11 @@ Page({
   data: {
     image: '../../../images/TuPian/sctp.png',
     honorID: [1],
-    informationID:[1],
+    informationID: [{
+      id: 1,
+      textID:[1],
+      imageID:[]
+    }],
   },
   // 添加一条荣誉
   addHonor() {

@@ -10,7 +10,8 @@
     "pages/contact/contact",
     "pages/information/information",
     "pages/edit/editMogul/editMogul",
-    "pages/edit/edit"
+    "pages/edit/edit",
+    "pages/index/photoAlbum/photoAlbum"
 
   ],
   "window": {

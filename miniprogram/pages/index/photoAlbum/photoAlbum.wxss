@@ -1,0 +1,8 @@
+/* pages/index/photoAlbum/photoAlbum.wxss */
+.top_tip {
+	font-size: 28px;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #fffffff3;
+	margin-bottom: 28rpx;
+}

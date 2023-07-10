@@ -36,7 +36,7 @@
 					<view wx:if="{{honorID.length < 3}}"><button bindtap="addHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
 					<view wx:if="{{honorID.length > 1}}"><button bindtap="delHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">删除</button></view>
 				</view>
-				<view class="aa" wx:for="{{honorID}}"style="grid-template-columns: 5% 95%;" wx:key="*this">
+				<view class="aa" wx:for="{{honorID}}" style="grid-template-columns: 5% 95%;" wx:key="*this">
 					<view>{{item}}</view>
 					<view><input id="{{item}}" bindinput="ins" placeholder="请输入"></input></view>
 				</view>
@@ -45,11 +45,18 @@
 		<view class="information">
 			<scroll-view class="scroll-information" scroll-y="true">
 				<view class="box" wx:for="{{informationID}}" wx:key="*this">
-					<text wx:for="{{item.text}}" class="information-text">{{"　　"+item+"\n"}}</text>
+					<view style="display: grid;grid-template-columns: auto auto">
+						<view ><button bindtap="addText" id="{{item.id}}" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
+						<view ><button bindtap="delText" id="{{item.id}}"type="primary" style="width: 50px;height: 25px;padding:0%;">删除</button></view>
+					</view>
+					<view class="section">
+						<textarea wx:for="{{item.textID}}" bindblur="bindTextAreaBlur" placeholder="请输入" auto-height />
+					</view>
+					<text wx:for="{{item.TextID}}" class="information-text">{{"　　"+item+"\n"}}</text><!-- 段落 -->
 					<scroll-view class="scroll-box" scroll-x="true">
 						<view class="image-view">
 							<view wx:for="{{item.image}}" class="image-box">
-								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
+								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image><!-- 图片 -->
 							</view>
 						</view>
 					</scroll-view>

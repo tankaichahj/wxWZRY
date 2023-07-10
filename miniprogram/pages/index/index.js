@@ -30,6 +30,7 @@ Page({
     buttons_2: [{
         icon: '../../images/index/xc.png',
         text: '相册',
+        url:'./photoAlbum/photoAlbum'
       },
       {
         icon: '../../images/index/ry.png',
