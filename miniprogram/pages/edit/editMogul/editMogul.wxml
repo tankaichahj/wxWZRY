@@ -31,9 +31,10 @@
 					<view>硕士:{{information.school}}</view>
 					<view><input id="school" bindinput="ins" placeholder="选填"></input></view>
 				</view>
-				<view class="aa">
+				<view class="aa" style="grid-template-columns: 50% 25% 25%;">
 					<view>个人荣誉：</view>
-					<view bindtap="addHonor"><image mode="aspectFill " src="{{image}}"  style="width:20px; height: 20px;" /></view>
+					<view wx:if="{{honorID.length < 3}}"><button bindtap="addHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
+					<view wx:if="{{honorID.length > 1}}"><button bindtap="delHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">删除</button></view>
 				</view>
 				<view class="aa" wx:for="{{honorID}}"style="grid-template-columns: 5% 95%;" wx:key="*this">
 					<view>{{item}}</view>
@@ -43,7 +44,7 @@
 		</view>
 		<view class="information">
 			<scroll-view class="scroll-information" scroll-y="true">
-				<view class="box" wx:for="{{information.box}}" wx:key="*this">
+				<view class="box" wx:for="{{informationID}}" wx:key="*this">
 					<text wx:for="{{item.text}}" class="information-text">{{"　　"+item+"\n"}}</text>
 					<scroll-view class="scroll-box" scroll-x="true">
 						<view class="image-view">

@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/index/mogul/mogul",
     "pages/index/mogul/detailedInformation/detailedInformation",

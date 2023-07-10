@@ -6,10 +6,11 @@ Page({
    */
   data: {
     image: '../../../images/TuPian/sctp.png',
-    honorID: [1]
+    honorID: [1],
+    informationID:[1],
   },
+  // 添加一条荣誉
   addHonor() {
-
     const honorID = this.data.honorID
     if (honorID.length + 1 > 3) {
       return
@@ -20,11 +21,11 @@ Page({
         honorID: honorID
       })
     }
-
   },
+  // 删除一条荣誉
   delHonor() {
     const honorID = this.data.honorID
-    if (honorID.length > 0) {
+    if (honorID.length > 1) {
       honorID.pop(); // 删除数组最后一个元素
       this.setData({
         honorID: honorID
