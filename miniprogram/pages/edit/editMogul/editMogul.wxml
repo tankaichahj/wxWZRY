@@ -45,19 +45,25 @@
 		<view class="information">
 			<scroll-view class="scroll-information" scroll-y="true">
 				<view class="box" wx:for="{{informationID}}" wx:key="*this">
-					<view style="display: grid;grid-template-columns: auto auto">
-						<view ><button bindtap="addText" id="{{item.id}}" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
-						<view ><button bindtap="delText" id="{{item.id}}"type="primary" style="width: 50px;height: 25px;padding:0%;">删除</button></view>
+					<view style="display: grid;grid-template-columns: 15% 15%">
+						<view wx:if="{{item.textID.length<5}}"><button bindtap="addText" id="{{item.id}}" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
+						<view wx:if="{{item.textID.length>1}}"><button bindtap="delText" id="{{item.id}}"type="primary" style="width: 50px;height: 25px;padding:0%;">删除</button></view>
 					</view>
 					<view class="section">
-						<textarea wx:for="{{item.textID}}" bindblur="bindTextAreaBlur" placeholder="请输入" auto-height />
+						<textarea wx:for="{{item.textID}}" id="{{item.textID}}" bindblur="bindTextAreaBlur" placeholder="请输入" auto-height style="background-color: rgba(145, 151, 151, 0.534);"/>
 					</view>
-					<text wx:for="{{item.TextID}}" class="information-text">{{"　　"+item+"\n"}}</text><!-- 段落 -->
+					<view style="display: grid;grid-template-columns: 30% 30%">
+						<view ><button bindtap="addImage" id="{{item.id}}" type="primary" style="width: 100px;height: 25px;padding:0%;">添加图片</button></view>
+						<view ><button bindtap="delImage" id="{{item.id}}"type="primary" style="width: 100px;height: 25px;padding:0%;">删除图片</button></view>
+					</view>
 					<scroll-view class="scroll-box" scroll-x="true">
 						<view class="image-view">
-							<view wx:for="{{item.image}}" class="image-box">
+						
+							<view wx:for="{{item.imageID}}" class="image-box">
 								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image><!-- 图片 -->
 							</view>
+							<view class="image-box">
+							<image class="information-image" src="{{image}}" mode="aspectFill" bindtap="addImage"></image></view>
 						</view>
 					</scroll-view>
 				</view>

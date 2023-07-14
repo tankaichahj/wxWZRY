@@ -9,8 +9,8 @@ Page({
     honorID: [1],
     informationID: [{
       id: 1,
-      textID:[1],
-      imageID:[]
+      textID: [1],
+      imageID: []
     }],
   },
   // 添加一条荣誉
@@ -42,8 +42,30 @@ Page({
     this.setData({
       [`${key}`]: value
     })
-
   },
+  addText(e) {
+    const informationID=this.data.informationID
+    const textID = informationID[e.target.id - 1].textID
+    const newID = textID.length + 1
+    if (textID.length < 5) {
+      textID.push(newID)
+      this.setData({  
+        informationID:informationID
+      })
+    } 
+  },
+  delText(e) {
+    const informationID=this.data.informationID
+    const textID = informationID[e.target.id - 1].textID
+    if(textID.length > 1){
+      textID.pop();
+      this.setData({
+        informationID:informationID
+      })
+    }
+  },
+  addImage(){},
+  delImage(){},
   /**
    * 生命周期函数--监听页面加载
    */
