@@ -3,7 +3,7 @@
 	display: grid;
 	justify-content: space-around;
 	align-content: center;
-	grid-template-rows: 35vh 65vh;
+	grid-template-rows: 35vh 5vh 55vh;
 	grid-template-columns: 100%;
 	width: 700rpx;
 	grid-gap: 10px;
@@ -74,6 +74,7 @@
 	content: "";
 	position: absolute;
 	left: 50%;
+
 	transform: translate(-50%);
 	width: 100%;
 	height: 600rpx;
@@ -82,6 +83,7 @@
 
 .scroll-information .box::after {
 	filter: blur(50px);
+	
 }
 
 .scroll-information .box:nth-child(2)::before,
@@ -92,6 +94,14 @@
 .scroll-information .box:nth-child(3)::before,
 .scroll-information .box:nth-child(3)::after {
 	background: linear-gradient(135deg, #4dff0342, #00d0ff42);
+}
+.scroll-information .box:nth-child(4)::before,
+.scroll-information .box:nth-child(4)::after {
+	background: linear-gradient(235deg, #ff030342, #f700ff42);
+}
+.scroll-information .box:nth-child(5)::before,
+.scroll-information .box:nth-child(5)::after {
+	background: linear-gradient(90deg, #03e2ff42, #0011ff42);
 }
 
 .information-text {

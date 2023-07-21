@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container" style="height: 1200rpx;" wx:if="{{!loading}}">
+<view class="container" wx:if="{{!loading}}">
 
   <view class="title">安农大佬队</view>
 

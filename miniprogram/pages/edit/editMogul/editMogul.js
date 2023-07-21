@@ -44,31 +44,92 @@ Page({
     })
   },
   addText(e) {
-    const informationID=this.data.informationID
+    const informationID = this.data.informationID
     const textID = informationID[e.target.id - 1].textID
     const newID = textID.length + 1
     if (textID.length < 5) {
       textID.push(newID)
-      this.setData({  
-        informationID:informationID
+      this.setData({
+        informationID: informationID
       })
-    } 
+    }
   },
   delText(e) {
-    const informationID=this.data.informationID
+    const informationID = this.data.informationID
     const textID = informationID[e.target.id - 1].textID
-    if(textID.length > 1){
+    if (textID.length > 1) {
       textID.pop();
+      this.setData({
+        informationID: informationID
+      })
+    }
+  },
+  addImage(e) { //最多塞10个照片
+    const that = this
+    const id = e.target.id
+    const information = this.data.informationID[id - 1]
+    const length = information.imageID
+    const count = 10 - length
+    wx.chooseMedia({
+      count: count,
+      mediaType: ['image'],
+      sourceType: ['album'],
+      maxDuration: 30,
+      camera: 'back',
+      success(res) {
+        for (let i = 0; i < res.tempFiles.length; i++) {
+          information.imageID.push(res.tempFiles[i].tempFilePath)
+        }
+        that.setData({
+          informationID: that.data.informationID
+        })
+      }
+    })
+  },
+  delImage(e) {
+    const id = e.target.id
+    const imageID = this.data.informationID[id - 1].imageID
+    if (imageID.length > 0) {
+      imageID.pop();
+      this.setData({
+        informationID: this.data.informationID
+      })
+    }
+
+  },
+  addBox() {
+    const informationID = this.data.informationID
+    const newID = informationID.length
+    if (newID < 5) {
+      const newInformation = {
+        id: newID + 1,
+        textID: [1],
+        imageID: []
+      }
+      informationID.push(newInformation)
+      this.setData({
+        informationID: informationID
+      })
+    }
+  },
+  delBox() {
+    const informationID = this.data.informationID
+    if(informationID.length>1){
+      informationID.pop()
       this.setData({
         informationID:informationID
       })
     }
   },
-  addImage(){},
-  delImage(){},
   /**
    * 生命周期函数--监听页面加载
    */
+  previewImage(e) {
+    wx.previewImage({
+      urls: [e.target.id],
+      current: e.target.id
+    })
+  },
   onLoad(options) {
 
   },
