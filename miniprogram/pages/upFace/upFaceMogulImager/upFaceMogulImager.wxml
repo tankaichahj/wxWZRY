@@ -1,0 +1,16 @@
+<view class="page" style=" height: 1000rpx;  width: 750rpx;">
+	<view class="image-container" style="height: 320px;width:240px ;">
+		<image class="image" mode="aspectFit" src="{{imageSrc}}" bindtap="previewImage" wx:if="{{imageSrc}}"></image>
+	</view>
+
+</view>
+<view class="button-box">
+	<button type="primary" bindtap="chooseImage" wx:if="{{!imageSrc}}">选择图片</button>
+	<button type="primary" wx:if="{{imageSrc}}" bindtap="cancelImage">清空</button>
+	<button type="primary" wx:if="{{imageSrc}}" bindtap="back">确定</button>
+</view>
+<view>
+	<view class="layer1"></view>
+	<view class="layer2"></view>
+	<view class="layer3"></view>
+</view>

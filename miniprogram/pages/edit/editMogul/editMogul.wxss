@@ -157,3 +157,10 @@ input{
   
   
 }
+.zhidi{
+  position: fixed;
+  margin-bottom: 80px;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%,0%);
+}

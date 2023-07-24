@@ -5,16 +5,16 @@ cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
 
 exports.main = async (event, context) => {
   try {
-    const { file, upPath, openid,F } = event // 解构赋值简化代码
+    const { file, upPath,F ,name} = event // 解构赋值简化代码
     const fileSuffix = getFileSuffix(F) // 获取文件后缀名
 
     let fileID
     if (fileSuffix === 'png') {
       // 如果是 png 格式，调用 uploadPNGFile 方法上传
-      fileID = await uploadPNGFile(cloud, file, upPath, openid)
+      fileID = await uploadPNGFile(cloud, file, upPath,name)
     } else if (fileSuffix === 'jpg' || fileSuffix === 'jpeg') {
       // 如果是 jpg/jpeg 格式，调用 uploadJPGFile 方法上传
-      fileID = await uploadJPGFile(cloud, file, upPath, openid)
+      fileID = await uploadJPGFile(cloud, file, upPath, name)
     } else {
       throw new Error('不支持的文件格式') // 抛出异常
     }
@@ -41,12 +41,12 @@ function getFileSuffix(fileName) {
  * @param {object} cloud - wx-server-sdk 实例
  * @param {string} file - 上传的文件内容
  * @param {string} upPath - 上传到云存储的路径
- * @param {string} openid - 用户 openid
+ * @param {string} name - 用户 openid
  * @returns {string} 文件 ID
  */
-async function uploadPNGFile(cloud, file, upPath, openid) {
+async function uploadPNGFile(cloud, file, upPath,name) {
   const res = await cloud.uploadFile({
-    cloudPath: `${upPath}/${openid}.png`, // 上传到云存储的路径和文件名
+    cloudPath: `${upPath}/${name}.png`, // 上传到云存储的路径和文件名
     fileContent: Buffer.from(file, 'base64'), // 文件内容
   })
   return res.fileID // 上传成功后返回的文件 ID
@@ -57,12 +57,12 @@ async function uploadPNGFile(cloud, file, upPath, openid) {
  * @param {object} cloud - wx-server-sdk 实例
  * @param {string} file - 上传的文件内容
  * @param {string} upPath - 上传到云存储的路径
- * @param {string} openid - 用户 openid
+ * @param {string} name - 文件名
  * @returns {string} 文件 ID
  */
-async function uploadJPGFile(cloud, file, upPath, openid) {
+async function uploadJPGFile(cloud, file, upPath, name) {
   const res = await cloud.uploadFile({
-    cloudPath: `${upPath}/${openid}.jpg`, // 上传到云存储的路径和文件名
+    cloudPath: `${upPath}/${name}.jpg`, // 上传到云存储的路径和文件名
     fileContent:Buffer.from(file, 'base64'), // 文件内容
   })
   return res.fileID // 上传成功后返回的文件 ID

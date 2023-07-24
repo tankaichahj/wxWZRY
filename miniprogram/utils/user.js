@@ -135,15 +135,16 @@ function getUserFiled(set, field, value) {
  * @param {*} data 转码后的图片
  * @param {*} imageSrc 转码前的图片
  * @param {*} upPath 上传路径
+ * @param {*} name  文件名
  */
-function uploadPhoto(data, imageSrc, upPath) {
+function uploadPhoto(data, imageSrc, upPath,name) {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
       name: 'uploadPhoto',
       data: {
         file: data, // 转码后的照片
         F: imageSrc, //原图片路径，用于获取图片格式
-        openid: app.globalData.openid, //用户
+        name: name, //文件名
         upPath: upPath //上传路径
 
       },
@@ -213,7 +214,11 @@ function upData(set, data, id) {
   })
 }
 // 9: 更新数据库集合某个数据的字段值（待写）
-// 10：通过fileID从云存储下载东西
+// 10：通过fileID从云存储下载东西 
+/**
+ * 
+ * @param  filedIDs  一次性最多五十个
+ */
 function getCloudImage(filedIDs) {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
@@ -228,7 +233,7 @@ function getCloudImage(filedIDs) {
         //   const res = this.getImageInfoPromisified(res.result[i].tempFileURL)
         //   image.push(res)
         // }
-        console.log(imageHttp)
+        
         resolve(imageHttp)
       },
       fail: (err) => {

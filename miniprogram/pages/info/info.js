@@ -190,7 +190,8 @@ Page({
 
       const avatarSrc = await util.getFileSystemManager(avatar)
       const avatarPath = 'avatar'
-      const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath)
+      const name = app.globalData.openid //文件名为openid
+      const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath,name)
       const avatatHttps = await util.getCloudImage([avatatFileID.fileID])
       const data = {
         name: name,
