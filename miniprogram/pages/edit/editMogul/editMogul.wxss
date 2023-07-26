@@ -83,6 +83,8 @@
 
 .scroll-information .box::after {
 	filter: blur(50px);
+	transform: translate(-50%,-70%);
+	z-index: -1;
 	
 }
 

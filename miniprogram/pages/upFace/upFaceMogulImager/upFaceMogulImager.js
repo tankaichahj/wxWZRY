@@ -38,7 +38,7 @@ Page({
     //prevPage 相当于上个页面的this，可以通过setData修改上个页面参数执行上个页面的方法等
     let prevPage = pages[pages.length - 2]
     prevPage.setData({
-      inforimage: this.data.imageSrc
+      mogulImage: this.data.imageSrc
     })
     wx.navigateBack()
   },

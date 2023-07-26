@@ -2,7 +2,7 @@
 	<view class="info">
 		<view class="user">
 			<view class="user-image">
-				<image mode="aspectFit " src="{{inforimage?inforimage:image}}" bindtap="infoImage"/>
+				<image mode="aspectFit " src="{{mogulImage?mogulImage:image}}" bindtap="infoImage"/>
 			</view>
 			<view class="user-text">
 				<view class="aa">

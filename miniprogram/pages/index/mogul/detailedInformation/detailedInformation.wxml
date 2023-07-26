@@ -1,25 +1,25 @@
 <view class="container">
 	<view class="info">
 		<view class="user">
-			<view class="user-image" mark:id="{{information.mogulImage}}">
-				<image mode="aspectFill" src="{{information.mogulImage}}" bindtap="previewImage"/>
+			<view class="user-image" mark:id="{{mogul.information.mogulImageHttps}}">
+				<image mode="aspectFill" src="{{mogul.information.mogulImageHttps}}" bindtap="previewImage"/>
 			</view>
 			<view class="user-text">
-				<view>姓名：{{information.name}}　性别：{{information.sex}}</view>
-				<view>本科:{{information.grade}}-{{information.college}}-{{information.speciality}}</view>
-				<view>硕士:{{information.school}}</view>
+				<view>姓名：{{mogul.information.name}}　性别：{{mogul.information.sex}}</view>
+				<view>本科:{{mogul.information.grade}}-{{mogul.information.college}}-{{mogul.information.speciality}}</view>
+				<view>硕士:{{mogul.information.school}}</view>
 				<view>个人荣誉：</view>
-				<view wx:for="{{information.honor}}" wx:key="*this">-{{item}}</view>
+				<view wx:for="{{mogul.information.honor}}" wx:key="*this">-{{item}}</view>
 			</view>
 		</view>
 		<view class="information">
 			<scroll-view class="scroll-information" scroll-y="true">
-				<view class="box" wx:for="{{information.box}}" wx:key="*this">
+				<view class="box" wx:for="{{mogul.box}}" wx:key="*this">
 					<text wx:for="{{item.text}}" class="information-text">{{"　　"+item+"\n"}}</text>
 					<scroll-view class="scroll-box" scroll-x="true">
 						<view class="image-view">
-							<view wx:for="{{item.image}}" class="image-box" id="{{item.image}}">
-								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image>
+							<view wx:for="{{item.image}}" class="image-box" id="{{item.imageHttps}}">
+								<image class="information-image" src="{{item.imageHttps}}" id="{{item.imageHttps}}" mode="aspectFill" bindtap="previewImage"></image>
 							</view>
 						</view>
 					</scroll-view>

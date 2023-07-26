@@ -3,6 +3,7 @@
 
 var util = require('../../../utils/user');
 var tools = require('../../../utils/tools');
+var time = tools.stringStripSymbol(tools.formatTime(new Date()))
 
 
 Page({
@@ -15,7 +16,7 @@ Page({
     tagBoxID: "",
     honorID: [1],
     honorText: [],
-    inforimage: null,
+    mogulImage: null,
     school: "",
     informationID: [{
       id: 1,
@@ -160,47 +161,92 @@ Page({
       })
     }
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   previewImage(e) {
     wx.previewImage({
       urls: [e.target.id],
       current: e.target.id
     })
   },
+  // 上传头像
+  getmogulImage: async function (mogulImage) {
+    const mogulImageSrc = await util.getFileSystemManager(mogulImage)
+    const mogulImagePath = 'mogul'
+    const mogulImageName = this.data.name + 'image' + time
+    const mogulImageFileID = await util.uploadPhoto(mogulImageSrc, mogulImage, mogulImagePath, mogulImageName)
+    const mogulImageHttps = await util.getCloudImage([mogulImageFileID.fileID])
+    const data = {
+      mogulImageFileID: await mogulImageFileID.fileID,
+      mogulImageHttps: await mogulImageHttps[0].tempFileURL,
+    }
+    return data
+  },
+  //转码图片
+  zhuanma: async function (arr) {
+    //遍历informationID里所有的图片，
+    const ima = []
+    for (let i = 0; i < arr.length; i++) {
+      const obj = {
+        image: []
+      };
+      for (let j = 0; j < arr[i].imageID.length; j++) {
+        const imageData = await util.getFileSystemManager(arr[i].imageID[j])
+        obj.image.push(imageData)
+      }
+      ima.push(obj)
+    }
+    return ima
+  },
+  //上传图片
+  upimage: async function () {
+    const imageSrc = await zhuanma(informationID)
+    const imagePath = 'mogul'
+    const imageName = this.data.name + time
+    const box = []
+    const informationID = this.data.informationID
+    for (let i = 0; i < informationID.length; i++) {
+      const a = imageSrc[i].image
+      const image = []
+      for (let j = 0; j < a.length; j++) {
+        const name = imageName + i + j
+        const F = await util.uploadPhoto(a[j], informationID[i].imageID[j], imagePath, name)
+        image.push(F.fileID)
+      }
+      const H = await util.getCloudImage(image)
+      const I = {}
+      for (let k = 0; k < H.length; k++) {
+        I = {
+          imageFileID: image[k],
+          imageHttps: H[k].tempFileURL
+        }
+      }
+      const aa = {
+        text: informationID[i].textID,
+        image: I
+      }
+      box.push(aa)
+    }
+    return box
+  },
   //数据打包
   async dataPacking() {
-    const taht = this.data
-    const mogulImage = taht.inforimage
-    const name = taht.name
-    const sex = taht.sex
-    const grade = taht.grade
-    const college = taht.college
-    const speciality = taht.speciality
-    const school = taht.school
-    const honor = taht.honorText
-    const informationID = taht.informationID
-    var time = tools.stringStripSymbol(tools.formatTime(new Date()))
-    if (!mogulImage || !name || !sex || !grade || !college || !speciality || !honor) {
-      return false
-    } else {
-      const getmogulImage = async function (mogulImage) {
-        const mogulImageSrc = await util.getFileSystemManager(mogulImage)
-        const mogulImagePath = 'mogul'
-        const mogulImageName = name + 'image' + time
-        const mogulImageFileID = await util.uploadPhoto(mogulImageSrc, mogulImage, mogulImagePath, mogulImageName)
-        const mogulImageHttps = await util.getCloudImage([mogulImageFileID.fileID])
-        const data = {
-          mogulImageFileID: await mogulImageFileID.fileID,
-          mogulImageHttps: await mogulImageHttps[0].tempFileURL,
-        }
-        return data
-      }
+    const {
+      mogulImage,
+      name,
+      sex,
+      grade,
+      college,
+      speciality,
+      school,
+      honorText,
+      informationID
+    } = this.data
+    //判断头像是否选择
+    if (mogulImage) {
       const {
         mogulImageFileID,
         mogulImageHttps
-      } = await getmogulImage(mogulImage)
+      } = await this.getmogulImage(mogulImage)
       const information = {
         mogulImageFileID: await mogulImageFileID,
         mogulImageHttps: await mogulImageHttps,
@@ -209,54 +255,14 @@ Page({
         grade: grade,
         college: college,
         speciality: speciality,
-        honor: honor
+        honor: honorText
       }
       if (school) {
         information.school = school
       }
       const a = tools.objecAtrtIsEmpty(informationID) //判断是否有空值
       if (a) {
-        //先上传图片
-        //先转码
-        console.log(1)
-        const zhuanma = async function (arr) {
-          //遍历informationID里所有的图片，
-          const ima = []
-          for (let i = 0; i < arr.length; i++) {
-            const obj = {
-              image: []
-            };
-            for (let j = 0; j < arr[i].imageID.length; j++) {
-              const imageData = await util.getFileSystemManager(arr[i].imageID[j])
-              obj.image.push(imageData)
-            }
-            ima.push(obj)
-          }
-          return ima
-        }
-        console.log()
-        const imageSrc = await zhuanma(informationID)
-        const imagePath = 'mogul'
-
-        const imageName = name + time
-        const box = []
-        for (let i = 0; i < informationID.length; i++) {
-          const a = imageSrc[i].image
-          const image = []
-          for (let j = 0; j < a.length; j++) {
-            const name = imageName + i + j
-            const F = await util.uploadPhoto(a[j], informationID[i].imageID[j], imagePath, name)
-
-            const H = await util.getCloudImage([F.fileID])
-            const I = {
-              imageFileID: F.fileID,
-              imageHttps: H[0].tempFileURL //可以优化
-            }
-            image.push(I)
-
-          }
-          box.push(image)
-        }
+        const box = await this.upimage()
         const data = {
           information: information,
           box: box
@@ -265,9 +271,12 @@ Page({
       } else {
         return false
       }
-    }
 
+    } else {
+      return false
+    }
   },
+
   //数据上传
   async buttonBind() {
     wx.showLoading({
@@ -294,7 +303,7 @@ Page({
               }
             }
           })
-        }, 500)
+        }, 0.5);
       } else {
         wx.showModal({
           title: '提示',

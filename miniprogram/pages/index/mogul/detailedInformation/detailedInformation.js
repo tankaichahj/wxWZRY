@@ -5,21 +5,30 @@ Page({
    * 页面的初始数据
    */
   data: {
+    mogul:{}
   },
   previewImage(e) {
+    console.log(e.target.id)
     if (e.target.id) {
-      const url =e.target.id
-      const information = this.data.information
+      var url = e.target.id
+      const information = this.data.mogul
       for (let i = 0; i < information.box.length; i++) {
+       
         for (let j = 0; j < information.box[i].image.length; j++) {
-          if (information.box[i].image[j] == e.target.id) {
-            var urls = information.box[i].image
+          if (information.box[i].image[j].imageHttps == e.target.id) {
+            const Urls = information.box[i].image
+            var urls=[]
+            
+            for (let i = 0; i < Urls.length;i++) {
+              urls.push(Urls[i].imageHttps)
+            }
           }
         }
       }
-    }else{
+
+    } else {
       var urls = [e.mark.id]
-      var url =e.mark.id
+      var url = e.mark.id
     }
     wx.previewImage({
       urls: urls,
@@ -31,17 +40,15 @@ Page({
    */
   onLoad: function (options) {
 
-    var information = app.globalData.moguls[options.id].information
-    console.log(app.globalData.moguls)
+    var mogul = app.globalData.moguls[options.id]
     this.setData({
-      information: information
+      mogul: mogul
     })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {
-  },
+  onReady() {},
   /**
    * 生命周期函数--监听页面显示
    */
