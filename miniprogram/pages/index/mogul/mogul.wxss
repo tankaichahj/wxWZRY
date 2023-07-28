@@ -3,7 +3,7 @@
 	font-size: 28px;
 	font-family: PingFang SC;
 	font-weight: 400;
-	color: #fffffff3;
+	color: #000000f3;
 	margin-bottom: 28rpx;
 }
 
@@ -18,9 +18,9 @@
 }
 
 .scroll-view{
-	height: 680px;
+	height: 1100rpx;
 	width: 700rpx;
-	
+	background-color: aliceblue;
 }
 .box{
 	display: grid;
@@ -41,6 +41,7 @@
 	text-align: center;
 	/* background: linear-gradient(45deg,  #a4edf86b, #f397e780, #f06794); */
 	height: 97rpx;
+	width: 264rpx;
 	margin-top: -49rpx;
 	display: grid;
 	border-radius: 16px;

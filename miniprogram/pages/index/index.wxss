@@ -5,9 +5,9 @@
 .text {
   color: rgb(230, 223, 223);
 }
-
+/** 大标题 **/
 .title {
-  color: rgb(230, 223, 223);
+  color: rgb(0, 0, 0);
 }
 
 swiper {
@@ -76,7 +76,6 @@ image {
   height: 60px;
   border-radius: 25px;
   text-align: center;
-  
   margin-top: 2px;
 
 }
@@ -109,14 +108,3 @@ image {
   margin-bottom: 20px;
 }
 
-@-webkit-keyframes slideup {
-  from {
-    opacity: 0;
-    transform: translateY(220px)
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0px)
-  }
-}

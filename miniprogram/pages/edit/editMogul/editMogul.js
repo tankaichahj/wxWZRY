@@ -4,6 +4,11 @@
 var util = require('../../../utils/user');
 var tools = require('../../../utils/tools');
 var time = tools.stringStripSymbol(tools.formatTime(new Date()))
+var num1 = 0
+var num2 = 0
+var num11 = 1
+var num22 = 0
+var jindu = 0
 
 
 Page({
@@ -12,6 +17,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    percent: false, //进度条
     image: '../../../images/TuPian/sctp.png',
     tagBoxID: "",
     honorID: [1],
@@ -32,7 +38,7 @@ Page({
   // 添加一条荣誉
   addHonor() {
     const honorID = this.data.honorID
-    if (honorID.length + 1 > 3) {
+    if (honorID.length + 1 > 4) {
       return
     } else {
       const newID = this.data.honorID.length + 1;
@@ -170,61 +176,65 @@ Page({
   },
   // 上传头像
   getmogulImage: async function (mogulImage) {
-    const mogulImageSrc = await util.getFileSystemManager(mogulImage)
     const mogulImagePath = 'mogul'
     const mogulImageName = this.data.name + 'image' + time
-    const mogulImageFileID = await util.uploadPhoto(mogulImageSrc, mogulImage, mogulImagePath, mogulImageName)
-    const mogulImageHttps = await util.getCloudImage([mogulImageFileID.fileID])
+    const mogulImageFileID = await util.upimage(mogulImage, mogulImagePath, mogulImageName)
+    const mogulImageHttps = await util.getCloudImage([mogulImageFileID])
     const data = {
-      mogulImageFileID: await mogulImageFileID.fileID,
+      mogulImageFileID: await mogulImageFileID,
       mogulImageHttps: await mogulImageHttps[0].tempFileURL,
     }
     return data
   },
-  //转码图片
-  zhuanma: async function (arr) {
-    //遍历informationID里所有的图片，
-    const ima = []
-    for (let i = 0; i < arr.length; i++) {
-      const obj = {
-        image: []
-      };
-      for (let j = 0; j < arr[i].imageID.length; j++) {
-        const imageData = await util.getFileSystemManager(arr[i].imageID[j])
-        obj.image.push(imageData)
-      }
-      ima.push(obj)
-    }
-    return ima
-  },
+
   //上传图片
   upimage: async function () {
-    const imageSrc = await zhuanma(informationID)
+    const informationID = this.data.informationID
+    // const imageSrc = await this.zhuanma(informationID)
     const imagePath = 'mogul'
     const imageName = this.data.name + time
     const box = []
-    const informationID = this.data.informationID
+    let bz1 = false
+    let bz2 = false
+    this.setData({
+      percent: true
+    })
     for (let i = 0; i < informationID.length; i++) {
-      const a = imageSrc[i].image
+      const a = informationID[i].imageID
       const image = []
-      for (let j = 0; j < a.length; j++) {
-        const name = imageName + i + j
-        const F = await util.uploadPhoto(a[j], informationID[i].imageID[j], imagePath, name)
-        image.push(F.fileID)
+      if (!bz1) {
+        num1 = informationID.length
+        bz1 = true
       }
+      num11 = num11 + 1
+      for (let j = 0; j < a.length; j++) {
+        if (!bz2) {
+          num2 = a.length
+          bz1 = true
+          num22 = 0
+        }
+        const name = imageName + i + j
+        const F = await util.upimage(a[j], imagePath, name)
+        jindu = jindu + Math.floor((100 / num1) / num2)
+        this.setData({
+          jindu: jindu
+        })
+        image.push(F)
+      }
+      bz2 = false
+
       const H = await util.getCloudImage(image)
-      const I = {}
+      const I = []
       for (let k = 0; k < H.length; k++) {
-        I = {
+        I.push({
           imageFileID: image[k],
           imageHttps: H[k].tempFileURL
-        }
+        })
       }
-      const aa = {
+      box.push({
         text: informationID[i].textID,
         image: I
-      }
-      box.push(aa)
+      })
     }
     return box
   },
@@ -241,8 +251,15 @@ Page({
       honorText,
       informationID
     } = this.data
-    //判断头像是否选择
-    if (mogulImage) {
+    //判断是否有没填项
+    if (mogulImage && tools.objecAtrtIsEmpty(informationID) && tools.objecAtrtIsEmpty([mogulImage,
+        name,
+        sex,
+        grade,
+        college,
+        speciality,
+        honorText,
+      ])) {
       const {
         mogulImageFileID,
         mogulImageHttps
@@ -260,17 +277,13 @@ Page({
       if (school) {
         information.school = school
       }
-      const a = tools.objecAtrtIsEmpty(informationID) //判断是否有空值
-      if (a) {
-        const box = await this.upimage()
-        const data = {
-          information: information,
-          box: box
-        }
-        return data
-      } else {
-        return false
+
+      const box = await this.upimage()
+      const data = {
+        information: information,
+        box: box
       }
+      return data
 
     } else {
       return false
@@ -279,18 +292,25 @@ Page({
 
   //数据上传
   async buttonBind() {
+
+
     wx.showLoading({
-      title: '上传中...',
+      title: '上传中',
       mask: true
     })
+    
     const data = await this.dataPacking()
     if (data) {
+      
       console.log(data)
       const set = 'moguls'
       const res = await util.insertData(set, data)
       if (await res) {
         setTimeout(() => {
           wx.hideLoading()
+          this.setData({
+            percent:false
+          })
           wx.showModal({
             title: '提示',
             content: '恭喜您，上传成功',

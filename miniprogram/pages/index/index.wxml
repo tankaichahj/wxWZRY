@@ -17,8 +17,7 @@
   </view>
   <!-- 战队模块 -->
   <view class="grid-container-1" >
-    <block wx:for="{{buttons_1}}" wx:key="index" style="animation: slideup {{0.35*(index+1)}}s ease-in alternate;" id="{{item.url}}" >
-    
+    <block wx:for="{{buttons_1}}" wx:key="index"  id="{{item.url}}" >   
       <view class="a" bindlongtap="navigate">
         <image class="icon" src="{{item.icon}}"  />
         <text class="text">{{item.text}}</text>
@@ -30,12 +29,10 @@
   <!-- 其他功能 -->
   <!-- 需要更改下面图片和名称 -->
   <view class="grid-container-2">
-    <block wx:for="{{buttons_2}}" wx:key="index" style="animation: slideup {{0.45*(index+1)}}s ease-in alternate;"  hover-start-time="1000" >
-      <view class="b" hover-stay-time="1000" bindlongtap="navigate" id="{{item.url}}">
-
+    <block wx:for="{{buttons_2}}" wx:key="index"  >
+      <view class="b" hover-stay-time="1000" bindtap="navigate" id="{{item.url}}">
         <image class="icon" src="{{item.icon}}" />
         <text class="text">{{item.text}}</text>
-
       </view>
     </block>
 
@@ -49,8 +46,8 @@
   <view class="words">Loading...</view>
   <view class="words">Loading...</view>
 </view>
-<view>
+<!-- <view>
   <view class="layer1"></view>
   <view class="layer2"></view>
   <view class="layer3"></view>
-</view>
+</view> -->

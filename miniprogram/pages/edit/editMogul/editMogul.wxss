@@ -166,3 +166,14 @@ input{
   top: 80%;
   transform: translate(-50%,0%);
 }
+.jindu{
+	width: 95%;
+	height: 20px;
+	position: fixed;
+  margin-bottom: 80px;
+  left: 50%;
+  top: 48%;
+	transform: translate(-50%,-50%);
+	z-index: 15;
+	background-color: #535353;
+}

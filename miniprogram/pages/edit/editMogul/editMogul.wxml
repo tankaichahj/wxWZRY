@@ -2,7 +2,7 @@
 	<view class="info">
 		<view class="user">
 			<view class="user-image">
-				<image mode="aspectFit " src="{{mogulImage?mogulImage:image}}" bindtap="infoImage"/>
+				<image mode="aspectFit " src="{{mogulImage?mogulImage:image}}" bindtap="infoImage" />
 			</view>
 			<view class="user-text">
 				<view class="aa">
@@ -33,7 +33,7 @@
 				</view>
 				<view class="aa" style="grid-template-columns: 50% 25% 25%;">
 					<view>个人荣誉：</view>
-					<view wx:if="{{honorID.length < 3}}"><button bindtap="addHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
+					<view wx:if="{{honorID.length < 4}}"><button bindtap="addHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">添加</button></view>
 					<view wx:if="{{honorID.length > 1}}"><button bindtap="delHonor" type="primary" style="width: 50px;height: 25px;padding:0%;">删除</button></view>
 				</view>
 				<view class="aa" wx:for="{{honorID}}" style="grid-template-columns: 5% 95%;" wx:key="*this">
@@ -44,19 +44,19 @@
 		</view>
 		<view>
 			<view style="display: grid;grid-template-columns: 110px 110px ;margin-bottom: 5px;">
-						<view wx:if="{{informationID.length<5}}"><button bindtap="addBox"  type="primary" style="width: 100px;height: 25px;padding:0%;">添加模块</button></view>
-						<view wx:if="{{informationID.length>1}}"><button bindtap="delBox"  type="primary" style="width: 100px;height: 25px;padding:0%;">删除模块</button></view>
-					</view>
+				<view wx:if="{{informationID.length<5}}"><button bindtap="addBox" type="primary" style="width: 100px;height: 25px;padding:0%;">添加模块</button></view>
+				<view wx:if="{{informationID.length>1}}"><button bindtap="delBox" type="primary" style="width: 100px;height: 25px;padding:0%;">删除模块</button></view>
+			</view>
 		</view>
 		<view class="information">
 			<scroll-view class="scroll-information" scroll-y="true">
-				<view  class="box"  wx:for="{{informationID}}" wx:key="*this" bindtap="box">
+				<view class="box" wx:for="{{informationID}}" wx:key="*this" bindtap="box">
 					<view style="display: grid;grid-template-columns: 30% 30% ;margin-bottom: 5px;">
 						<view wx:if="{{item.textID.length<5}}"><button bindtap="addText" id="{{item.id}}" type="primary" style="width: 100px;height: 25px;padding:0%;">添加文本</button></view>
 						<view wx:if="{{item.textID.length>1}}"><button bindtap="delText" id="{{item.id}}" type="primary" style="width: 100px;height: 25px;padding:0%;">删除文本</button></view>
 					</view>
 					<view class="section" mark:id="{{item.id}}">
-						<textarea wx:for="{{item.textID}}" id="{{index}}" bindblur="bindTextAreaBlur" placeholder="请输入" auto-height style="background-color: rgba(145, 151, 151, 0.534);" bindinput="textins" bindtap="texttap" value="{{textID}}"/>
+						<textarea wx:for="{{item.textID}}" id="{{index}}" bindblur="bindTextAreaBlur" placeholder="请输入" auto-height style="background-color: rgba(145, 151, 151, 0.534);" bindinput="textins" bindtap="texttap" value="{{textID}}" />
 					</view>
 					<view style="display: grid;grid-template-columns: 30% 30% ;margin-top: 5px;">
 						<view><button bindtap="addImage" id="{{item.id}}" type="primary" style="width: 100px;height: 25px;padding:0%;">添加图片</button></view>
@@ -68,7 +68,7 @@
 							<view wx:for="{{item.imageID}}" class="image-box">
 								<image class="information-image" src="{{item}}" id="{{item}}" mode="aspectFill" bindtap="previewImage"></image><!-- 图片 -->
 							</view>
-							
+
 						</view>
 					</scroll-view>
 				</view>
@@ -76,11 +76,15 @@
 		</view>
 	</view>
 	<view class="zhidi">
-	<button type="primary"  bindtap="buttonBind">提交</button>
-</view>
+		<button type="primary" bindtap="buttonBind">提交</button>
+	</view>
+	
 	<view>
 		<view class="layer1"></view>
 		<view class="layer2"></view>
 		<view class="layer3"></view>
 	</view>
+</view>
+<view class="jindu" wx:if="{{percent}}">
+  <progress percent="{{jindu}}" active="true" show-info stroke-width="3" color="#09BB07" active-mode="forwards"/>
 </view>

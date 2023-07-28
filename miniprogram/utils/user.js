@@ -10,6 +10,8 @@
 8：更新数据库集合某个数据
 9: 更新数据库集合某个数据的字段值（待写）
 10：通过fileID从云存储下载东西
+11 把图片网络连接变成本地链接
+12：用云调用的方法上传图片
 **/
 
 
@@ -92,10 +94,12 @@ function getFileSystemManager(FilePath) {
       filePath: FilePath,
       encoding: 'base64',
       success: (res) => {
-
+        console.log(res)
         resolve(res.data)
       },
       fail: (err) => {
+        console.log(err)
+
         reject(err)
       }
     })
@@ -129,7 +133,7 @@ function getUserFiled(set, field, value) {
     })
   })
 }
-// 6 上传头像到云存储
+// 6 用云函数的方法上传图片到云存储
 /**
  * 
  * @param {*} data 转码后的图片
@@ -137,7 +141,7 @@ function getUserFiled(set, field, value) {
  * @param {*} upPath 上传路径
  * @param {*} name  文件名
  */
-function uploadPhoto(data, imageSrc, upPath,name) {
+function uploadPhoto(data, imageSrc, upPath, name) {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
       name: 'uploadPhoto',
@@ -228,12 +232,12 @@ function getCloudImage(filedIDs) {
       },
       success: (res) => {
         const imageHttp = res.result
-        
+
         // for (let i = 0; i < res.result.length; i++) {
         //   const res = this.getImageInfoPromisified(res.result[i].tempFileURL)
         //   image.push(res)
         // }
-        
+
         resolve(imageHttp)
       },
       fail: (err) => {
@@ -244,13 +248,72 @@ function getCloudImage(filedIDs) {
 }
 //11 把图片网络连接变成本地链接
 function getImageInfoPromisified(src) {
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     wx.getImageInfo({
       src: src,
       success: resolve,
       fail: reject
     })
   })
+}
+
+function upimage(image, imagePath, imageName) {
+  return new Promise((resolve, reject) => {
+    wx.getFileSystemManager().getFileInfo({
+      filePath: image,
+      success: async function (fileInfo) {
+        const {
+          size
+        } = fileInfo
+        const filePath = image;
+        const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
+        const fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+        let fileID = ""
+        console.log(fileExtension)
+        if (fileExtension === 'png') {
+          fileID = await uploadToCloudStorage(filePath, imagePath, '.png', imageName)
+        } else if (fileExtension === 'jpg' || fileExtensions === 'jpeg') {
+          fileID = await uploadToCloudStorage(filePath, imagePath, '.jpg', imageName)
+        } else {
+          console.error('不支持的图片格式')
+          reject('不支持的图片格式')
+        }
+        resolve(fileID)
+      },
+      fail: function (err) {
+        console.error('获取文件信息失败', err)
+        reject(err)
+      }
+
+    })
+  })
+}
+/**
+ * 
+ * @param {*} filePath 图片内容
+ * @param {*} folderPath 图片存放路径
+ * @param {*} fileExtension 图片格式
+ * @param {*} fileName 图片名字
+ */
+async function uploadToCloudStorage(filePath, folderPath, fileExtension, fileName) {
+  try {
+    const uploadResult = await wx.cloud.uploadFile({
+      cloudPath: folderPath + '/' + fileName + fileExtension,
+      filePath: filePath
+    })
+
+    console.log('上传成功', uploadResult.fileID)
+
+    // 获取云存储中的图片访问地址
+    const fileID = uploadResult.fileID
+
+
+    console.log('图片地址', fileID)
+    return fileID
+    // 在此处可以根据需要进行后续操作，例如显示图片等
+  } catch (err) {
+    console.error('上传失败', err)
+  }
 }
 //必须在这里暴露接口，以便被外界访问，不然就不能访问
 module.exports = {
@@ -263,5 +326,6 @@ module.exports = {
   insertData: insertData,
   upData: upData,
   getCloudImage: getCloudImage,
-  getImageInfoPromisified: getImageInfoPromisified
+  getImageInfoPromisified: getImageInfoPromisified,
+  upimage: upimage
 }

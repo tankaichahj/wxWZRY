@@ -97,7 +97,7 @@ Page({
       count: 1,
       sizeType: ['compressed'],
       mediaType: ['image'],
-      sourceType: ['album', 'camera'],
+      sourceType: ['album'],
       maxDuration: 30,
       camera: 'back',
       success(res) {
