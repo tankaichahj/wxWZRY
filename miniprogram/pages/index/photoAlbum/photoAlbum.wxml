@@ -2,9 +2,19 @@
 <view class="container">
 	<view class="title">安农大佬队</view>
 	<view class="top_tip">相册</view>
-	<view>
-		<view class="layer1"></view>
-		<view class="layer2"></view>
-		<view class="layer3"></view>
-	</view>
+	<scroll-view class="scroll-view" scroll-y="true">
+		<view class="box">
+			<view class="responsive" wx:for="{{photoAlbums}}" id="{{index}}" bindtap="bind" wx:key="openid">
+				<view class="zz"></view>
+				<view class="img">
+					<image src="{{item.cover}}" alt="图片文本描述" mode="aspectFill" />
+					<view class="desc">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+			</view>
+
+		</view>
+
+	</scroll-view>
 </view>

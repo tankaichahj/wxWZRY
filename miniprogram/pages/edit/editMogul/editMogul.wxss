@@ -1,4 +1,7 @@
 /* pages/edit/editMogul/editMogul.wxss *//* pages/index/mogul/detailedInformation/detailedInformation.wxss */
+page{
+	background-color: #030303;
+}
 .info {
 	display: grid;
 	justify-content: space-around;

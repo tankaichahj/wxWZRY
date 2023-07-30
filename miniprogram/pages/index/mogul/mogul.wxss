@@ -17,15 +17,16 @@
 
 }
 
-.scroll-view{
+.scroll-view {
 	height: 1100rpx;
 	width: 700rpx;
 	background-color: aliceblue;
 }
-.box{
+
+.box {
 	display: grid;
-	grid-template-columns: auto auto ;
-	grid-gap:20rpx;
+	grid-template-columns: auto auto;
+	grid-gap: 20rpx;
 	justify-content: space-around;
 }
 
@@ -46,18 +47,20 @@
 	display: grid;
 	border-radius: 16px;
 }
-.desc text{
+
+.desc text {
 	margin-top: 23px;
 	font-family: PingFang SC;
 	font-size: 20px;
 }
+
 .responsive {
 	margin: 10px;
 	position: relative;
 	background: rgba(250, 247, 247, 0);
 	border-radius: 20px;
 	width: 278rpx;
-	height:440rpx;
+	height: 440rpx;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -70,11 +73,19 @@
 	position: absolute;
 	width: 500px;
 	height: 500px;
-	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
 	animation: responsive 4s linear infinite;
 }
-.responsive:nth-child(2)::before{
+
+.responsive:nth-child(3n+1)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
+}
+
+.responsive:nth-child(3n+2)::before {
 	background-image: conic-gradient(transparent, transparent, transparent, #fffb00);
+}
+
+.responsive:nth-child(3n+3)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #ff0015);
 }
 
 .responsive::after {
@@ -82,12 +93,20 @@
 	position: absolute;
 	width: 500px;
 	height: 500px;
-	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
 	animation: responsive 4s linear infinite;
 	animation-delay: -2s;
 }
-.responsive:nth-child(2)::after{
-	background-image: conic-gradient(transparent, transparent, transparent, #ff000d);
+
+.responsive:nth-child(3n+1)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
+}
+
+.responsive:nth-child(3n+2)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #b3ff00);
+}
+
+.responsive:nth-child(3n+3)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #b3ff00);
 }
 
 @keyframes responsive {
@@ -108,16 +127,16 @@
 	z-index: 1;
 	background: linear-gradient(90deg, #3cdef3, #12a3c4)
 }
-.but{
-  position: fixed;
-  margin-bottom: 30px;
-  left: 80%;
-  top:5%;
-  transform: translate(-50%,0%);
+
+.but {
+	position: fixed;
+	margin-bottom: 30px;
+	left: 80%;
+	top: 5%;
+	transform: translate(-50%, 0%);
 }
-.but button{
+
+.but button {
 	width: 100px;
-	
+
 }
-
-

@@ -1,4 +1,7 @@
 /* pages/index/mogul/detailedInformation/detailedInformation.wxss */
+page{
+	background-color: black;
+}
 .info {
 	display: grid;
 	justify-content: space-around;

@@ -1,0 +1,42 @@
+<view class="baccontainer" style="{{backgroundImage}}">
+  <image class="bg-box" src="{{backgroundImage}}" mode="aspectFill"></image>
+  
+    <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    </button> -->
+      <view class="avatar-wrapper">
+        <image class="avatar" src="{{user.avatatHttps}}" mode="aspectFill"></image>
+      </view>
+    
+  <view class="install">设置</view>
+  <view class="textcontent">
+    <view class="grid">
+      <view>
+        <view>姓名：</view>
+        <text>{{user.name}}</text>
+        
+      </view>
+      <view>
+        <view>昵称：</view>
+        <text>{{user.nickname}}</text>
+      </view>
+      <view>
+        <view>性别：</view>
+        <text>{{user.sex}}</text>
+      </view>
+      <view>
+        <view>QQ：</view>
+        <text>{{user.qq}}</text>
+      </view>
+      <view>
+        <view>个性签名：</view>
+        <text>{{user.signature?signature:'无'}}</text>
+      </view>
+      <view>
+        <view>段位：</view>
+        <text>{{user.rank}}</text>
+      </view>
+    </view>
+    
+  </view>
+  <button class="backgroundchange" bindtap="selectImage">更换背景</button>
+</view>

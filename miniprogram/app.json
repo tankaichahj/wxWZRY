@@ -3,17 +3,19 @@
     "pages/index/index",
     "pages/index/mogul/mogul",
     "pages/index/mogul/detailedInformation/detailedInformation",
+    "pages/index/photoAlbum/photoAlbum",
+    "pages/index/photoAlbum/album/album",
     "pages/info/info",
-    "pages/upFace/upFaceUserImager/upFaceUserImager",
-    "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
     "pages/personal/personal",
     "pages/contact/contact",
     "pages/information/information",
-    "pages/edit/editMogul/editMogul",
     "pages/edit/edit",
-    "pages/index/photoAlbum/photoAlbum",
+    "pages/edit/editMogul/editMogul",
+    "pages/upFace/upFaceUserImager/upFaceUserImager",
+    "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
     "pages/cutFace/cutFaceMogulImager/cutFaceMogulImager",
     "pages/upFace/upFaceMogulImager/upFaceMogulImager"
+    
   
   ],
   "window": {
@@ -39,7 +41,7 @@
       "selectedIconPath": "images/bar/zd/zd-1.png"
     }, {
       "pagePath": "pages/contact/contact",
-      "text": "联系",
+      "text": "成员",
       "iconPath": "images/bar/zdxd/zdxd-0.png",
       "selectedIconPath": "images/bar/zdxd/zdxd-1.png"
     }, {

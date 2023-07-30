@@ -19,7 +19,8 @@ App({
       user:[],
       users:[],
       ck:false,
-      moguls:[]
+      moguls:[],
+      photoAlbums:[]
     };
   }
 });

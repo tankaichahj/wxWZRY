@@ -1,4 +1,7 @@
 /* pages/info/info.wxss */
+page{
+  background-color: black;
+}
 .aa {
   display: grid;
 	justify-content: space-between;

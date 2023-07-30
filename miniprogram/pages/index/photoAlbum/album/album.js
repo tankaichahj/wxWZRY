@@ -1,21 +1,31 @@
-// pages/contact/contact.js
-var app = getApp();
-var util = require('../../utils/user');
-
+// pages/index/photoAlbum/album/album.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    photoAlbum:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  previewImage(e){
+    const url = e.target.id
+    const urls =this.data.photoAlbum
+    
+    wx.previewImage({
+      urls: urls.content,
+      current: url
+    })
+  },
   onLoad(options) {
-
+    var photoAlbum = app.globalData.photoAlbums[options.id]
+    this.setData({
+      photoAlbum: photoAlbum
+    })
   },
 
   /**
@@ -25,25 +35,11 @@ Page({
 
   },
 
-  async getUsers() {
-    const users = await util.getUsersInfo('user')
-    if (this.data.users != await users) {
-      this.setData({
-        users: users
-      })
-      app.globalData.users = users
-    } else if (!this.data.users) {
-      this.setData({
-        users: users
-      })
-    }
-
-  },
   /**
    * 生命周期函数--监听页面显示
    */
- onShow() {
-    this.getUsers()
+  onShow() {
+
   },
 
   /**

@@ -1,1 +1,103 @@
-/* pages/personal/personal.wxss */
+/* pages/xty/xty.wxss */
+
+.baccontainer {
+  position: relative;
+  height: 100vh;
+}
+.bg-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.avatar-wrapper {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  top: 15px;
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #FFF;
+}
+.textcontent {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 0px;
+}
+
+.backgroundchange{
+ position:fixed;
+ right:0;
+ left:0;
+ bottom:0;
+ width: 100px;
+ height: 60px;
+ color:rgb(4, 0, 255)
+}
+.grid{
+  width: 100%;
+  padding-left: 20px;
+	display: grid;
+  grid-template-columns: 1fr; /* 1列 */
+  grid-gap: 20px; /* 容器之间的间距 */
+  background-color: rgba(255, 255, 255, 0.651);
+}
+.grid view{
+	
+	display: grid;
+	align-items: start;
+  grid-template-columns: 80px 1fr; /* 两列，第一列宽度根据内容自适应，第二列占满剩余空间 */
+  /* align-items: center; 垂直居中对齐 */
+}
+.grid view view{
+	height: 100%;
+
+	
+}
+.grid  text {
+	width: 300px;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	color: rgb(0, 0, 0);
+	z-index: 1011;
+	font-family: PingFang SC;
+	font-weight: 500;
+	text-indent: 20px;
+	text-align: left;
+}
+.install{
+  width: 43px;
+  position:fixed;
+  top: 10px;
+  left: 95%;
+  transform: translate(-100%,0);
+  font-size: 20px;
+  background-color: rgba(121, 122, 117, 0.397);
+  color: rgb(49, 52, 238);
+  border-radius: 10px;
+}
+
+
+
+
+
+

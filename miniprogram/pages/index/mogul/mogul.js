@@ -73,6 +73,7 @@ Page({
       moguls:moguls
     })
     app.globalData.moguls = await moguls
+    
   },
   /**
    * 生命周期函数--监听页面加载

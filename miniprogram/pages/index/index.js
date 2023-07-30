@@ -30,7 +30,7 @@ Page({
     buttons_2: [{
         icon: '../../images/index/xc.png',
         text: '相册',
-        url:'./photoAlbum/photoAlbum'
+        url: './photoAlbum/photoAlbum'
       },
       {
         icon: '../../images/index/ry.png',
@@ -39,7 +39,7 @@ Page({
       {
         icon: '../../images/index/dl.png',
         text: '大佬展示',
-        url:'./mogul/mogul'
+        url: './mogul/mogul'
       },
       {
         icon: '../../images/index/hd.png',
@@ -76,12 +76,13 @@ Page({
         user: app.globalData.user
       })
       //预加载战队所有人员信息
-      await util.getUsersInfo('user')
-      const userInfo = []
-      for (let i = 1; i < app.globalData.users.length; i++) {
-        userInfo.push(app.globalData.users[i].avatarFileID)
+      if(!app.globalData.users){
+        const users = await util.getUsersInfo('user')
+        app.globalData.users = users
       }
       
+
+
       //加载轮播图
 
     }
@@ -123,8 +124,8 @@ Page({
       current: e.target.id
     })
   },
-  navigate(e){
-    const url =e.currentTarget.id
+  navigate(e) {
+    const url = e.currentTarget.id
     wx.navigateTo({
       url: url,
     })

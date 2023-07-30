@@ -1,0 +1,13 @@
+/* pages/index/photoAlbum/album/album.wxss */
+.grid-view{
+	padding-top: 5px;
+	position: fixed;
+	left: 50%;
+	width: 400px;
+	transform: translate(-50%);
+}
+.scroll-view {
+	height: 1100rpx;
+	width: 100%;
+	background-color: aliceblue;
+}
