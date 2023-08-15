@@ -17,4 +17,7 @@
 		</view>
 
 	</scroll-view>
+	<view class="addPhoto" bindtap="addPhoto" id="{{id}}">
+		<image class="addPhotoImage" src="../../../images/TuPian/sctp.png"></image>
+	</view>
 </view>

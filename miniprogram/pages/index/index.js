@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     loading: true, //加载动画
-    swiperList: ['../../images/index/1.jpg', '../../images/index/2.jpg', '../../images/index/3.jpg', ], // 存放轮播图列表
+    swiperList: ["https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/许天意2023072812382000.jpg","https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295700.jpg","https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295701.jpg" ], // 存放轮播图列表
     indicatorDots: true, //是否显示面板指示点
     vertical: false, //滑动方向是否为纵向
     autoplay: true, //是否自动切换

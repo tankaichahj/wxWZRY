@@ -1,0 +1,25 @@
+<!--pages/index/photoAlbum/album/addAlbum/addAlbum.wxml-->
+<view class="top">
+	<view>取消</view>
+	<view>传相册</view>
+	<view class="up"><text>上传</text></view>
+</view>
+<view class="upAlbum">
+	<view>上传到</view>
+	<view>人物</view>
+	<view>
+		<image></image>
+	</view>
+</view>
+<scroll-view class="scroll-view" scroll-y="true" type="custom">
+	<grid-view class="grid-view" cross-axis-count="3" cross-axis-gap="5px">
+		<grid-tile wx:for="{{addAlbum}}" wx:key="id" index="{{item}}" height="130px" width="130px">
+			<image id="{{item}}" src="{{item}}" style="width: 100px; height: 100px;" mode="aspectFill" bindtap="previewImage"></image>
+		</grid-tile>
+		<grid-tile height="100px" width="100px">
+			<view style="background-color: rgb(139, 139, 139);width: 100px;height: 100px;">
+				<image src="../../../../../images/TuPian/sctp.png" style="width: 80px; height: 80px;position: absolute;transform: translate(10px,10px);background-color: rgba(153, 26, 26, 0);" mode="aspectFill" bindtap="previewImage"></image>
+			</view>
+		</grid-tile>
+	</grid-view>
+</scroll-view>

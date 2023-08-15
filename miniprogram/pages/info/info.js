@@ -120,7 +120,23 @@ Page({
     })
     const data = await this.dataPacking()
     if (data) {
-      
+      const mima =this.data.mima
+      if(mima!="队长最帅"){
+        wx.hideLoading()
+          wx.showModal({
+            title: '提示',
+            content: '邀请码错误',
+            complete: (res) => {
+              if (res.cancel) {
+                
+              }
+              if (res.confirm) {
+                
+              }
+            }
+          })
+          return
+      }
       const set = 'user'
       const res = await util.insertData(set, data)
       if(await res){
@@ -187,7 +203,6 @@ Page({
       
       return false
     } else { //无空值
-
       const avatarSrc = await util.getFileSystemManager(avatar)
       const avatarPath = 'avatar'
       const FileName = app.globalData.openid //文件名为openid
@@ -207,6 +222,7 @@ Page({
       console.log(data)
       return data
     }
+    
   },
 
   ins: function (e) {

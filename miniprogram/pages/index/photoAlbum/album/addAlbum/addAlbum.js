@@ -1,4 +1,4 @@
-// pages/index/photoAlbum/album/album.js
+// pages/index/photoAlbum/album/addAlbum/addAlbum.js
 var app = getApp()
 Page({
 
@@ -6,33 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    photoAlbum:[]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  previewImage(e){
-    const url = e.target.id
-    const urls =this.data.photoAlbum
-    
-    wx.previewImage({
-      urls: urls.content,
-      current: url
-    })
-  },
-  addPhoto(e){
-    const id = e.currentTarget.id 
-    wx.navigateTo({
-      url: `./addAlbum/addAlbum?id=${id}`,
-    })
-  },
   onLoad(options) {
     var photoAlbum = app.globalData.photoAlbums[options.id]
-    this.setData({
-      photoAlbum: photoAlbum,
-      id:options.id
-    })
+    console.log(photoAlbum)
   },
 
   /**

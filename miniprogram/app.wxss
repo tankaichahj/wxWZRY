@@ -365,3 +365,23 @@ button::after {
     clip-path: polygon(51% 68%, 71% 59%, 86% 44%, 100% 24%, 100% 100%, 0% 100%, 0% 72%, 28% 71%);
   }
 }
+.addPhoto {
+	width: 40px;
+	height: 40px;
+	position:absolute;
+	top: 80%;
+	left: 90%;
+	background-color: rgb(72, 139, 228);
+	transform: translate(-50%, -50%);
+	border-radius: 20px
+}
+
+.addPhotoImage {
+	width: 20px;
+	height: 20px;
+	position: fixed;
+	margin-bottom: 30px;
+	transform: translate(10px, 10px);
+	background-color: rgba(0, 255, 255, 0);
+	border-radius: 15px
+}

@@ -63,7 +63,13 @@
 			</picker>
 		</view>
 	</block>
-
+	<view class="separator"></view>
+	<view class="aa">
+		<view>请输入邀请码：</view>
+		<view>
+			<input id="mima" bindinput="ins" placeholder="邀请码"></input>
+		</view>
+	</view>
 
 </view>
 <view class="zhidi">

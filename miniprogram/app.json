@@ -5,6 +5,7 @@
     "pages/index/mogul/detailedInformation/detailedInformation",
     "pages/index/photoAlbum/photoAlbum",
     "pages/index/photoAlbum/album/album",
+    "pages/index/photoAlbum/album/addAlbum/addAlbum",
     "pages/info/info",
     "pages/personal/personal",
     "pages/contact/contact",
@@ -15,8 +16,6 @@
     "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
     "pages/cutFace/cutFaceMogulImager/cutFaceMogulImager",
     "pages/upFace/upFaceMogulImager/upFaceMogulImager"
-    
-  
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -51,6 +50,7 @@
       "selectedIconPath": "images/bar/grzx/grzx-1.png"
     }]
   },
+  "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
