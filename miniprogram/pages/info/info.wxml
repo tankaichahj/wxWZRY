@@ -1,26 +1,29 @@
 <!--pages/info/info.wxml-->
-<view class="container">
+<view class="C">
 	<view class="title">安农大佬队</view>
 	<view class="top_tip"><text>注册</text></view>
+</view>
+
+<view class="container" wx:if="{{showContainer}}">
 	<view class="separator"></view>
 	<view class="aa">
 		<view>请输入您的姓名：</view>
 		<view>
-			<input id="name" bindinput="ins" placeholder="姓名"></input>
+			<input id="name" bindinput="ins" placeholder="姓名" value="{{name}}"></input>
 		</view>
 	</view>
 	<view class="separator"></view>
 	<view class="aa">
 		<view>请选择你的头像：</view>
 		<view bindtap="previewImage">
-			<image class="image" mode="aspectFit" src="{{UserInfoSrc?UserInfoSrc:image}}"  style="left: 90%; position: fixed ;transform: translate(0%,-10%)"  ></image>
+			<image class="image" mode="aspectFit" src="{{UserInfoSrc?UserInfoSrc:image}}" style="left: 90%; position: fixed ;transform: translate(0%,-10%)"></image>
 		</view>
 	</view>
 	<view class="separator"></view>
 	<view class="aa">
 		<view>请输入您的QQ号：</view>
 		<view>
-			<input id="qq" bindinput="ins" placeholder="QQ号" type="number" maxlength="10"></input>
+			<input id="qq" bindinput="ins" placeholder="QQ号" type="number" maxlength="10" value="{{qq}}"></input>
 		</view>
 	</view>
 	<view class="separator"></view>
@@ -34,7 +37,7 @@
 	<view class="aa">
 		<view>请输入您的游戏昵称：</view>
 		<view>
-			<input id="nickname" bindinput="ins" placeholder="游戏昵称"></input>
+			<input id="nickname" bindinput="ins" placeholder="游戏昵称" value="{{nickname}}"></input>
 		</view>
 	</view>
 	<view class="separator"></view>
@@ -63,17 +66,62 @@
 			</picker>
 		</view>
 	</block>
+	
+</view>
+<view class="container" wx:if="{{!showContainer}}">
+	<view class="separator"></view>
+	<view class="aa">
+		<view>请输入您的学历：</view>
+		<view>
+			<input id="education" bindinput="ins" placeholder="本科/研究生" value="{{education}}" maxlength="4"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="aa">
+		<view>请输入您的入学年份：</view>
+		<view>
+			<input id="year" bindinput="ins" placeholder="例：2017" value="{{year}}" maxlength="4"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="aa">
+		<view>请输入您的学院：</view>
+		<view>
+			<input id="college" bindinput="ins" placeholder="例：信智院" value="{{college}}"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="aa">
+		<view>请输入您的专业：</view>
+		<view>
+			<input id="major" bindinput="ins" placeholder="例：网安" value="{{major}}"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="aaa">
+		<view>个性签名：</view>
+		<view>
+			<input id="signature" bindinput="ins" placeholder="个性签名" value="{{signature}}"></input>
+		</view>
+	</view>
+	<view class="separator"></view>
+	<view class="aaa">
+		<view>您的本名英雄：</view>
+		<view>
+			<input id="hero" bindinput="ins" placeholder="例:马克、廉颇" value="{{hero}}"></input>
+		</view>
+	</view>
 	<view class="separator"></view>
 	<view class="aa">
 		<view>请输入邀请码：</view>
 		<view>
-			<input id="mima" bindinput="ins" placeholder="邀请码"></input>
+			<input id="mima" bindinput="ins" placeholder="邀请码" value="{{mima}}"></input>
 		</view>
 	</view>
-
 </view>
-<view class="zhidi">
-	<button type="primary"  bindtap="buttonBind">注册</button>
+<button class="nextStep-btn" bindtap="nextStep">{{nextStep}}</button>
+<view wx:if="{{register}}" class="zhidi">
+	<button type="primary" bindtap="buttonBind">注册</button>
 </view>
 <view>
 	<view class="layer1"></view>

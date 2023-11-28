@@ -1,0 +1,48 @@
+<!-- 设置页面 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="title">设置</view>
+  <!-- 功能列表 -->
+  <view class="list">
+    <!-- 账号管理 -->
+    <view class="item" bindtap="goToAccount">
+      <view class="icon">
+        <image src="./images/account.png" mode="aspectFit"></image>
+      </view>
+      <view class="text">账号管理</view>
+      <view class="arrow">
+        <image src="./images/arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <!-- 个人信息设置 -->
+    <view class="item" bindtap="goToProfile">
+      <view class="icon">
+        <image src="./images/profile.png" mode="aspectFit"></image>
+      </view>
+      <view class="text">个人信息设置</view>
+      <view class="arrow">
+        <image src="./images/arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <!-- 提交bug信息 -->
+    <view class="item" bindtap="goToBug">
+      <view class="icon">
+        <image src="./images/bug.png" mode="aspectFit"></image>
+      </view>
+      <view class="text">提交bug信息</view>
+      <view class="arrow">
+        <image src="./images/arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    <!-- 返回按键 -->
+    <view class="item" bindtap="goBack">
+      <view class="icon">
+        <image src="./images/back.png" mode="aspectFit"></image>
+      </view>
+      <view class="text">返回</view>
+      <view class="arrow">
+        <image src="./images/arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+</view>

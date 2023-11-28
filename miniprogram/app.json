@@ -6,8 +6,11 @@
     "pages/index/photoAlbum/photoAlbum",
     "pages/index/photoAlbum/album/album",
     "pages/index/photoAlbum/album/addAlbum/addAlbum",
+    "pages/index/civilWar/civilWar",
+    "pages/index/activities/activities",
     "pages/info/info",
     "pages/personal/personal",
+    "pages/personal/install/install",
     "pages/contact/contact",
     "pages/information/information",
     "pages/edit/edit",
@@ -15,7 +18,12 @@
     "pages/upFace/upFaceUserImager/upFaceUserImager",
     "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
     "pages/cutFace/cutFaceMogulImager/cutFaceMogulImager",
-    "pages/upFace/upFaceMogulImager/upFaceMogulImager"
+    "pages/upFace/upFaceMogulImager/upFaceMogulImager",
+    "pages/edit/editAlbum/editAlbum",
+    "pages/edit/editAddAlbum/editAddAlbum"
+    
+    
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

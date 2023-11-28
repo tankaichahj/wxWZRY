@@ -63,7 +63,18 @@ Page({
       pic,
     })
   },
-
+  modifyUserInfo(){
+    wx.navigateTo({
+      url: './install/install',
+    })
+  },
+  previewImage(e) {
+    console.log(e)
+    wx.previewImage({
+      urls: [e.target.id],
+      current: e.target.id
+    })
+  },
   /**
    * 页面的初始数据
    */

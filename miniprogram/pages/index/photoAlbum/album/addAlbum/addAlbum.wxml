@@ -1,25 +1,28 @@
 <!--pages/index/photoAlbum/album/addAlbum/addAlbum.wxml-->
 <view class="top">
-	<view>取消</view>
+	<view bindtap="back">取消</view>
 	<view>传相册</view>
-	<view class="up"><text>上传</text></view>
+	<view class="up" bindtap="up"><text>上传</text></view>
 </view>
 <view class="upAlbum">
 	<view>上传到</view>
-	<view>人物</view>
+	<view >相册：{{photoAlbum.name}}</view>
 	<view>
-		<image></image>
+		<image style="height: 30px;width: 30px;transform: translate(10px,0)" src="{{photoAlbum.cover.imageHttps}}" mode="aspectFill"></image>
 	</view>
 </view>
-<scroll-view class="scroll-view" scroll-y="true" type="custom">
-	<grid-view class="grid-view" cross-axis-count="3" cross-axis-gap="5px">
-		<grid-tile wx:for="{{addAlbum}}" wx:key="id" index="{{item}}" height="130px" width="130px">
-			<image id="{{item}}" src="{{item}}" style="width: 100px; height: 100px;" mode="aspectFill" bindtap="previewImage"></image>
+<scroll-view class="scroll-view" scroll-y="true" type="custom" enhanced="true" show-scrollbar="false">
+	<grid-view class="grid-view" cross-axis-count="3" cross-axis-gap="25rpx" main-axis-gap="25rpx">
+		<grid-tile wx:for="{{images}}" wx:key="id" index="{{item}}" height=" 200rpx" width=" 200rpx">
+			<image id="{{item}}" src="{{item}}" style="width: 200rpx; height: 200rpx;" mode="aspectFill" bindtap="previewImage"></image>
 		</grid-tile>
-		<grid-tile height="100px" width="100px">
-			<view style="background-color: rgb(139, 139, 139);width: 100px;height: 100px;">
-				<image src="../../../../../images/TuPian/sctp.png" style="width: 80px; height: 80px;position: absolute;transform: translate(10px,10px);background-color: rgba(153, 26, 26, 0);" mode="aspectFill" bindtap="previewImage"></image>
+		<grid-tile height="200rpx" width="200rpx">
+			<view style="background-color: rgb(139, 139, 139);width: 200rpx;height: 200rpx;">
+				<image src="../../../../../images/TuPian/sctp.png" style="width: 150rpx; height: 150rpx;position: absolute;transform: translate(25rpx,25rpx);background-color: rgba(153, 26, 26, 0);" mode="aspectFill" bindtap="addImage"></image>
 			</view>
 		</grid-tile>
 	</grid-view>
 </scroll-view>
+<view class="jindu" wx:if="{{percent}}">
+  <progress percent="{{jindu}}" active="true" show-info stroke-width="3" color="#09BB07" active-mode="forwards"/>
+</view>

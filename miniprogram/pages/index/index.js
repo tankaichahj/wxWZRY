@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     loading: true, //加载动画
-    swiperList: ["https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/许天意2023072812382000.jpg","https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295700.jpg","https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295701.jpg" ], // 存放轮播图列表
+    swiperList: ["https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/许天意2023072812382000.jpg", "https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295700.jpg", "https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295701.jpg"], // 存放轮播图列表
     indicatorDots: true, //是否显示面板指示点
     vertical: false, //滑动方向是否为纵向
     autoplay: true, //是否自动切换
@@ -34,7 +34,8 @@ Page({
       },
       {
         icon: '../../images/index/ry.png',
-        text: '往届比赛',
+        text: '战队内战',
+        url:'./civilWar/civilWar'
       },
       {
         icon: '../../images/index/dl.png',
@@ -44,6 +45,7 @@ Page({
       {
         icon: '../../images/index/hd.png',
         text: '活动中心',
+        url:'./activities/activities'
       },
     ],
   },
@@ -52,17 +54,14 @@ Page({
 
   },
   async initialization() {
-
-    var op = await util.getUserOpenid()
-
-
+    
+      var op = await util.getUserOpenid()     
     this.ck(op)
-
   },
   async ck(op) {
+    app.globalData.ck = await util.getUserInformation(op)
     if (!app.globalData.ck) {
-      const ck = await util.getUserInformation(op)
-      if (!ck) { //未注册，跳转注册页面
+      if (!app.globalData.ck) { //未注册，跳转注册页面
         this.showPopup()
       } else {
         this.setData({ //加载动画取消
@@ -76,17 +75,12 @@ Page({
         user: app.globalData.user
       })
       //预加载战队所有人员信息
-      if(!app.globalData.users){
+      if (!app.globalData.users) {
         const users = await util.getUsersInfo('user')
         app.globalData.users = users
       }
-      
-
-
       //加载轮播图
-
     }
-
   },
   showPopup: function () {
 
@@ -120,7 +114,7 @@ Page({
   previewImage(e) {
     console.log(e)
     wx.previewImage({
-      urls: [e.target.id],
+      urls: this.data.swiperList,
       current: e.target.id
     })
   },

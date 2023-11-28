@@ -1,4 +1,3 @@
-<!--pages/squads/squads.wxml-->
 <view class="top">
   <view class="TeamName" style="height: 60px;">安农大佬队</view>
 </view>
@@ -8,9 +7,9 @@
     <block wx:for="{{users}}" wx:key="_id">
       <view class="user-item">
         <!-- 显示用户头像 -->
-        <image class="user-avatar" src="{{item.avatatHttps ? item.avatatHttps : '../../images/bar/grzx/grzx-1.png'}}"></image>
+        <image class="user-avatar" src="{{item.avatatHttps ? item.avatatHttps : '../../images/bar/grzx/grzx-1.png'}}" bindtap="previewImage" id="{{item.avatatHttps}}"></image>
         <!-- 显示用户信息 -->
-        <view class="user-info" style="width: 523rpx; height: 50px; display: flex; box-sizing: border-box">
+        <view class="user-info" style="width: 523rpx; height: 50px; display: flex; box-sizing: border-box" bindtap="showDetail" mark:id="{{users[index]}}">
           <view class="user-name-gender">
             <!-- 显示用户姓名和性别 -->
             <text class="user-name">{{item.name}}</text>
@@ -28,3 +27,18 @@
     </block>
   </view>
 </scroll-view>
+
+<view class="popup" hidden="{{!showPopup}}">
+  <view class="mask" bindtap="hideDetail" style="width: 750rpx; height: 1309rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+  <view class="content">
+    <image class="avatar" src="{{user.avatatHttps}}"></image>
+    <view class="info">
+      <view class="name">姓名:　{{user.name}}</view>
+      <view class="gender">性别:　{{user.sex}}</view>
+      <view class="qq">QQ:　{{user.qq}}</view>
+      <view class="qq">{{user.year}}　{{user.college}}</view>
+      <view class="qq">专业:　{{user.major}}</view>
+      <view class="signature">个性签名</view>
+    </view>
+  </view>
+</view>

@@ -1,32 +1,18 @@
-// pages/index/photoAlbum/photoAlbum.js
-var app = getApp()
-var util = require('../../../utils/user');
+// pages/index/civilWar/civilWar.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    image:'../../../images/TuPian/Album.png',
-    
-  },
-  bind(e) {
-    const id = e.currentTarget.id
 
-    wx.navigateTo({
-      url: `./album/album?id=${id}`,
-    })
   },
-  addAlbum() {
-    wx.navigateTo({
-      url: '../../edit/editAddAlbum/editAddAlbum',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    app.globalData.photoAlbums = this.data.photoAlbums
+
   },
 
   /**
@@ -35,21 +21,12 @@ Page({
   onReady() {
 
   },
-  async getAlbum(){
-    const set = 'Album'
-    const photoAlbums = await util.getUsersInfo(set)
-    this.setData({
-      photoAlbums:photoAlbums
-    })
-    app.globalData.photoAlbums = await photoAlbums
-    
-  },
+
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    
-    this.getAlbum()
+
   },
 
   /**

@@ -11,7 +11,7 @@
 9: 更新数据库集合某个数据的字段值（待写）
 10：通过fileID从云存储下载东西
 11 把图片网络连接变成本地链接
-12：用云调用的方法上传图片
+
 **/
 
 
@@ -48,6 +48,7 @@ function getUserInformation(op) {
       },
       success: (res) => {
         //存在用户
+        
         if (res.result.data.length === 1) {
           app.globalData.user = res.result.data[0]
           app.globalData.ck = true
@@ -195,8 +196,8 @@ function insertData(set, data) {
 //8 更新数据库集合某个数据
 /**
  * @param {string} set - 所更新的数据所在集合
- * @param data - 所更新的数据
- * @param id - 所更新数据的id
+ * @param {string} data - 所更新的数据
+ * @param {string} id - 所更新数据的id
  */
 function upData(set, data, id) {
   return new Promise((resolve, reject) => {
@@ -221,7 +222,7 @@ function upData(set, data, id) {
 // 10：通过fileID从云存储下载东西 
 /**
  * 
- * @param  filedIDs  一次性最多五十个
+ * @param {string} filedIDs  一次性最多五十个
  */
 function getCloudImage(filedIDs) {
   return new Promise((resolve, reject) => {

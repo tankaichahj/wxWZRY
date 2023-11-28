@@ -1,19 +1,16 @@
-<view class="baccontainer" style="{{backgroundImage}}">
+<!-- <view class="baccontainer" style="{{backgroundImage}}">
   <image class="bg-box" src="{{backgroundImage}}" mode="aspectFill"></image>
-  
-    <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    </button> -->
-      <view class="avatar-wrapper">
-        <image class="avatar" src="{{user.avatatHttps}}" mode="aspectFill"></image>
-      </view>
-    
+  <view class="avatar-wrapper">
+    <image class="avatar" src="{{user.avatatHttps}}" mode="aspectFill" bindtap="previewImage" id="{{user.avatatHttps}}"></image>
+  </view>
+
   <view class="install">设置</view>
   <view class="textcontent">
     <view class="grid">
       <view>
         <view>姓名：</view>
         <text>{{user.name}}</text>
-        
+
       </view>
       <view>
         <view>昵称：</view>
@@ -36,7 +33,30 @@
         <text>{{user.rank}}</text>
       </view>
     </view>
-    
+
   </view>
   <button class="backgroundchange" bindtap="selectImage">更换背景</button>
+</view> -->
+<!-- index.wxml -->
+<view class="container">
+  <view class="user-info">
+    <image class="avatar" src="{{user.avatatHttps}}" bindtap="previewImage" id="{{user.avatatHttps}}" ></image>
+    <view class="user-detail">
+      <view class="user-name">{{user.name}}</view>
+      <view class="user-qq">QQ：　　{{user.qq}}</view>
+      <view class="user-sex">性别：　　{{user.sex}}</view>
+      <view class="user-nickname">昵称：　　{{user.nickname}}</view>
+      <view class="user-rank">段位：　　{{user.rank}}</view>
+      <view class="user-education">学历：　　{{user.education}}</view>
+      <view class="user-year">年级：　　{{user.year}}</view>
+      <view class="user-college">学院：　　{{user.college}}</view>
+      <view class="user-major">专业：　　{{user.major}}</view>
+      <view class="user-hero">本命：　　{{user.hero}}</view>
+      <view class="user-signature">个性签名：{{user.signature}}</view>
+      <view class="user-album">相册：　　{{user.album}}</view>
+
+    </view>
+  </view>
+  <button class="modify-btn" bindtap="modifyUserInfo">设置</button>
+
 </view>

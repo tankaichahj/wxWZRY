@@ -4,10 +4,10 @@
 	<view class="top_tip">相册</view>
 	<scroll-view class="scroll-view" scroll-y="true">
 		<view class="box">
-			<view class="responsive" wx:for="{{photoAlbums}}" id="{{index}}" bindtap="bind" wx:key="openid">
+			<view class="responsive" wx:for="{{photoAlbums}}" id="{{index}}" bindtap="bind" wx:key="*this">
 				<view class="zz"></view>
 				<view class="img">
-					<image src="{{item.cover}}" alt="图片文本描述" mode="aspectFill" />
+					<image src="{{item.cover.imageHttps?item.cover.imageHttps:image}}" alt="图片文本描述" mode="aspectFill" />
 					<view class="desc">
 						<text>{{item.name}}</text>
 					</view>
@@ -17,7 +17,7 @@
 		</view>
 
 	</scroll-view>
-	<view class="addPhoto" bindtap="addPhoto" id="{{id}}">
+	<view class="addPhoto" bindtap="addAlbum">
 		<image class="addPhotoImage" src="../../../images/TuPian/sctp.png"></image>
 	</view>
 </view>

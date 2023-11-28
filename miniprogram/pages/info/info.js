@@ -9,6 +9,9 @@ Page({
   data: {
     image: '../../images/TuPian/sctp.png',
     UserInfoSrc: '',
+    register: false,
+    nextStep: "下一页",
+    showContainer: true,
     genderIndex: 0, // 默认性别为男性
     genderArray: ['男', '女'], // 可供选择的性别数组
     rankArray: [
@@ -23,6 +26,26 @@ Page({
     OtherPositionArray: ['对抗路', '中路', '打野', '游走', '发育路'],
     otherPositionArray: ['对抗路', '中路', '打野', '游走', '发育路'],
   },
+  nextStep() {
+    const k = this.data.nextStep
+    if (k == "下一页") {
+      this.setData({
+        nextStep:"上一页",
+        showContainer:false
+      })
+    } else {
+      this.setData({
+        nextStep:"下一页",
+        showContainer:true
+      })
+    }
+    if(!this.data.register){
+      this.setData({
+        register:true
+      })
+    }
+  },
+
   bindChange: function (e) {
     console.log(e)
     const value = e.detail.value; // 获取选项的下标
@@ -120,27 +143,11 @@ Page({
     })
     const data = await this.dataPacking()
     if (data) {
-      const mima =this.data.mima
-      if(mima!="队长最帅"){
-        wx.hideLoading()
-          wx.showModal({
-            title: '提示',
-            content: '邀请码错误',
-            complete: (res) => {
-              if (res.cancel) {
-                
-              }
-              if (res.confirm) {
-                
-              }
-            }
-          })
-          return
-      }
+
       const set = 'user'
       const res = await util.insertData(set, data)
-      if(await res){
-        app.globalData.user =data
+      if (await res) {
+        app.globalData.user = data
         setTimeout(() => {
           wx.hideLoading()
           wx.showModal({
@@ -160,7 +167,7 @@ Page({
             }
           })
         }, 500);
-      }else{
+      } else {
         wx.showModal({
           title: '提示',
           content: '注册失败，请联系管理员',
@@ -176,10 +183,29 @@ Page({
   },
   //数据打包
   async dataPacking() {
+    const mima = this.data.mima
+    if (mima != "队长最帅") {
+      wx.hideLoading()
+      wx.showModal({
+        title: '提示',
+        content: '邀请码错误',
+        complete: (res) => {
+          if (res.cancel) {}
+          if (res.confirm) {}
+        }
+      })
+      return
+    }
     const {
       name,
       nickname,
-      qq
+      qq,
+      year,
+      college,
+      major,
+      signature,
+      education,
+      hero
     } = this.data
     const sex = this.data.genderArray[this.data.genderIndex]; //性别
     const best = this.data.bestPositionArray[this.data.bestPositionIndex]; //最擅长的位置
@@ -200,29 +226,35 @@ Page({
     const openid = app.globalData.openid
     const avatar = this.data.UserInfoSrc //本地路径
     if (!name || !nickname || !avatar || !qq || !sex || !rank || !position) {
-      
+
       return false
     } else { //无空值
       const avatarSrc = await util.getFileSystemManager(avatar)
       const avatarPath = 'avatar'
       const FileName = app.globalData.openid //文件名为openid
-      const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath,FileName)
+      const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath, FileName)
       const avatatHttps = await util.getCloudImage([avatatFileID.fileID])
       const data = {
         name: name,
         avatarFileID: await avatatFileID.fileID,
-        avatatHttps:await avatatHttps[0].tempFileURL,
+        avatatHttps: await avatatHttps[0].tempFileURL,
         qq: qq,
         sex: sex,
         nickname: nickname,
         rank: rank,
         position: position,
-        _openid: openid
+        _openid: openid,
+        year:year,
+        college,
+        major,
+        signature,
+        education,
+        hero
       }
       console.log(data)
       return data
     }
-    
+
   },
 
   ins: function (e) {

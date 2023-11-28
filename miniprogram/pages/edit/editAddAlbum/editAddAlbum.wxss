@@ -1,0 +1,16 @@
+
+page{
+	background-color: rgb(254, 254, 255);
+}
+.top {
+	display: grid;
+	grid-template-columns: 1fr 1fr 50px;
+	justify-content: space-between;
+	padding-right: 10px;
+	height: 25px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+.separator{
+	background-color: rgb(218, 218, 218);
+}

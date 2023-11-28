@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showPopup:false,
+    user:{}
   },
 
   /**
@@ -24,7 +25,13 @@ Page({
   onReady() {
 
   },
-
+  previewImage(e) {
+    console.log(e)
+    wx.previewImage({
+      urls: [e.target.id],
+      current: e.target.id
+    })
+  },
   async getUsers() {
     const users = await util.getUsersInfo('user')
     if (this.data.users != await users) {
@@ -39,10 +46,27 @@ Page({
     }
 
   },
+  showDetail(e){
+    const user=e.mark.id
+    this.setData({
+      showPopup:!this.data.showPopup,
+      user:user
+    })
+    console.log(e)
+  },
+  hideDetail(){
+    this.setData({
+      showPopup:!this.data.showPopup
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
  onShow() {
+
+  this.setData({
+    showPopup:false
+  })
     this.getUsers()
   },
 

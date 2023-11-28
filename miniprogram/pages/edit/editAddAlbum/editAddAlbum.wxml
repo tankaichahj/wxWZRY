@@ -1,0 +1,11 @@
+
+
+<view class="top">
+	<view bindtap="back">取消</view>
+	<view>新建相册</view>
+</view>
+<view style="width: 100%;height: 50px;background-color: rgb(250, 250, 249);">
+	<input style="height: 50px;font-size: 30px;" id="name" bindinput="ins" placeholder="添加相册名称"></input>
+</view>
+<view class="separator"></view>
+<button type="primary" bindtap="buttonBind">完成创建</button>
