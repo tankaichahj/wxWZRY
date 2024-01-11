@@ -1,0 +1,2 @@
+<!--pages/personal/install/account/account.wxml-->
+<button class="btn" bindtap="btn">账号注销</button>

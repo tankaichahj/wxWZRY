@@ -16,7 +16,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      users:app.globalData.users
+    })
   },
 
   /**
@@ -33,7 +35,7 @@ Page({
     })
   },
   async getUsers() {
-    const users = await util.getUsersInfo('user')
+    const users = await util.getUsersInfo('users')
     if (this.data.users != await users) {
       this.setData({
         users: users

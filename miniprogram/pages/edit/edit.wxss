@@ -1,1 +1,78 @@
-/* pages/edit/edit.wxss */
+.container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 10%;
+}
+
+.title {
+	width: 100%;
+	height: 80rpx;
+	line-height: 80rpx;
+	text-align: center;
+	font-size: 36rpx;
+	font-weight: bold;
+	color: #333333;
+	background-color: #ffffff;
+}
+
+.button {
+	width: 45%;
+	height: 100rpx;
+	margin-bottom: 20rpx;
+
+	border-radius: 10rpx;
+	box-shadow: 0 4rpx 6rpx rgba(0, 0, 0, 0.2);
+	color: rgb(15, 1, 1);
+	font-size: 32rpx;
+	text-align: center;
+	line-height: 100rpx;
+	transition: all 0.2s ease-in-out;
+}
+
+.button:nth-child(5n+1) {
+	background: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+.button:nth-child(5n+2) {
+	background: linear-gradient(to right, #aafcf5, #a3ebbf);
+}
+
+.button:nth-child(5n+3) {
+	background: linear-gradient(to right, #feb47b, #fac1b3);
+}
+
+.button:nth-child(5n+4) {
+	background: linear-gradient(to right, #a4eafa, #aa9df0);
+}
+
+.button:nth-child(5n+5) {
+	background: linear-gradient(to right, #f89ccc, #f545a3);
+}
+
+.button:active {
+
+	box-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.2);
+	transform: scale(0.95);
+}
+
+.button:nth-child(5n+1):active {
+	background: linear-gradient(to right, #ff6a00, #ee0979);
+}
+
+.button:nth-child(5n+2):active {
+	background: linear-gradient(to right, #38ef7d, #11998e);
+}
+
+.button:nth-child(5n+3):active {
+	background: linear-gradient(to right, #f88c3a, #f86641);
+}
+
+.button:nth-child(5n+4):active {
+	background: linear-gradient(to right, #6a50ec, #00d2ff);
+}
+
+.button:nth-child(5n+5):active {
+	background: linear-gradient(to right, #f70385 , #fc53c3 );
+}

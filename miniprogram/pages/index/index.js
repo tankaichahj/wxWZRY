@@ -1,30 +1,37 @@
+var tools = require('../../utils/tools');
 var util = require('../../utils/user');
+var load = require('../../utils/load');
 var app = getApp();
 Page({
   data: {
-    loading: true, //加载动画
+    showPrivacy: true,
     swiperList: ["https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/许天意2023072812382000.jpg", "https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295700.jpg", "https://777a-wzry-7g7trrdib0f75ba2-1316380780.tcb.qcloud.la/mogul/夏满2023072620295701.jpg"], // 存放轮播图列表
     indicatorDots: true, //是否显示面板指示点
     vertical: false, //滑动方向是否为纵向
     autoplay: true, //是否自动切换
     interval: 2000, //自动切换时间间隔
     duration: 500, //滑动动画时长
+    showPop: true,
     //buttons_1、buttons_2的图片要上传到云存储
     buttons_1: [{
         icon: '../../images/index/bsbm.png',
         text: '比赛报名',
+        url:false
       },
       {
         icon: '../../images/index/zdfz.png',
         text: '战队分组',
+        url:false
       },
       {
         icon: '../../images/index/grxx.png',
         text: '个人信息',
+        url:'../personal/personal'
       },
       {
         icon: '../../images/index/tczd.png',
         text: '退出战队',
+        url:'退出'
       },
     ],
     buttons_2: [{
@@ -35,7 +42,7 @@ Page({
       {
         icon: '../../images/index/ry.png',
         text: '战队内战',
-        url:'./civilWar/civilWar'
+        url: './civilWar/civilWar'
       },
       {
         icon: '../../images/index/dl.png',
@@ -45,17 +52,24 @@ Page({
       {
         icon: '../../images/index/hd.png',
         text: '活动中心',
-        url:'./activities/activities'
+        url: './activities/activities'
       },
     ],
   },
   async onLoad(options) {
+    this.setData({
+      user:app.globalData.user
+    })
 
 
   },
+  async getAdminInfo() {
+    const op = app.globalData.openid
+    await tools.getAdminInfo(op)
+  },
+
   async initialization() {
-    
-      var op = await util.getUserOpenid()     
+    var op = await util.getUserOpenid()
     this.ck(op)
   },
   async ck(op) {
@@ -76,9 +90,11 @@ Page({
       })
       //预加载战队所有人员信息
       if (!app.globalData.users) {
-        const users = await util.getUsersInfo('user')
+        const users = await util.getUsersInfo('users')
         app.globalData.users = users
       }
+      //加载管理员身份信息
+      this.getAdminInfo()
       //加载轮播图
     }
   },
@@ -96,7 +112,7 @@ Page({
       content: '您还未注册，请先注册',
       confirmText: '注册',
       complete: (res) => {
-        console.log(res)
+        // console.log(res)
         //取消则退出小程序
         if (res.cancel) {
           wx.exitMiniProgram()
@@ -120,9 +136,39 @@ Page({
   },
   navigate(e) {
     const url = e.currentTarget.id
-    wx.navigateTo({
-      url: url,
-    })
+    console.log(e.currentTarget)
+    if(url !='false'){
+      console.log(url)
+      if(url=='../personal/personal'){
+        wx.switchTab({
+          url: '../personal/personal',
+        })
+      }else if(url=='退出'){
+        wx.showModal({
+          title: '提示',
+          content: '是否退出小程序',
+          complete: (res) => {
+            
+            if (res.confirm) {
+              wx.exitMiniProgram()
+            }
+          }
+        })
+        
+      }else{
+        wx.navigateTo({
+          url: url,
+        })
+      }
+    }else{
+      console.log(url)
+      wx.showModal({
+        title: '提示',
+        content: '还未开放',
+        
+      })
+    }
+    
 
   },
   /**
@@ -136,10 +182,28 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.setStorageSync('popupShown', false);
-    this.initialization()
-  },
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+      console.log(res)
+      if (res.hasUpdate) {
+        showUpdateModal() // 如果有新版本，则弹出更新提示框
+      }
+    })
 
+    function showUpdateModal() {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            updateManager.applyUpdate() // 用户确认更新后，应用新版本并重启
+          }
+        }
+      })
+    }
+   
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -1,182 +1,155 @@
-/* pages/edit/editMogul/editMogul.wxss *//* pages/index/mogul/detailedInformation/detailedInformation.wxss */
-page{
-	background-color: #030303;
-}
-.info {
-	display: grid;
-	justify-content: space-around;
-	align-content: center;
-	grid-template-rows: 35vh 5vh 55vh;
-	grid-template-columns: 100%;
-	width: 700rpx;
-	grid-gap: 10px;
-}
-
-.information {
-	height: 100%;
-
-
-}
-
-.user {
-	background: rgba(255, 255, 255, 0);
-	display: grid;
-	justify-content: space-around;
-	align-content: center;
-	grid-template-columns: 250rpx 450rpx;
-	height: 100%;
-
-}
-
-.user-image {
-	width: 120px;
-	height: 160px;
-}
-
-.user-image image {
-	width: 100%;
-	height: 100%;
-}
-
-.user-text {
-	background: rgba(69, 117, 14, 0);
-	display: grid;
-	justify-content: space-around;
-	align-content: center;
-	grid-template-rows: auto auto auto auto auto;
-
-}
-
-.user-text view {
+/* pages/index/mogul/mogul.wxss */
+.top_tip {
+	font-size: 28px;
 	font-family: PingFang SC;
-
-	color: rgb(255, 255, 255);
-	font-size: 13px;
-
+	font-weight: 400;
+	color: #000000f3;
+	margin-bottom: 28rpx;
 }
 
-.scroll-information {
-	background-color: rgba(0, 0, 0, 0.363);
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
+.img {
 
-.scroll-information .box {
-	margin-top: 5px;
-	margin-bottom: 10px;
-	width: 700rpx;
-	height: 600rpx;
-	
-}
-
-.scroll-information .box::before,
-.scroll-information .box::after {
-	content: "";
 	position: absolute;
-	left: 50%;
+	inset: 4px;
+	border-radius: 16px;
+	background-attachment: #dfe0e2;
+	z-index: 2;
 
-	transform: translate(-50%);
-	width: 100%;
-	height: 600rpx;
-	background: linear-gradient(45deg, #ffbb0042, #ff005952);
-}
-
-.scroll-information .box::after {
-	filter: blur(50px);
-	transform: translate(-50%,-70%);
-	z-index: -1;
-	
 }
 
-.scroll-information .box:nth-child(2)::before,
-.scroll-information .box:nth-child(2)::after {
-	background: linear-gradient(315deg, #03a8f442, #ff005942);
+.scroll-view {
+	height: 1000rpx;
+	width: 700rpx;
+	background-color: aliceblue;
 }
 
-.scroll-information .box:nth-child(3)::before,
-.scroll-information .box:nth-child(3)::after {
-	background: linear-gradient(135deg, #4dff0342, #00d0ff42);
-}
-.scroll-information .box:nth-child(4)::before,
-.scroll-information .box:nth-child(4)::after {
-	background: linear-gradient(235deg, #ff030342, #f700ff42);
-}
-.scroll-information .box:nth-child(5)::before,
-.scroll-information .box:nth-child(5)::after {
-	background: linear-gradient(90deg, #03e2ff42, #0011ff42);
-}
-
-.information-text {
-	word-wrap: break-word;
-	white-space: pre-wrap;
-	color: rgb(0, 202, 252);
-	z-index: 1011;
-	font-size: 20px;
-	font-family: PingFang SC;
-	font-weight: 500;
-	text-indent: 20px;
-	text-align: left;
-}
-
-.scroll-box {
-	height: 100px;
-	width: 100%;
-	margin-top: 10px;
-	
-	
-}
-
-.image-view {
+.box {
 	display: grid;
-	grid-gap: 10px;
-	grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
-	grid-template-rows: auto;
+	grid-template-columns: auto auto;
+	grid-gap: 20rpx;
+	justify-content: space-around;
 }
 
-.image-box {
-	width: 170rpx;
-	height: 170rpx;
-	
-}
-
-.information-image {
-	width: 100%;
-	height: 100%;
-}
-.aa {
-  display: grid;
-	justify-content: space-between;
-	width: auto;
-  grid-template-columns: 33% 67%; /* 设置网格宽度小于容器宽度 */
-  grid-gap: 1px;
-  background-color: #ffffff00;
+.img image {
+	width: 264rpx;
+	height: 353rpx;
+	border-radius: 16px;
 
 }
-input{
-  text-align:left;
-  padding-right: 5px;
-  color: rgb(255, 255, 255);
-  
-  
+
+.desc {
+	padding: 9rpx;
+	text-align: center;
+	/* background: linear-gradient(45deg,  #a4edf86b, #f397e780, #f06794); */
+	height: 97rpx;
+	width: 264rpx;
+	margin-top: -49rpx;
+	display: grid;
+	border-radius: 16px;
 }
-.zhidi{
-  position: fixed;
-  margin-bottom: 80px;
-  left: 50%;
-  top: 80%;
-  transform: translate(-50%,0%);
+
+.desc text {
+	margin-top: 23px;
+	font-family: PingFang SC;
+	font-size: 20px;
 }
-.jindu{
-	width: 95%;
-	height: 20px;
+
+.responsive {
+	margin: 10px;
+	position: relative;
+	background: rgba(250, 247, 247, 0);
+	border-radius: 20px;
+	width: 278rpx;
+	height: 440rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+}
+
+.responsive::before {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	animation: responsive 4s linear infinite;
+}
+
+.responsive:nth-child(3n+1)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
+}
+
+.responsive:nth-child(3n+2)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #fffb00);
+}
+
+.responsive:nth-child(3n+3)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #ff0015);
+}
+
+.responsive::after {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	animation: responsive 4s linear infinite;
+	animation-delay: -2s;
+}
+
+.responsive:nth-child(3n+1)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
+}
+
+.responsive:nth-child(3n+2)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #b3ff00);
+}
+
+.responsive:nth-child(3n+3)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #b3ff00);
+}
+
+@keyframes responsive {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.zz {
+	position: absolute;
+	inset: 4px;
+	border-radius: 16px;
+	background-attachment: #dfe0e2;
+	z-index: 1;
+	background: linear-gradient(90deg, #3cdef3, #12a3c4)
+}
+
+.but {
 	position: fixed;
-  margin-bottom: 80px;
-  left: 50%;
-  top: 48%;
-	transform: translate(-50%,-50%);
-	z-index: 15;
-	background-color: #535353;
+	margin-bottom: 30px;
+	left: 80%;
+	top: 5%;
+	transform: translate(-50%, 0%);
+}
+
+.but button {
+	width: 100px;
+
+}
+.editMogul{
+	top: 10px;
+	width: 200px;
+	height: 40px;
+	margin-bottom: 10px;
+  background-color: #007aff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/loading/loading",
     "pages/index/index",
     "pages/index/mogul/mogul",
     "pages/index/mogul/detailedInformation/detailedInformation",
@@ -11,6 +12,9 @@
     "pages/info/info",
     "pages/personal/personal",
     "pages/personal/install/install",
+    "pages/personal/install/account/account",
+    "pages/personal/install/profile/profile",
+    "pages/personal/install/bug/bug",
     "pages/contact/contact",
     "pages/information/information",
     "pages/edit/edit",
@@ -19,12 +23,17 @@
     "pages/cutFace/cutFaceUserImager/cutFaceUserImager",
     "pages/cutFace/cutFaceMogulImager/cutFaceMogulImager",
     "pages/upFace/upFaceMogulImager/upFaceMogulImager",
-    "pages/edit/editAlbum/editAlbum",
-    "pages/edit/editAddAlbum/editAddAlbum"
-    
-    
-    
+    "pages/edit/editPhotoAlbum/editPhotoAlbum",
+    "pages/edit/editAddAlbum/editAddAlbum",
+    "pages/edit/editPhotoAlbum/editAlbum/editAlbum",
+    "pages/userPrivacyAgreement/userPrivacyAgreement",
+    "pages/edit/editAddMogul/editAddMogul",
+    "pages/edit/editMogul/modifyMogul/modifyMogul"
+  
   ],
+  "usingComponents": {
+    "privacyPopup":"./components/privacyPopup/privacyPopup"
+  },
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
@@ -43,7 +52,7 @@
       "selectedIconPath": "images/bar/sy/sy-1.png"
     }, {
       "pagePath": "pages/information/information",
-      "text": "消息",
+      "text": "队伍",
       "iconPath": "images/bar/zd/zd-0.png",
       "selectedIconPath": "images/bar/zd/zd-1.png"
     }, {
@@ -60,5 +69,7 @@
   },
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "__usePrivacyCheck__": true,
+  "componentFramework": "glass-easel"
 }

@@ -1,0 +1,4 @@
+<view class="mask" wx:if="{{loading}}">
+  <view class="words">Loading...</view>
+  <view class="words">Loading...</view>
+</view>

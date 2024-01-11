@@ -1,0 +1,32 @@
+<view class="container">
+	<view class="title">安农大佬队</view>
+	<view class="top_tip">相册管理</view>
+	<scroll-view class="scroll-view" scroll-y="true">
+		<view class="box">
+			<view class="responsive" wx:for="{{photoAlbums}}" id="{{index}}" bindtap="bind" wx:key="_id">
+				<view class="zz"></view>
+				<view class="img">
+					<image src="{{item.cover.imageHttps?item.cover.imageHttps:image}}" alt="图片文本描述" mode="aspectFill" />
+					<view class="desc">
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+				<view class="circle" wx:if="{{circle_flag}}">
+					<view class="inner-circle"></view>
+					<view class="inner-inner-circle" wx:if="{{inner_circle_flag[index]}}"></view>
+				</view>
+			</view>
+
+		</view>
+
+	</scroll-view>
+	<view class="addPhoto" bindtap="addAlbum">
+		<image class="addPhotoImage" src="../../../images/TuPian/sctp.png"></image>
+	</view>
+
+	<button class="editPhoto" bindtap="editAlbum">
+		{{editPhoto}}</button>
+	<button class="editPhoto" bindtap="delAlbum" wx:if="{{circle_flag}}">
+		删除</button>
+		
+</view>

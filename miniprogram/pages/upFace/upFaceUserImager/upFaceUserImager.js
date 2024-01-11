@@ -8,7 +8,10 @@ Page({
 
   },
   onLoad(option) {
-
+    let field = option.field
+    this.setData({
+      field: field
+    })
 
   },
 
@@ -32,17 +35,17 @@ Page({
       imageSrc: ''
     })
   },
-  
+
   back() {
     let pages = getCurrentPages();
     //prevPage 相当于上个页面的this，可以通过setData修改上个页面参数执行上个页面的方法等
     let prevPage = pages[pages.length - 2]
     prevPage.setData({
-      UserInfoSrc: this.data.imageSrc
+      [this.data.field]: this.data.imageSrc
     })
     wx.navigateBack()
   },
- 
+
   onShow() {
 
 

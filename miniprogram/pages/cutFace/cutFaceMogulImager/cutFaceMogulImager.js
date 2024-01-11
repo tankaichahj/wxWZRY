@@ -102,7 +102,7 @@ Page({
       camera: 'back',
       success(res) {
         const src =res.tempFiles[0].tempFilePath
-        console.log(res)
+        // console.log(res)
         if (src) {
         // 将图片参数传递给插件
           self.wecropper.pushOrign(src)

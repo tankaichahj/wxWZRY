@@ -1,20 +1,49 @@
 // pages/personal/install/install.js
+var tools = require('../../../utils/tools')
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-   
+    admin: false
   },
-  goBack(){
+  goToAccount() {
+    wx.navigateTo({
+      url: './account/account',
+    })
+  },
+  goToProfile() {
+    wx.navigateTo({
+      url: './profile/profile',
+    })
+  },
+  goToBug() {
+    wx.navigateTo({
+      url: './bug/bug',
+    })
+  },
+  goBack() {
     wx.navigateBack()
+  },
+  goManage() {
+wx.navigateTo({
+  url: '../../edit/edit',
+})
+  },
+  async getAdmin() {
+    const op = app.globalData.openid
+    const admin = await tools.getAdminInfo(op)
+    this.setData({
+      admin: await admin
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+   
   },
 
   /**
@@ -28,7 +57,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getAdmin()
   },
 
   /**

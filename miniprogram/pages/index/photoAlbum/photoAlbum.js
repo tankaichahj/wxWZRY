@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    image:'../../../images/TuPian/Album.png',
-    
+    image: '../../../images/TuPian/Album.png',
+    needAlbum:false
   },
   bind(e) {
     const id = e.currentTarget.id
@@ -17,16 +17,15 @@ Page({
       url: `./album/album?id=${id}`,
     })
   },
-  addAlbum() {
-    wx.navigateTo({
-      url: '../../edit/editAddAlbum/editAddAlbum',
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    app.globalData.photoAlbums = this.data.photoAlbums
+    this.setData({
+      photoAlbums: app.globalData.photoAlbums,
+      needAlbum:true
+    })
   },
 
   /**
@@ -35,21 +34,24 @@ Page({
   onReady() {
 
   },
-  async getAlbum(){
-    const set = 'Album'
+  async getAlbum() {
+    const set = 'photoAlbums'
     const photoAlbums = await util.getUsersInfo(set)
     this.setData({
-      photoAlbums:photoAlbums
+      photoAlbums: photoAlbums
     })
     app.globalData.photoAlbums = await photoAlbums
-    
+
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    
-    this.getAlbum()
+    let needAlbum=this.data.needAlbum
+    if (needAlbum) {
+      this.getAlbum()
+    }
+
   },
 
   /**
@@ -69,8 +71,8 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
+  onPullDownRefresh: function () {
+    this.getAlbum()
   },
 
   /**

@@ -7,6 +7,16 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showPop: false,
+    name: "",
+    nickname: "",
+    qq: "",
+    year: "",
+    college: "",
+    major: "",
+    signature: "",
+    education: "",
+    hero: "",
     image: '../../images/TuPian/sctp.png',
     UserInfoSrc: '',
     register: false,
@@ -26,22 +36,36 @@ Page({
     OtherPositionArray: ['对抗路', '中路', '打野', '游走', '发育路'],
     otherPositionArray: ['对抗路', '中路', '打野', '游走', '发育路'],
   },
+  agree(e) {
+    console.log("用户同意隐私授权, 接下来可以调用隐私协议中声明的隐私接口")
+    wx.getClipboardData({
+      success(res) {
+        console.log("getClipboardData success", res)
+      },
+      fail(res) {
+        console.log("getClipboardData fail", res)
+      },
+    })
+  },
+  disagree(e) {
+    console.log("用户拒绝隐私授权, 未同意过的隐私协议中的接口将不能调用")
+  },
   nextStep() {
     const k = this.data.nextStep
     if (k == "下一页") {
       this.setData({
-        nextStep:"上一页",
-        showContainer:false
+        nextStep: "上一页",
+        showContainer: false
       })
     } else {
       this.setData({
-        nextStep:"下一页",
-        showContainer:true
+        nextStep: "下一页",
+        showContainer: true
       })
     }
-    if(!this.data.register){
+    if (!this.data.register) {
       this.setData({
-        register:true
+        register: true
       })
     }
   },
@@ -132,7 +156,7 @@ Page({
   // 去选择图片
   previewImage() {
     wx.navigateTo({
-      url: '../upFace/upFaceUserImager/upFaceUserImager',
+      url: '../upFace/upFaceUserImager/upFaceUserImager?field=UserInfoSrc',
     })
   },
   //提交注册
@@ -144,10 +168,10 @@ Page({
     const data = await this.dataPacking()
     if (data) {
 
-      const set = 'user'
+      const set = 'users'
       const res = await util.insertData(set, data)
       if (await res) {
-        app.globalData.user = data
+        
         setTimeout(() => {
           wx.hideLoading()
           wx.showModal({
@@ -155,13 +179,14 @@ Page({
             content: '恭喜您，注册成功',
             complete: (res) => {
               if (res.cancel) {
-                wx.switchTab({
-                  url: '../index/index',
+                wx.navigateTo({
+                  url: '../loading',
                 })
+                
               }
               if (res.confirm) {
-                wx.switchTab({
-                  url: '../index/index',
+                wx.navigateTo({
+                  url: '../loading',
                 })
               }
             }
@@ -190,8 +215,12 @@ Page({
         title: '提示',
         content: '邀请码错误',
         complete: (res) => {
-          if (res.cancel) {}
-          if (res.confirm) {}
+          if (res.cancel) {
+            return
+          }
+          if (res.confirm) {
+            return
+          }
         }
       })
       return
@@ -229,14 +258,15 @@ Page({
 
       return false
     } else { //无空值
-      const avatarSrc = await util.getFileSystemManager(avatar)
+      // const avatarSrc = await util.getFileSystemManager(avatar)
       const avatarPath = 'avatar'
       const FileName = app.globalData.openid //文件名为openid
-      const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath, FileName)
-      const avatatHttps = await util.getCloudImage([avatatFileID.fileID])
+      // const avatatFileID = await util.uploadPhoto(avatarSrc, avatar, avatarPath, FileName)
+      const avatatFileID = await util.upimage(avatar, avatarPath, FileName)
+      const avatatHttps = await util.getCloudImage([avatatFileID])
       const data = {
         name: name,
-        avatarFileID: await avatatFileID.fileID,
+        avatarFileID: await avatatFileID,
         avatatHttps: await avatatHttps[0].tempFileURL,
         qq: qq,
         sex: sex,
@@ -244,7 +274,7 @@ Page({
         rank: rank,
         position: position,
         _openid: openid,
-        year:year,
+        year: year,
         college,
         major,
         signature,
@@ -263,18 +293,58 @@ Page({
     this.setData({
       [`${key}`]: value
     })
-
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) {
-
+  async onLoad() {
+    const privacySettingRes = await this.getPrivacySetting();
+    console.log("privacySettingRes :>> ", privacySettingRes);
+    this.setData({
+      showPop: privacySettingRes.needAuthorization,
+    });
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 按钮点击回调
    */
+  popBtnTap(res) {
+    console.log("授权结果返回数据 :>> ", res);
+    console.log("授权结果 :>> ", res.detail);
+    if (res.detail.result) {
+      wx.showToast({
+        title: "同意授权",
+        icon: "success",
+      });
+    } else {
+      wx.showToast({
+        title: "拒绝授权",
+        icon: "error",
+      });
+    }
+  },
+
+  /**
+   * 获取隐私协议授权信息
+   * @returns {object} {needAuthorization: true/false, privacyContractName: '《xxx隐私保护指引》'}
+   */
+  getPrivacySetting() {
+    const res = {
+      needAuthorization: false,
+      privacyContractName: "基础库过低，不需要授权",
+    };
+    if (!wx.getPrivacySetting) return res;
+    return new Promise((resolve, reject) => {
+      wx.getPrivacySetting({
+        success(res) {
+          resolve(res);
+        },
+        fail(err) {
+          reject(err);
+        },
+      });
+    });
+  },
   onReady() {
 
   },
@@ -283,7 +353,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    wx.showTabBar()
   },
 
   /**
@@ -319,5 +389,6 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+
 })

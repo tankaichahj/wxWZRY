@@ -1,0 +1,142 @@
+/* pages/index/mogul/mogul.wxss */
+.top_tip {
+	font-size: 28px;
+	font-family: PingFang SC;
+	font-weight: 400;
+	color: #000000f3;
+	margin-bottom: 28rpx;
+}
+
+.img {
+
+	position: absolute;
+	inset: 4px;
+	border-radius: 16px;
+	background-attachment: #dfe0e2;
+	z-index: 2;
+
+}
+
+.scroll-view {
+	height: 1100rpx;
+	width: 700rpx;
+	background-color: aliceblue;
+}
+
+.box {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 20rpx;
+	justify-content: space-around;
+}
+
+.img image {
+	width: 264rpx;
+	height: 353rpx;
+	border-radius: 16px;
+
+}
+
+.desc {
+	padding: 9rpx;
+	text-align: center;
+	/* background: linear-gradient(45deg,  #a4edf86b, #f397e780, #f06794); */
+	height: 97rpx;
+	width: 264rpx;
+	margin-top: -49rpx;
+	display: grid;
+	border-radius: 16px;
+}
+
+.desc text {
+	margin-top: 23px;
+	font-family: PingFang SC;
+	font-size: 20px;
+}
+
+.responsive {
+	margin: 10px;
+	position: relative;
+	background: rgba(250, 247, 247, 0);
+	border-radius: 20px;
+	width: 278rpx;
+	height: 440rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+}
+
+.responsive::before {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	animation: responsive 4s linear infinite;
+}
+
+.responsive:nth-child(3n+1)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
+}
+
+.responsive:nth-child(3n+2)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #fffb00);
+}
+
+.responsive:nth-child(3n+3)::before {
+	background-image: conic-gradient(transparent, transparent, transparent, #ff0015);
+}
+
+.responsive::after {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	animation: responsive 4s linear infinite;
+	animation-delay: -2s;
+}
+
+.responsive:nth-child(3n+1)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
+}
+
+.responsive:nth-child(3n+2)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #b3ff00);
+}
+
+.responsive:nth-child(3n+3)::after {
+	background-image: conic-gradient(transparent, transparent, transparent, #b3ff00);
+}
+
+@keyframes responsive {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.zz {
+	position: absolute;
+	inset: 4px;
+	border-radius: 16px;
+	background-attachment: #dfe0e2;
+	z-index: 1;
+	background: linear-gradient(90deg, #3cdef3, #12a3c4)
+}
+
+.but {
+	position: fixed;
+	margin-bottom: 30px;
+	left: 80%;
+	top: 5%;
+	transform: translate(-50%, 0%);
+}
+
+.but button {
+	width: 100px;
+
+}

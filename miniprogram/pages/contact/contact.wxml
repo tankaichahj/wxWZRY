@@ -29,16 +29,18 @@
 </scroll-view>
 
 <view class="popup" hidden="{{!showPopup}}">
-  <view class="mask" bindtap="hideDetail" style="width: 750rpx; height: 1309rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+  <view class="mask1" bindtap="hideDetail" style="width: 750rpx; height: 1309rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
   <view class="content">
-    <image class="avatar" src="{{user.avatatHttps}}"></image>
+    <view><image class="avatar" src="{{user.avatatHttps}}"></image></view>
+    
     <view class="info">
-      <view class="name">姓名:　{{user.name}}</view>
-      <view class="gender">性别:　{{user.sex}}</view>
-      <view class="qq">QQ:　{{user.qq}}</view>
+      <view class="newName">姓名:　{{user.name}}</view>
+      <view class="newGender">性别:　{{user.sex}}</view>
+      <view class="newQq">QQ:　{{user.qq}}</view>
       <view class="qq">{{user.year}}　{{user.college}}</view>
       <view class="qq">专业:　{{user.major}}</view>
-      <view class="signature">个性签名</view>
+      <view class="signature">个性签名:</view>
+      <view class="signature">　{{user.signature}}</view>
     </view>
   </view>
 </view>

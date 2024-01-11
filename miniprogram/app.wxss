@@ -4,7 +4,7 @@ page {
 
   background-color: #000000a8;
 
-  background: rgb(219, 219, 219)
+  background: rgb(240, 240, 240)
 }
 
 .container {
@@ -369,16 +369,16 @@ button::after {
     clip-path: polygon(51% 68%, 71% 59%, 86% 44%, 100% 24%, 100% 100%, 0% 100%, 0% 72%, 28% 71%);
   }
 }
-.addPhoto {
-	width: 40px;
-	height: 40px;
-	position:absolute;
-	top: 80%;
-	left: 90%;
-	background-color: rgb(72, 139, 228);
-	transform: translate(-50%, -50%);
-	border-radius: 20px
-}
+.addPhoto { 
+  width: 40px; 
+  height: 40px; 
+  position:absolute; 
+  top: 80%; 
+  left: 90%; 
+  background-color: rgb(72, 139, 228); 
+  transform: translate(-50%, -50%); 
+  border-radius: 20px 
+} 
 
 .addPhotoImage {
 	width: 20px;
@@ -388,4 +388,125 @@ button::after {
 	transform: translate(10px, 10px);
 	background-color: rgba(0, 255, 255, 0);
 	border-radius: 15px
+}
+.circle {
+	position: absolute;
+	right:10px;
+	top: 10px;
+	width: 16px;
+	height:16px;
+	border-radius: 50%;
+	background: white;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+}
+
+.inner-circle {
+	position: absolute;
+	right:2px;
+	top: 2px;
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	background: rgb(139, 139, 139);
+}
+.inner-inner-circle {
+	position: absolute;
+	right:4px;
+	top: 4px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: rgb(252, 1, 1);
+}
+.privacy {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .5);
+  z-index: 9999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.content {
+  width: 632rpx;
+  padding: 48rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 16rpx;
+}
+ 
+.content .title {
+  text-align: center;
+  color: #333;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+ 
+.content .des {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 40rpx;
+  text-align: justify;
+  line-height: 1.6;
+}
+ 
+.content .des .link {
+  color: #07c160;
+  text-decoration: underline;
+}
+ 
+.btns {
+  margin-top: 48rpx;
+  display: flex;
+}
+ 
+.btns .item {
+  justify-content: space-between;
+  width: 244rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+  border: none;
+}
+ 
+.btns .reject {
+  background: #f4f4f5;
+  color: #909399;
+}
+ 
+.btns .agree {
+  background: #07c160;
+  color: #fff;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mask1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(53, 53, 53, 0.233);
+  z-index: 22;
 }

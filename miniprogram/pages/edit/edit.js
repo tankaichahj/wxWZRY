@@ -5,9 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
+    buttons: [{
+        text: '大佬管理',
+        url: './editMogul/editMogul'
+      },
+      {
+        text: '相册管理',
+        url: './editPhotoAlbum/editPhotoAlbum'
+      },
+      {
+        text: '成员管理',
+        url:''
+      },
+      {
+        text: '管理员设置',
+        url:''
+      }
+
+    ]
 
   },
+  onButtonTap(e) {
 
+    const url = e.currentTarget.id
+    wx.navigateTo({
+      url: url,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

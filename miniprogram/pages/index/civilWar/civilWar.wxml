@@ -1,2 +1,10 @@
 <!--pages/index/civilWar/civilWar.wxml-->
-<text>pages/index/civilWar/civilWar.wxml</text>
+<!-- <text  style="position: relative; left: 320rpx; top: 691rpx">敬请期待</text> -->
+<view style="border: 1px solid  rgb(8, 6, 6);">
+	<text>{{openid ? openid : '这里会显示openid'}}</text>
+	<button bindtap="a">点我</button>
+</view>
+<view style="border: 1px solid  rgb(8, 6, 6);">
+	<text>{{user ? user.name : '这里会显示用户姓名'}}</text>
+	<button bindtap="b">点我</button>
+</view>

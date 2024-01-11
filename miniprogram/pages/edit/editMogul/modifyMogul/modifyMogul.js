@@ -1,5 +1,4 @@
-// pages/edit/editAlbum/editAlbum.js
-var util = require('../../../utils/user')
+// pages/edit/editMogul/modifyMogul/modifyMogul.js
 Page({
 
   /**
@@ -8,8 +7,6 @@ Page({
   data: {
 
   },
- 
-  
 
   /**
    * 生命周期函数--监听页面加载

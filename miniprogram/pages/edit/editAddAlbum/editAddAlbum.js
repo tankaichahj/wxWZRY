@@ -21,7 +21,7 @@ Page({
         content:[],
         cover:{}
       }
-      const set="Album"
+      const set="photoAlbums"
       const b= util.insertData(set,Album)
       if(b){
         wx.hideLoading()

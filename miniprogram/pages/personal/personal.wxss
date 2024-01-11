@@ -13,7 +13,7 @@
   flex-direction: column;
   align-items: center;
   width: 80%;
-  height: 70%;
+  
   justify-content: center;
   margin-bottom: 20px;
   padding: 20px;

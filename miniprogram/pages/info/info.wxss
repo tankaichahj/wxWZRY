@@ -16,21 +16,22 @@ page{
 .container {
   height: 90%;
 }
-.aa {
-  display: grid;
-	justify-content: space-between;
-	width: 700rpx;
-  grid-template-columns: 55%  45%; /* 设置网格宽度小于容器宽度 */
-  grid-gap: 15rpx;
-  background-color: #ffffff00;
-  padding: 15rpx;
-  height: 50rpx;
-}
+
 .aaa {
   display: grid;
 	justify-content: space-between;
 	width: 700rpx;
   grid-template-columns: 30%  70%; /* 设置网格宽度小于容器宽度 */
+  grid-gap: 15rpx;
+  background-color: #ffffff00;
+  padding: 15rpx;
+  height: 50rpx;
+}
+.aa {
+  display: grid;
+	justify-content: space-between;
+	width: 700rpx;
+  grid-template-columns: 55%  45%; /* 设置网格宽度小于容器宽度 */
   grid-gap: 15rpx;
   background-color: #ffffff00;
   padding: 15rpx;

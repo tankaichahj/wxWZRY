@@ -1,7 +1,9 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 
-cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV }) // 使用当前云环境
+cloud.init({
+  env: cloud.DYNAMIC_CURRENT_ENV
+}) // 使用当前云环境
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -9,10 +11,10 @@ exports.main = async (event, context) => {
   const jihe = event.jihe
   const collection = db.collection(jihe);
   // 获取操作类型和参数
-  const action = event.action;//操作类型
-  const field = event.field;//字段
-  const value = event.value;//值
-  
+  const action = event.action; //操作类型
+  const field = event.field; //字段
+  const value = event.value; //值
+
   let result;
 
   try {
@@ -24,7 +26,7 @@ exports.main = async (event, context) => {
     } else if (action === 'insert') {
       // 插入数据
       result = await collection.add({
-         data:[value]
+        data: [value]
       });
     } else if (action === 'update') {
       // 更新数据
@@ -34,13 +36,27 @@ exports.main = async (event, context) => {
     } else if (action === 'delete') {
       // 删除数据
       result = await collection.doc(event.id).remove();
-    } else if (action === 'get'){
+    } else if (action === 'get') {
       //获取所有数据
-      result =await collection.get()
+      result = await collection.get()
+    } else if (action === 'updateObjectFieldValueInDatabase') {
+      //修改字段值
+      result = await collection.doc(event.id).update({
+        [field]: value
+      })
+    } else if (action === 'checkMultipleFields') {
+      //多字段查询
+      result = await collection.where(event.fields).get()
+    } else if (action === 'set') {
+      // 设置数据
+      result = await collection.doc(event.id).set({
+        data: event.data
+      });
     }
   } catch (e) {
     console.error(e);
   }
+
 
   return result;
 };

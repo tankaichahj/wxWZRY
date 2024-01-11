@@ -115,6 +115,7 @@ Page({
         wx.hideToast()
       },
       fail(res) {
+        console.log(失败)
         wx.hideToast();
         wx.navigateBack()
       }

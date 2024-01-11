@@ -24,6 +24,9 @@
 	position: relative;
   bottom: 40px;
 }
-
+.button-box button{
+	
+  bottom: 10px;
+}
 
 

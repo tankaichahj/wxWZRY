@@ -73,6 +73,14 @@
 	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
 	animation: responsive 4s linear infinite;
 }
+.responsive::after {
+	content: '';
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	animation: responsive 4s linear infinite;
+	animation-delay: -2s;
+}
 .responsive:nth-child(3n+1)::before {
 	background-image: conic-gradient(transparent, transparent, transparent, #00ccff);
 }
@@ -85,14 +93,7 @@
 	background-image: conic-gradient(transparent, transparent, transparent, #ff0015);
 }
 
-.responsive::after {
-	content: '';
-	position: absolute;
-	width: 500px;
-	height: 500px;
-	animation: responsive 4s linear infinite;
-	animation-delay: -2s;
-}
+
 
 .responsive:nth-child(3n+1)::after {
 	background-image: conic-gradient(transparent, transparent, transparent, #de44d4);
@@ -124,5 +125,4 @@
 	z-index: 1;
 	background: linear-gradient(90deg, #bbbbbb, #e8e9e9)
 }
-
 

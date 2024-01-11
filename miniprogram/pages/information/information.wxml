@@ -1,2 +1,147 @@
-<!--pages/information/information.wxml-->
-<text>pages/information/information.wxml</text>
+<!-- wxml -->
+<view class="container">
+	<view class="header">
+		<text class="t">队伍</text>
+		<view class="tabs">
+			<text class="{{!currentTab ? 'tab active' : 'tab'}}" bindtap="switchTab" id="1">我的小队</text>
+			<text class="{{currentTab ? 'tab active' : 'tab'}}" bindtap="switchTab" id="2">小队列表</text>
+		</view>
+	</view>
+	<!-- 我的小队 -->
+	<view wx:if="{{!currentTab}}" class="my-team">
+		<block wx:if="{{!needTeam}}" wx:key="*this">
+			<view class="team-info">
+				<image class="team-avatar" src="{{team.teamAvatarHttps}}" bind:tap="previewImage" id="{{team.teamAvatarHttps}}" />
+				<view class="team-details">
+					<text class="team-name">{{team.teamName}}</text>
+					<text class="team-leader">队长：{{team.teamLeader.name}}</text>
+				</view>
+				<view style="height: 70px;">
+					<text>介绍：{{team.teamIntroduce}}</text>
+				</view>
+			</view>
+			<view class="team-members">
+				<view class="members">成员</view>
+				<block wx:for="{{team}}" wx:for-index="key" wx:key="_id">
+					<view wx:if="{{key=='topLane' || key=='jungle' || key=='midLane' || key=='roam' || key=='adc'}}" class="user-item">
+						<!-- 显示用户头像 -->
+						<block wx:if="{{item.name}}">
+							<image class="user-avatar" style="width: 56px;	height: 56px;	border-radius: 50%;" src="{{item.avatatHttps ? item.avatatHttps : '../../images/bar/grzx/grzx-1.png'}}" bindtap="previewImage" id="{{item.avatatHttps}}"></image>
+							<!-- 显示用户信息 -->
+							<view class="user-info" style="width: 400rpx; height: 50px; display: flex; box-sizing: border-box">
+								<view class="user-name-gender">
+									<!-- 显示用户姓名和性别 -->
+									<text class="user-name">{{item.name}}</text>
+									<text class="user-qq">QQ:{{item.qq}}</text>
+								</view>
+								<view class="user-nickname-rank">
+									<text class="{{index.sex=='男'?'user-gender0':'user-gender1'}}">{{item.sex}}</text>
+									<text > {{item.rank}} </text>					
+								</view>
+							</view>
+							<text class="user-group" style="width: 50px; display: block; box-sizing: border-box">{{po[key]}}</text>
+						</block>
+						<block wx:if="{{!item.name}}">
+							<view style="position:relative;  top: 20%;  left: 50%;  transform: translate(-50%, -50%);">
+								<text>空缺</text>
+							</view>
+							<text class="user-group" style="width: 50px; display: block; box-sizing: border-box">{{po[key]}}</text>
+						</block>
+					</view>
+				</block>
+
+			</view>
+			<button class="btn" bindtap="btn1">离开小队</button>
+			<button wx:if="{{needLeader}}" class="btn" bindtap="btn3">申请通知</button>
+		</block>
+		<block wx:if="{{needTeam}}">
+			<view style="position:absolute;  top: 50%;  transform: translate(0, -50%);font-size: 20px;font-weight: bold;">
+				<text>你还未加入任何小队</text>
+			</view>
+		</block>
+	</view>
+	<!-- 全部小队 -->
+	<view wx:if="{{currentTab}}" class="other-teams">
+		<scroll-view scroll-y="true" class="scr">
+			<view class="teams-list">
+				<block wx:for="{{teams}}" wx:key="*this">
+					<view class="teams" bind:tap="showTeam" id="{{item._id}}">
+						<image class="teams-avatar" src="{{item.teamAvatarHttps}}" bind:tap="previewImage" id="{{item.teamAvatarHttps}}" />
+						<view class="teams-info">
+							<text class="teamName">{{item.teamName}}</text>
+						</view>
+						<text class="teamLeader">队长：{{item.teamLeader.name}}</text>
+						<text style="margin-left: 35rpx;" wx:if="{{!item.adc._id || !item.jungle._id || !item.roam._id || !item.midLane._id || !item.topLane._id}}">可加入</text>
+					</view>
+				</block>
+			</view>
+		</scroll-view>
+		<button wx:if="{{needTeam}}" class="btn" bindtap="btn2">创建小队</button>
+	</view>
+</view>
+<view class="popup" wx:if="{{showPopup}}">
+	<view class="mask1" bindtap="hideDetail" style="width: 750rpx; height: 1309rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+	<view class="content">
+		<view>
+			<view class="la">小队头像：</view>
+			<image class="avatar" bind:tap="newAvatat" src="{{newTeamAvatar}}"></image>
+		</view>
+		<view>
+			<view class="la">小队名称：</view>
+			<input id="newTeamName" bindinput="ins" placeholder="不超过五个字" maxlength="5" value="{{newTeamName}}"></input>
+		</view>
+		<view>
+			<view class="la">小队介绍：</view>
+			<input id="newTeamIntroduce" bindinput="ins" placeholder="不超过十个字" maxlength="10" value="{{newTeamIntroduce}}"></input>
+		</view>
+		<view>
+			<view class="la">在小队里游戏位置：</view>
+			<picker class="picker" id="position" value="{{positionIndex}}" range="{{positionArray}}" bindchange="bindChange">
+				<view class="picker-text">{{positionArray[positionIndex]}}</view>
+			</picker>
+		</view>
+		<button class="btn" bind:tap="upNewTeam">立即创建</button>
+	</view>
+</view>
+<view class="popup" wx:if="{{showTeam}}">
+	<view class="mask1" bindtap="hideDetail1" style="width: 750rpx; height: 1309rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+	<view class="content">
+		<view class="la">
+			申请加入:{{applyTeam.teamName}}
+		</view>
+		<view class="poo">
+			<view wx:if="{{Adc}}" class="{{adc?' poo_view_text_active':''}}" id='adc' bind:tap="select"><text>发育路</text></view>
+			<view wx:if="{{TopLane}}" class="{{topLane?' poo_view_text_active':''}}" id='topLane' bind:tap="select"><text>对抗路</text></view>
+			<view wx:if="{{MidLane}}" class="{{midLane?' poo_view_text_active':''}}" id='midLane' bind:tap="select"><text>中路</text></view>
+			<view wx:if="{{Jungle}}" class="{{jungle?' poo_view_text_active':''}}" id='jungle' bind:tap="select"><text>打野</text></view>
+			<view wx:if="{{Roam}}" class="{{roam?' poo_view_text_active':''}}" id='roam' bind:tap="select"><text>游走</text></view>
+		</view>
+		<button class="btn" bind:tap="applyTeam" bind:tap="btn4">申请加入</button>
+	</view>
+</view>
+<view class="popup" wx:if="{{showApply}}">
+	<view class="mask1" bindtap="hideDetail2" style="width: 750rpx; height: 1309rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx"></view>
+	<view class="content">
+		<view class="la" style="font-size: 20px;">
+			申请通知
+		</view>
+		<block wx:for="{{position1}}" wx:for-index="i" wx:for-item="a" wx:key="*this">
+			<view>{{po[a]}}:</view>
+			<block wx:for="{{team.teamApplication}}" wx:for-index="j" wx:for-item="b" wx:key="*this">
+				<view wx:if="{{a==b.position}}" style="margin-left: 2px;" class="showApply" mark:id="{{a}}">
+					<image src="{{b.user.avatatHttps}}" style="width: 40px;	height: 40px;	border-radius: 50%;"></image>
+					<view style="width:200px">
+						<view>{{b.user.name}}</view>
+						<view>{{b.user.sex}}</view>
+						<view>{{b.user.rank}}</view>
+					</view>
+
+					<view class="ty" bind:tap="ty" id="{{b.user._openid}}">同意</view>
+					<view class="jj" bind:tap="jj" id="{{b.user._openid}}">拒绝</view>
+				</view>
+
+			</block>
+		</block>
+	</view>
+</view>
+<!-- bindtap="hideDetail" -->

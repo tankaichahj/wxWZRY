@@ -1,0 +1,3 @@
+
+	<privacyPopup showPop="{{showPop}}" exitApp bind:handle="popBtnTap" style="width: 750rpx; height: 1171rpx; display: block; box-sizing: border-box"></privacyPopup>
+

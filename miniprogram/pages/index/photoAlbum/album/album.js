@@ -40,7 +40,6 @@ Page({
       photoAlbum: photoAlbums[this.data.id]
     })
     app.globalData.photoAlbums = await photoAlbums
-    console.log(photoAlbums, this.data.id)
 
   },
   onLoad(options) {
@@ -66,7 +65,6 @@ Page({
     if (i > 0) {
       this.getAlbum()
     }
-    console.log(i)
     i++
   },
 

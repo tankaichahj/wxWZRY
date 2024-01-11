@@ -1,24 +1,4 @@
-<!--pages/index/photoAlbum/album/album.wxml-->
-<!-- <view class="container">
-	<view class="title">安农大佬队</view>
-	<view class="top_tip">相册 ->{{photoAlbum.name}}</view>
 
-	
-		<scroll-view class="scroll-view" scroll-y="true" type="custom" enhanced="true" show-scrollbar="false">
-			<grid-view class="grid-view" cross-axis-count="3" cross-axis-gap="5px" main-axis-gap="0px">
-				<grid-tile wx:for="{{photoAlbum.content}}" wx:key="id" index="{{item}}" height="130px" width="130px">
-					<image id="{{item.imageHttps}}" src="{{item.imageHttps}}" style="width: 130px; height: 130px;" mode="aspectFill" bindtap="previewImage"></image>
-				</grid-tile>
-			</grid-view>
-		</scroll-view>
-
-
-
-	<view class="addPhoto" bindtap="addPhoto" id="{{id}}">
-		<image class="addPhotoImage" src="../../../../images/TuPian/sctp.png"></image>
-	</view>
-</view> -->
-<!--pages/index/photoAlbum/album/addAlbum/addAlbum.wxml-->
 <view class="title">安农大佬队</view>
 <view class="top_tip">相册 ->{{photoAlbum.name}}</view>
 
@@ -29,7 +9,7 @@
 		</grid-tile>
 	</grid-view>
 </scroll-view>
-<view class="addPhoto" bindtap="addPhoto" id="{{id}}">
+<!-- <view class="addPhoto" bindtap="addPhoto" id="{{id}}">
 	<image class="addPhotoImage" src="../../../../images/TuPian/sctp.png"></image>
-</view>
-<view class="editAlbum" bindtap="editAlbum"><text>编辑相册</text></view>
+</view> -->
+<!-- <view class="editAlbum" bindtap="editAlbum" ><text>编辑相册</text></view> -->

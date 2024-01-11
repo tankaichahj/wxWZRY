@@ -12,12 +12,10 @@
 						<text>{{item.name}}</text>
 					</view>
 				</view>
+				
 			</view>
 
 		</view>
 
 	</scroll-view>
-	<view class="addPhoto" bindtap="addAlbum">
-		<image class="addPhotoImage" src="../../../images/TuPian/sctp.png"></image>
-	</view>
 </view>

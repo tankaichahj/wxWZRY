@@ -82,7 +82,7 @@ Page({
     }
     const id = image._id
     delete image._id;
-    const b = util.upData("Album", image, id)
+    const b = util.upData("photoAlbums", image, id)
     if (b) {
       if (this.data.percent) {
         this.setData({
@@ -129,7 +129,7 @@ Page({
     this.setData({
       photoAlbum: photoAlbum
     })
-    console.log(photoAlbum)
+    // console.log(photoAlbum)
   },
 
   /**

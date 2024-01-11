@@ -17,8 +17,8 @@
   </view>
   <!-- 战队模块 -->
   <view class="grid-container-1" >
-    <block wx:for="{{buttons_1}}" wx:key="index"  id="{{item.url}}" >   
-      <view class="a" bindlongtap="navigate">
+    <block wx:for="{{buttons_1}}" wx:key="index"   >   
+      <view class="a" bindtap="navigate" id="{{item.url}}">
         <image class="icon" src="{{item.icon}}"  />
         <text class="text">{{item.text}}</text>
       </view>
@@ -38,16 +38,9 @@
 
   </view>
   <!-- 记得改下面样式名称 -->
-  <view class="environment" bindtap="onChangeShowEnvChoose">当前战队：安农大佬队</view>
+  <view class="environment" bindtap="onChangeShowEnvChoose">当前战队：安农大佬队 v1.1.2</view>
 
 
 </view>
-<view class="mask" wx:if="{{loading}}">
-  <view class="words">Loading...</view>
-  <view class="words">Loading...</view>
-</view>
-<!-- <view>
-  <view class="layer1"></view>
-  <view class="layer2"></view>
-  <view class="layer3"></view>
-</view> -->
+
+

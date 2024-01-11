@@ -11,7 +11,8 @@
 9: 更新数据库集合某个数据的字段值（待写）
 10：通过fileID从云存储下载东西
 11 把图片网络连接变成本地链接
-
+12 通过小程序端上传图片
+13 删除集合的某个数据
 **/
 
 
@@ -41,18 +42,18 @@ function getUserInformation(op) {
     wx.cloud.callFunction({
       name: 'getDatabaseUser',
       data: {
-        jihe: 'user',
+        jihe: 'users',
         action: 'query', // 操作类型为查询
         field: '_openid', // 要查询的字段
         value: op // 要查询的数据
       },
       success: (res) => {
         //存在用户
-        
+
         if (res.result.data.length === 1) {
           app.globalData.user = res.result.data[0]
           app.globalData.ck = true
-          resolve(true)
+          resolve(res.result.data[0])
         } else {
           //不存在用户
           app.globalData.ck = false
@@ -79,6 +80,7 @@ function getUsersInfo(set) {
         action: 'get' // 操作类型为获取
       },
       success: (res) => {
+
         resolve(res.result.data)
       },
       fail: (err) => {
@@ -193,7 +195,7 @@ function insertData(set, data) {
     })
   })
 }
-//8 更新数据库集合某个数据
+//8 更新数据库集合某个数据,单个字段
 /**
  * @param {string} set - 所更新的数据所在集合
  * @param {string} data - 所更新的数据
@@ -201,6 +203,7 @@ function insertData(set, data) {
  */
 function upData(set, data, id) {
   return new Promise((resolve, reject) => {
+    console.log(data ,set ,id)
     wx.cloud.callFunction({
       name: 'getDatabaseUser',
       data: {
@@ -210,10 +213,11 @@ function upData(set, data, id) {
         data: data, // 要更新的数据
       },
       success: (res) => {
-        resolve(true, res)
+        console.log(res)
+        resolve(true)
       },
       fail: (err) => {
-        reject(false, err)
+        reject(false)
       }
     })
   })
@@ -257,7 +261,13 @@ function getImageInfoPromisified(src) {
     })
   })
 }
-
+//12 通过小程序端上传图片（文件名重复会报错而不会覆盖）
+/**
+ * 
+ * @param {*} image 图片
+ * @param {*} imagePath  保存路径
+ * @param {*} imageName  保存名称
+ */
 function upimage(image, imagePath, imageName) {
   return new Promise((resolve, reject) => {
     wx.getFileSystemManager().getFileInfo({
@@ -316,6 +326,135 @@ async function uploadToCloudStorage(filePath, folderPath, fileExtension, fileNam
     console.error('上传失败', err)
   }
 }
+/**
+ * 
+ * @param {*} fileIDs 数组
+ */
+async function batchDeleteFiles(fileIDs) {
+  return new Promise((resolve, reject) => {
+    try {
+      wx.cloud.deleteFile({
+        fileList: fileIDs,
+        success: res => {
+          // handle success
+          resolve(res)
+        },
+        //一个回调函数，当文件删除失败时会被调用。
+        fail: err => {
+          reject(err)
+        },
+        //一个回调函数，当文件删除操作完成时会被调用
+        // complete: res => {
+        //   // ...
+        // }
+      })
+    } catch (err) {
+      reject(err)
+    }
+  })
+
+}
+async function delSetData(set, id) {
+  return new Promise((resolve, reject) => {
+    wx.cloud.callFunction({
+      name: 'getDatabaseUser',
+      data: {
+        jihe: set,
+        action: 'delete', // 操作类型为删除
+        id: id, // 要删除的id
+      },
+      success: res => {
+        resolve(res)
+      },
+      fail: err => {
+        reject(err)
+      },
+    })
+  })
+}
+//更新数据的某个字段
+function updateObjectFieldValueInDatabase(set, id, field, newValue, ) {
+  return new Promise((resolve, reject) => {
+    console.log(set,id,newValue,field)
+    wx.cloud.callFunction({
+      name: 'getDatabaseUser',
+      data: {
+        jihe: set,
+        action: 'updateObjectFieldValueInDatabase', // 操作更新字段，
+        field: field,
+        value: newValue,
+        id: id
+      },
+      success: (res) => {
+        console.log(res)
+        resolve(true)
+      },
+      fail: (err) => {
+        reject(false);
+        console.log(err)
+      }
+    })
+  })
+}
+async function getImageHttpsAndFiledID(imageField, image, imagePath, imageName) {
+
+  const imageFileID = await upimage(image, imagePath, imageName)
+  const imageHttps = await getCloudImage([imageFileID])
+  const data = {
+    [`${imageField}FileID`]: await imageFileID,
+    [`${imageField}Https`]: await imageHttps[0].tempFileURL
+  }
+  return data
+
+}
+
+function getUserFileds(set, fields, ) {
+  return new Promise((resolve, reject) => {
+    wx.cloud.callFunction({
+      name: 'getDatabaseUser',
+      data: {
+        jihe: set,
+        action: 'checkMultipleFields', // 操作类型为多字段查询
+        fields: fields, // 要查询的字段
+
+      },
+      success: (res) => {
+        console.log(res)
+        resolve(res)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+    })
+  })
+}
+//更新数据库集合某个数据,
+/**
+ * @param {string} set - 所更新的数据所在集合
+ * @param {string} data - 所更新的数据
+ * @param {string} id - 所更新数据的id
+ */
+function upDatas(set, data, id) {
+  return new Promise((resolve, reject) => {
+    console.log(data ,set ,id)
+    wx.cloud.callFunction({
+      name: 'getDatabaseUser',
+      data: {
+        jihe: set,
+        action: 'set', // 操作类型为更新
+        id: id,
+        data: data, // 要更新的数据
+      },
+      success: (res) => {
+        console.log(res)
+        resolve(true)
+      },
+      fail: (err) => {
+        reject(false)
+      }
+    })
+  })
+}
 //必须在这里暴露接口，以便被外界访问，不然就不能访问
 module.exports = {
   getUserOpenid: getUserOpenid,
@@ -328,5 +467,11 @@ module.exports = {
   upData: upData,
   getCloudImage: getCloudImage,
   getImageInfoPromisified: getImageInfoPromisified,
-  upimage: upimage
+  upimage: upimage,
+  batchDeleteFiles: batchDeleteFiles,
+  delSetData: delSetData,
+  updateObjectFieldValueInDatabase: updateObjectFieldValueInDatabase,
+  getImageHttpsAndFiledID: getImageHttpsAndFiledID,
+  getUserFileds: getUserFileds,
+  upDatas:upDatas
 }

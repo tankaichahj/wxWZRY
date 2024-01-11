@@ -1,2 +1,8 @@
-<!--pages/edit/edit.wxml-->
-<text>pages/edit/edit.wxml</text>
+<view class="title">管理</view>
+<scroll-view scroll-y="true" style="height: 90vh;">
+  <view class="container">
+    <view wx:for="{{buttons}}" wx:key="{{index}}" id="{{item.url}}"  class="button" bindtap="onButtonTap">
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+</scroll-view>

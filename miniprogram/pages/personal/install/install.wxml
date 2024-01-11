@@ -34,6 +34,16 @@
         <image src="./images/arrow.png" mode="aspectFit"></image>
       </view>
     </view>
+     <!-- 管理 -->
+     <view class="item" bindtap="goManage" wx:if="{{admin}}">
+      <view class="icon">
+        <image src="./images/manage.png" mode="aspectFit"></image>
+      </view>
+      <view class="text">管理</view>
+      <view class="arrow">
+        <image src="./images/arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
     <!-- 返回按键 -->
     <view class="item" bindtap="goBack">
       <view class="icon">
@@ -44,5 +54,6 @@
         <image src="./images/arrow.png" mode="aspectFit"></image>
       </view>
     </view>
+   
   </view>
 </view>

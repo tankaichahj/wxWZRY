@@ -4,11 +4,15 @@ Page({
   data: {
     imageSrc: '', //照片上传连接
     cuttype: '',
+    field:''
 
 
   },
   onLoad(option) {
-
+  let field= option.field
+  this.setData({
+    field:field
+  })
 
   },
 
@@ -38,7 +42,7 @@ Page({
     //prevPage 相当于上个页面的this，可以通过setData修改上个页面参数执行上个页面的方法等
     let prevPage = pages[pages.length - 2]
     prevPage.setData({
-      mogulImage: this.data.imageSrc
+      [this.data.field]: this.data.imageSrc
     })
     wx.navigateBack()
   },

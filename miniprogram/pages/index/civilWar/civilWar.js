@@ -1,4 +1,5 @@
 // pages/index/civilWar/civilWar.js
+var util = require('../../../utils/user')
 Page({
 
   /**
@@ -7,7 +8,18 @@ Page({
   data: {
 
   },
-
+  async a() {
+    let op =await util.getUserOpenid()
+    this.setData({
+      openid: op
+    })
+  },
+  async b() {
+    let user =await util.getUserFiled('users','_openid',this.data.openid)
+    this.setData({
+      user: user.result.data[0]
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
